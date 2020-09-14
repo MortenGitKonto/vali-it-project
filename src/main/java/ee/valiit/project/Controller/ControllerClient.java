@@ -1,6 +1,6 @@
 package ee.valiit.project.Controller;
 
-import ee.valiit.project.Client;
+import ee.valiit.project.Request.Client;
 import ee.valiit.project.Service.ServiceClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

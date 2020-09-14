@@ -1,4 +1,4 @@
-package com.company;
+package ee.valiit.project.Request;
 
 public class WorkOrder {
     private int id;

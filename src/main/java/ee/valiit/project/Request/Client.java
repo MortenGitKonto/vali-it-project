@@ -1,4 +1,4 @@
-package ee.valiit.project;
+package ee.valiit.project.Request;
 
 public class Client {
     private String name;
