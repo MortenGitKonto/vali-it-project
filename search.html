@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Search</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <a href="search.html">Search</a>
+        <a href="client.html">Client</a>
+        <a href="new-client.html">New Client</a>
+        <a href="new-device.html">New Device</a>
+        <a href="device.html">Device</a>
+        <a href="workorder.html">Workorder</a>
+    </div>
+    <form class="form-signin">
+        <div class="text-center mb-4">
+            <h1 class="h3 mb-3 font-weight-normal">Search</h1>
+            <p>Search for existing Client by Name / Device by Serial Number / Work Order by ID</p>
+        </div>
+
+        <div class="row">
+            <div class="form-label-group">
+                <input type="text" id="client" class="form-control" placeholder="Client's Name" required="" autofocus="">
+                <label for="text"></label>
+                <button id="searchclient" class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
+            </div>
+        </div>
+        <div class="row">
+
+        </div>
+        <div class="row">
+            <div class="form-label-group">
+                <input type="text" id="serial" class="form-control" placeholder="Serial Number" required="" autofocus="">
+                <label for="text"></label>
+                <button id="searchsn" class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="form-label-group">
+                <input type="text" id="order" class="form-control" placeholder="Work Order ID" required="" autofocus="">
+                <label for="text"></label>
+                <button id="searchwo" class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
+            </div>
+
+        </div>
+
+    </form>
+    <hr class="mb-4">
+    <button id="newclient" class="btn btn-lg btn-primary btn-block" type="submit">Create new Client</button>
+    <p class="mt-5 mb-3 text-muted text-center">© 2020</p>
+</div>
+<script>
+    searchclient.onclick = function () {
+        window.location.href = 'client.html'
+    };
+    searchsn.onclick = function () {
+        window.location.href = 'device.html'
+    };
+    searchwo.onclick = function () {
+        window.location.href = 'workorder.html'
+    };
+    newclient.onclick = function () {
+        window.location.href = 'new-client.html'
+    };
+</script>
+
+</body></html>

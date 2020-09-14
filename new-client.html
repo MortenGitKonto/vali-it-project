@@ -1,0 +1,46 @@
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Device Card</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <a href="search.html">Search</a>
+        <a href="client.html">Client</a>
+        <a href="new-client.html">New Client</a>
+        <a href="new-device.html">New Device</a>
+        <a href="device.html">Device</a>
+        <a href="workorder.html">Workorder</a>
+    </div>
+    <div class="row">
+        <h1>New Client</h1>
+    </div>
+    <div class="row">
+        <div class="container">
+            <form class="form-signin">
+
+                <div class="form-label-group">
+                    <label for="clientName">Client Name</label>
+                    <input type="text" id="clientName" class="form-control" placeholder="Enter client Name" required="">
+                </div>
+
+                <br>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" id="buttonCreateClient">Create</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+
+    let buttonCreateClient = document.getElementById("buttonCreateClient");
+
+    buttonCreateClient.onclick = function(){
+        window.location.href = 'new-device.html'
+    }
+
+
+</script>
+</body></html>
