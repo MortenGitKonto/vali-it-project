@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Search</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/floating-labels/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/docs/4.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/docs/4.5/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="/docs/4.5/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="/docs/4.5/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
+    <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon.ico">
+    <meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#563d7c">
+
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="floating-labels.css" rel="stylesheet">
+    <script type="text/javascript">// Promises
+    var _eid_promises = {};
+    // Turn the incoming message from extension
+    // into pending Promise resolving
+    window.addEventListener("message", function(event) {
+        if(event.source !== window) return;
+        if(event.data.src && (event.data.src === "background.js")) {
+            console.log("Page received: ");
+            console.log(event.data);
+            // Get the promise
+            if(event.data.nonce) {
+                var p = _eid_promises[event.data.nonce];
+                // resolve
+                if(event.data.result === "ok") {
+                    if(event.data.signature !== undefined) {
+                        p.resolve({hex: event.data.signature});
+                    } else if(event.data.version !== undefined) {
+                        p.resolve(event.data.extension + "/" + event.data.version);
+                    } else if(event.data.cert !== undefined) {
+                        p.resolve({hex: event.data.cert});
+                    } else {
+                        console.log("No idea how to handle message");
+                        console.log(event.data);
+                    }
+                } else {
+                    // reject
+                    p.reject(new Error(event.data.result));
+                }
+                delete _eid_promises[event.data.nonce];
+            } else {
+                console.log("No nonce in event msg");
+            }
+        }
+    }, false);
+
+
+    function TokenSigning() {
+        function nonce() {
+            var val = "";
+            var hex = "abcdefghijklmnopqrstuvwxyz0123456789";
+            for(var i = 0; i < 16; i++) val += hex.charAt(Math.floor(Math.random() * hex.length));
+            return val;
+        }
+
+        function messagePromise(msg) {
+            return new Promise(function(resolve, reject) {
+                // amend with necessary metadata
+                msg["nonce"] = nonce();
+                msg["src"] = "page.js";
+                // send message
+                window.postMessage(msg, "*");
+                // and store promise callbacks
+                _eid_promises[msg.nonce] = {
+                    resolve: resolve,
+                    reject: reject
+                };
+            });
+        }
+        this.getCertificate = function(options) {
+            var msg = {type: "CERT", lang: options.lang, filter: options.filter};
+            console.log("getCertificate()");
+            return messagePromise(msg);
+        };
+        this.sign = function(cert, hash, options) {
+            var msg = {type: "SIGN", cert: cert.hex, hash: hash.hex, hashtype: hash.type, lang: options.lang, info: options.info};
+            console.log("sign()");
+            return messagePromise(msg);
+        };
+        this.getVersion = function() {
+            console.log("getVersion()");
+            return messagePromise({
+                type: "VERSION"
+            });
+        };
+    }</script><script type="text/javascript">// Promises
+var _eid_promises = {};
+// Turn the incoming message from extension
+// into pending Promise resolving
+window.addEventListener("message", function(event) {
+    if(event.source !== window) return;
+    if(event.data.src && (event.data.src === "background.js")) {
+        console.log("Page received: ");
+        console.log(event.data);
+        // Get the promise
+        if(event.data.nonce) {
+            var p = _eid_promises[event.data.nonce];
+            // resolve
+            if(event.data.result === "ok") {
+                if(event.data.signature !== undefined) {
+                    p.resolve({hex: event.data.signature});
+                } else if(event.data.version !== undefined) {
+                    p.resolve(event.data.extension + "/" + event.data.version);
+                } else if(event.data.cert !== undefined) {
+                    p.resolve({hex: event.data.cert});
+                } else {
+                    console.log("No idea how to handle message");
+                    console.log(event.data);
+                }
+            } else {
+                // reject
+                p.reject(new Error(event.data.result));
+            }
+            delete _eid_promises[event.data.nonce];
+        } else {
+            console.log("No nonce in event msg");
+        }
+    }
+}, false);
+
+
+function TokenSigning() {
+    function nonce() {
+        var val = "";
+        var hex = "abcdefghijklmnopqrstuvwxyz0123456789";
+        for(var i = 0; i < 16; i++) val += hex.charAt(Math.floor(Math.random() * hex.length));
+        return val;
+    }
+
+    function messagePromise(msg) {
+        return new Promise(function(resolve, reject) {
+            // amend with necessary metadata
+            msg["nonce"] = nonce();
+            msg["src"] = "page.js";
+            // send message
+            window.postMessage(msg, "*");
+            // and store promise callbacks
+            _eid_promises[msg.nonce] = {
+                resolve: resolve,
+                reject: reject
+            };
+        });
+    }
+    this.getCertificate = function(options) {
+        var msg = {type: "CERT", lang: options.lang, filter: options.filter};
+        console.log("getCertificate()");
+        return messagePromise(msg);
+    };
+    this.sign = function(cert, hash, options) {
+        var msg = {type: "SIGN", cert: cert.hex, hash: hash.hex, hashtype: hash.type, lang: options.lang, info: options.info};
+        console.log("sign()");
+        return messagePromise(msg);
+    };
+    this.getVersion = function() {
+        console.log("getVersion()");
+        return messagePromise({
+            type: "VERSION"
+        });
+    };
+}</script></head>
+<body>
+<div class="container">
+    <form class="form-signin">
+        <div class="text-center mb-4">
+            <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Search</h1>
+            <p>Search for existing Client by Name / Device by Serial Number / Work Order by ID</p>
+        </div>
+
+        <div class="row">
+            <div class="form-label-group">
+                <input type="text" id="client" class="form-control" placeholder="Client's Name" required="" autofocus="">
+                <label for="text"></label>
+                <button id="searchclient" class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
+            </div>
+        </div>
+        <div class="row">
+
+        </div>
+        <div class="row">
+            <div class="form-label-group">
+                <input type="text" id="serial" class="form-control" placeholder="Serial Number" required="" autofocus="">
+                <label for="text"></label>
+                <button id="searchsn" class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="form-label-group">
+                <input type="text" id="order" class="form-control" placeholder="Work Order ID" required="" autofocus="">
+                <label for="text"></label>
+                <button id="searchwo" class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
+            </div>
+
+        </div>
+
+    </form>
+    <hr class="mb-4">
+    <button id="newclient" class="btn btn-lg btn-primary btn-block" type="submit">Create new Client</button>
+    <p class="mt-5 mb-3 text-muted text-center">© 2020</p>
+</div>
+<script>
+    searchclient.onclick = function () {
+        window.location.href = '/client.html'
+    };
+    searchsn.onclick = function () {
+        window.location.href = '/device.html'
+    };
+    searchwo.onclick = function () {
+        window.location.href = '/workorder.html'
+    };
+    newclient.onclick = function () {
+        window.location.href = '/new-client.html'
+    };
+</script>
+
+</body></html>
