@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet  author="tenno"  id="1">
+        <createTable tableName="clients">
+            <column name="id" type="bigint" autoIncrement="true" >
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="client_name" type="text"/>
+        </createTable>
+        <createTable tableName="devices">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="client_id" type="bigint">
+                <constraints foreignKeyName="fk_clients_id" nullable="false" references="clients(id)"/>
+            </column>
+            <column name="device_name" type="text"/>
+            <column name="s/n" type="text">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+        <createTable tableName="work_orders">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="device_id" type="bigint">
+                <constraints foreignKeyName="fk_devices_id" nullable="false" references="devices(id)"/>
+            </column>
+            <column name="job_description" type="text"/>
+            <column name="status" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="technician" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
