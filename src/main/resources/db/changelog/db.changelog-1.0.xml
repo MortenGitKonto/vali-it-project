@@ -39,4 +39,45 @@
             </column>
         </createTable>
     </changeSet>
+    <changeSet id="2" author="jantilk">
+        <createTable tableName="technicians">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addColumn tableName="work_orders">
+            <column name="technicians_id" type="bigint">
+                <constraints foreignKeyName="fk_technicians_work_orders"
+                             nullable="false"/>
+            </column>
+        </addColumn>
+        <addColumn tableName="devices">
+            <column name="counter" type="int"></column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="3" author="jantilk">
+        <dropColumn tableName="work_orders" columnName="technician"></dropColumn>
+    </changeSet>
+    <changeSet id="4" author="jantilk">
+        <addColumn tableName="technicians">
+            <column name="technician_name" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="5" author="jantilk">
+        <addPrimaryKey tableName="technicians" columnNames="id"/>
+    </changeSet>
+    <changeSet id="6" author="jantilk">
+        <dropColumn tableName="work_orders" columnName="technicians_id"/>
+    </changeSet>
+    <changeSet id="7" author="jantilk">
+        <addColumn tableName="work_orders">
+            <column name="technicians_id" type="bigint">
+                <constraints foreignKeyName="fk_technicians_work_orders"
+                             nullable="false"
+                             references="technicians(id)"/>
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
