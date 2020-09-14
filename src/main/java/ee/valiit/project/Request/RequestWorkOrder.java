@@ -1,19 +1,12 @@
-package com.company;
+package ee.valiit.project.Request;
 
-public class WorkOrder {
-    private int id;
+public class RequestWorkOrder {
     private int deviceId;
     private String jobDescription;
+//  TODO? lets make status "false" by default
     private boolean status; //true means work done, false means work not done
     private String technicianName;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getDeviceId() {
         return deviceId;
@@ -28,7 +21,7 @@ public class WorkOrder {
     }
 
     public void setJobDescription(String jobDescription) {
-        this.jobDescription = jobDescription;
+        this.jobDescription = this.jobDescription;
     }
 
     public boolean isStatus() {
