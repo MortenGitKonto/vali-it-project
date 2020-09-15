@@ -14,4 +14,14 @@ public class ServiceDevice {
     public void createDevice(Device request) {
         repositoryDevice.createDevice(request);
     }
+
+    public Device getAllDeviceInfo(String sn, Integer clientId) {
+        if (sn != null) {
+            repositoryDevice.getAllDeviceInfoBySn(sn);
+            return repositoryDevice.getAllDeviceInfoBySn(sn);
+        } else {
+            repositoryDevice.getAllDeviceInfoByClientName(clientId);
+            return repositoryDevice.getAllDeviceInfoByClientName(clientId);
+        }
+    }
 }

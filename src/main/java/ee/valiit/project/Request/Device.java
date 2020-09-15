@@ -1,7 +1,7 @@
 package ee.valiit.project.Request;
 
 public class Device {
-    private int clientId;
+    private Integer clientId;
     private String deviceName;
     private String serialNumber;
     private int counter;
@@ -10,7 +10,7 @@ public class Device {
         return clientId;
     }
 
-    public void setClientId(int clientId) {
+    public void setClientId(Integer clientId) {
         this.clientId = clientId;
     }
 
