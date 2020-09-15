@@ -19,8 +19,8 @@ public class ControllerWO {
 
     //Get a specific work order
     @GetMapping("getOneWorkOrder/{a}")
-    public RequestWorkOrder getOneWorkOrder (@PathVariable("a") int clientId) {
-        return serviceWO.getWorkOrderInfo(clientId);
+    public List<RequestWorkOrder> getOneWorkOrder (@PathVariable("a") int deviceId) {
+        return serviceWO.getWorkOrderInfo(deviceId);
     }
 
     //Get the whole list of work orders
@@ -28,5 +28,6 @@ public class ControllerWO {
     public List<RequestWorkOrder> getAllWorkOrders() {
         return serviceWO.getWorkOrderInfoAll();
     }
+
 
 }

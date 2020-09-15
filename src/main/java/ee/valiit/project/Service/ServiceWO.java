@@ -20,7 +20,7 @@ public class ServiceWO {
     }
 
     //Get a specific work order
-    public RequestWorkOrder getWorkOrderInfo(int deviceId) {
+    public List<RequestWorkOrder> getWorkOrderInfo(int deviceId) {
         return repositoryWO.getWorkOrderInfo(deviceId);
     }
 
@@ -28,6 +28,7 @@ public class ServiceWO {
     public List<RequestWorkOrder> getWorkOrderInfoAll() {
         return repositoryWO.getWorkOrderInfoAll();
     }
+
 
 
 
