@@ -31,4 +31,18 @@ public class RepositoryDevice {
         paramMap.put("client_id", clientId);
         return jdbcTemplate.queryForObject(sql, paramMap, Device.class);
     }
+
+    public Device getAllDeviceInfoBySn(String sn) {
+        String sql = "SELECT * FROM devices WHERE sn = :sn";
+        Map paramMap = new HashMap();
+        paramMap.put("sn", sn);
+        return jdbcTemplate.queryForObject(sql, paramMap, Device.class);
+    }
+
+    public Device getAllDeviceInfoByClientName(Integer clientId) {
+        String sql = "SELECT * FROM devices WHERE client_id = :clientId";
+        Map<String, Object> paramMap = new HashMap();
+        paramMap.put("clientId", clientId);
+        return jdbcTemplate.queryForObject(sql, paramMap, Device.class);
+    }
 }
