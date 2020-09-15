@@ -23,4 +23,12 @@ public class RepositoryDevice {
         paramMap.put("counter", request.getCounter());
         jdbcTemplate.update(sql, paramMap);
     }
+
+    //get all device data by client_id
+    public Device getDeviceData(int clientId) {
+        String sql = "SELECT * FROM devices WHERE client_id = :client_id";
+        Map paramMap = new HashMap();
+        paramMap.put("client_id", clientId);
+        return jdbcTemplate.queryForObject(sql, paramMap, Device.class);
+    }
 }

@@ -1,11 +1,10 @@
 package ee.valiit.project.Controller;
 
 import ee.valiit.project.Request.Client;
+import ee.valiit.project.Request.Device;
 import ee.valiit.project.Service.ServiceClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ControllerClient {
@@ -18,5 +17,10 @@ public class ControllerClient {
         serviceClient.createClient(request.getName());
     }
 
+    //search client_id via client name; and then return all device data via identified client_id
+    @GetMapping("client/{name}")
+    public Device client_id(@PathVariable("name") String name) {
+        return serviceClient.getDeviceData(name);
+    }
 
 }
