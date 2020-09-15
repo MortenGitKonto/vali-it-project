@@ -4,7 +4,7 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ObjectRowMapper implements RowMapper<RequestWorkOrder> {
+public class RowMapperWO implements RowMapper<RequestWorkOrder> {
     @Override
     public RequestWorkOrder mapRow(ResultSet resultset, int i) throws SQLException {
         RequestWorkOrder workOrder = new RequestWorkOrder();

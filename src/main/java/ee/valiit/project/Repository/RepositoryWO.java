@@ -1,6 +1,6 @@
 package ee.valiit.project.Repository;
 
-import ee.valiit.project.Request.ObjectRowMapper;
+import ee.valiit.project.Request.RowMapperWO;
 import ee.valiit.project.Request.RequestWorkOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -37,6 +37,6 @@ public class RepositoryWO {
     public List<RequestWorkOrder> getWorkOrderInfoAll() {
         String sql = "select * from work_orders order by id";
         Map<String, Object> paramMap = new HashMap();
-        return jdbcTemplate.query(sql, paramMap, new ObjectRowMapper());
+        return jdbcTemplate.query(sql, paramMap, new RowMapperWO());
         }
 }

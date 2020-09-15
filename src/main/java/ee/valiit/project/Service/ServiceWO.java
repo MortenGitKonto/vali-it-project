@@ -1,7 +1,7 @@
 package ee.valiit.project.Service;
 
 import ee.valiit.project.Repository.RepositoryWO;
-import ee.valiit.project.Request.ObjectRowMapper;
+import ee.valiit.project.Request.RowMapperWO;
 import ee.valiit.project.Request.RequestWorkOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

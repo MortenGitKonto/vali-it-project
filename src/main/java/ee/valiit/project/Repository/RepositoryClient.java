@@ -21,7 +21,7 @@ public class RepositoryClient {
     }
 
     public int getClientId(String name) {
-        String sql = "SELECT client_id FROM clients WHERE client_name = :name";
+        String sql = "SELECT id FROM clients WHERE client_name = :name";
         Map paramMap = new HashMap();
         paramMap.put("name", name);
         return jdbcTemplate.queryForObject(sql, paramMap, int.class);

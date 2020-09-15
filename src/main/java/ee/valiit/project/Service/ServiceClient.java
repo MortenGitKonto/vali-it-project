@@ -6,6 +6,8 @@ import ee.valiit.project.Request.Device;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ServiceClient {
     @Autowired
@@ -19,7 +21,7 @@ public class ServiceClient {
     }
 
     //search client_id via client name; and then return all device data via identified client_id
-    public Device getDeviceData(String name) {
+    public List<Device> getDeviceData(String name) {
         int clientId = repositoryClient.getClientId(name);
         return repositoryDevice.getDeviceData(clientId);
     }
