@@ -14,8 +14,6 @@ public class ControllerWO {
 
     @PostMapping("createWO")
     public void createWO(@RequestBody RequestWorkOrder request) {
-        serviceWO.createWO(request.getDeviceId(),
-                request.getJobDescription(),
-                request.getTechnicianName());
+        serviceWO.createWO(request);
     }
 }
