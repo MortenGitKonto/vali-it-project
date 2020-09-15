@@ -23,4 +23,11 @@ public class ServiceClient {
         int clientId = repositoryClient.getClientId(name);
         return repositoryDevice.getDeviceData(clientId);
     }
+
+    //search client_id via client name
+    public int getClientId(String name) {
+        return repositoryClient.getClientId(name);
+    }
+
+
 }

@@ -23,4 +23,10 @@ public class ControllerClient {
         return serviceClient.getDeviceData(name);
     }
 
+    @GetMapping("clientId/{name}")
+    //search client_id via client name
+    public int getClientId(@PathVariable("name") String name) {
+        return serviceClient.getClientId(name);
+    }
+
 }
