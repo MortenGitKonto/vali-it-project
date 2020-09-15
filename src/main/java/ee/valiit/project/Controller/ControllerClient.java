@@ -13,7 +13,7 @@ public class ControllerClient {
     ServiceClient serviceClient;
 
     //create new client
-    @PostMapping
+    @PostMapping("client")
     public void createClient(@RequestBody Client request) {
         serviceClient.createClient(request.getName());
     }
