@@ -15,11 +15,11 @@ public class RepositoryDevice {
     NamedParameterJdbcTemplate jdbcTemplate;
 
     public void createDevice(Device request) {
-        String sql = "INSERT INTO devices (client_id, device_name, s/n, counter) VALUES (:client_id, :device_name, :s/n, :counter)";
+        String sql = "INSERT INTO devices (client_id, device_name, sn, counter) VALUES (:client_id, :device_name, :sn, :counter)";
         Map paramMap = new HashMap();
         paramMap.put("client_id", request.getClientId());
         paramMap.put("device_name", request.getDeviceName());
-        paramMap.put("s/n", request.getSerialNumber());
+        paramMap.put("sn", request.getSerialNumber());
         paramMap.put("counter", request.getCounter());
         jdbcTemplate.update(sql, paramMap);
     }

@@ -93,4 +93,7 @@
     <changeSet id="9" author="jantilk">
         <renameColumn tableName="work_orders" oldColumnName="technicians_id" newColumnName="technician_id"/>
     </changeSet>
+    <changeSet id="10" author="tenno">
+        <renameColumn tableName="devices" oldColumnName="s/n" newColumnName="sn"/>
+    </changeSet>
 </databaseChangeLog>
