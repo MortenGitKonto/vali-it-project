@@ -20,6 +20,7 @@ public class RepositoryClient {
         jdbcTemplate.update(sql, paramMap);
     }
 
+    //Get client id
     public int getClientId(String name) {
         String sql = "SELECT id FROM clients WHERE client_name = :name";
         Map paramMap = new HashMap();
