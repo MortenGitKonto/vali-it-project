@@ -27,11 +27,11 @@ public class RepositoryWO {
     }
 
     //Get a specific work order
-    public RequestWorkOrder getWorkOrderInfo(int deviceId) {
+    public List<RequestWorkOrder> getWorkOrderInfo(int deviceId) {
         String sql = "select * from work_orders where device_id=:deviceId";
         Map<String, Object> paramMap = new HashMap();
         paramMap.put("deviceId", deviceId);
-        return jdbcTemplate.queryForObject(sql, paramMap, RequestWorkOrder.class);
+        return jdbcTemplate.query(sql, paramMap, new RowMapperWO());
     }
 
     //Get the whole list of work orders
@@ -39,5 +39,6 @@ public class RepositoryWO {
         String sql = "select * from work_orders order by id";
         Map<String, Object> paramMap = new HashMap();
         return jdbcTemplate.query(sql, paramMap, new RowMapperWO());
-        }
+    }
+
 }
