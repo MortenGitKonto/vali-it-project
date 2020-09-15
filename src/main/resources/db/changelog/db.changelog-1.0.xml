@@ -96,4 +96,50 @@
     <changeSet id="10" author="tenno">
         <renameColumn tableName="devices" oldColumnName="s/n" newColumnName="sn"/>
     </changeSet>
+    <changeSet id="11" author="jantilk">
+        <dropColumn tableName="devices" columnName="device_name"/>
+    </changeSet>
+    <changeSet id="12" author="jantilk">
+        <createTable tableName="products">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="text"/>
+            <column name="stock" type="int"/>
+        </createTable>
+        <createTable tableName="consumables">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="text"/>
+            <column name="stock" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="13" author="jantilk">
+        <addPrimaryKey tableName="products" columnNames="id"/>
+        <addPrimaryKey tableName="consumables" columnNames="id"/>
+    </changeSet>
+    <changeSet id="14" author="jantilk">
+        <addColumn tableName="devices">
+            <column name="product_id" type="bigint">
+                <constraints foreignKeyName="fk_products_devices"
+                             nullable="false"
+                             references="products(id)"/>
+            </column>
+        </addColumn>
+        <addColumn tableName="work_orders">
+            <column name="product_id" type="bigint">
+                <constraints foreignKeyName="fk_products_work_orders"
+                             nullable="false"
+                             references="products(id)"/>
+            </column>
+        </addColumn>
+        <addColumn tableName="work_orders">
+            <column name="consumable_id" type="bigint">
+                <constraints foreignKeyName="fk_consumables_work_orders"
+                             nullable="true"
+                             references="consumables(id)"/>
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

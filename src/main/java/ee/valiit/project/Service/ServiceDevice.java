@@ -5,6 +5,8 @@ import ee.valiit.project.Request.Device;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ServiceDevice {
 
@@ -15,13 +17,13 @@ public class ServiceDevice {
         repositoryDevice.createDevice(request);
     }
 
-    public Device getAllDeviceInfo(String sn, Integer clientId) {
+    public List<Device> getAllDeviceInfo(String sn, Integer clientId) {
         if (sn != null) {
             repositoryDevice.getAllDeviceInfoBySn(sn);
             return repositoryDevice.getAllDeviceInfoBySn(sn);
         } else {
-            repositoryDevice.getAllDeviceInfoByClientName(clientId);
-            return repositoryDevice.getAllDeviceInfoByClientName(clientId);
+            repositoryDevice.getDeviceData(clientId);
+            return repositoryDevice.getDeviceData(clientId);
         }
     }
 }
