@@ -80,4 +80,17 @@
             </column>
         </addColumn>
     </changeSet>
+    <changeSet id="8" author="jantilk">
+        <addColumn tableName="technicians">
+            <column name="username" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="9" author="jantilk">
+        <renameColumn tableName="work_orders" oldColumnName="technicians_id" newColumnName="technician_id"/>
+    </changeSet>
 </databaseChangeLog>
