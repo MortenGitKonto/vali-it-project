@@ -15,7 +15,7 @@ public class ControllerDevice {
     ServiceDevice serviceDevice;
 
     //create new device
-    @PostMapping
+    @PostMapping("device")
     public void createDevice(@RequestBody Device request) {
         serviceDevice.createDevice(request);
     }
