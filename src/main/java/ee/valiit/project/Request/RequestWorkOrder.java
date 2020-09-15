@@ -5,8 +5,7 @@ public class RequestWorkOrder {
     private String jobDescription;
 //  TODO? lets make status "false" by default
     private boolean status; //true means work done, false means work not done
-    private String technicianName;
-
+    private int technicianId;
 
     public int getDeviceId() {
         return deviceId;
@@ -21,7 +20,7 @@ public class RequestWorkOrder {
     }
 
     public void setJobDescription(String jobDescription) {
-        this.jobDescription = this.jobDescription;
+        this.jobDescription = jobDescription;
     }
 
     public boolean isStatus() {
@@ -32,11 +31,11 @@ public class RequestWorkOrder {
         this.status = status;
     }
 
-    public String getTechnicianName() {
-        return technicianName;
+    public int getTechnicianId() {
+        return technicianId;
     }
 
-    public void setTechnicianName(String technicianName) {
-        this.technicianName = technicianName;
+    public void setTechnicianId(int technicianId) {
+        this.technicianId = technicianId;
     }
 }
