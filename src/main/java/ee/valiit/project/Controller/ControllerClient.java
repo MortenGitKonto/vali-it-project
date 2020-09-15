@@ -6,6 +6,8 @@ import ee.valiit.project.Service.ServiceClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class ControllerClient {
     @Autowired
@@ -19,7 +21,7 @@ public class ControllerClient {
 
     //search client_id via client name; and then return all device data via identified client_id
     @GetMapping("client/{name}")
-    public Device client_id(@PathVariable("name") String name) {
+    public List<Device> client_id(@PathVariable("name") String name) {
         return serviceClient.getDeviceData(name);
     }
 
