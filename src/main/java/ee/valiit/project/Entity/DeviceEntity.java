@@ -2,9 +2,17 @@ package ee.valiit.project.Entity;
 
 public class DeviceEntity {
     private Integer clientId;
-    private String deviceName;
     private String serialNumber;
     private int counter;
+    private int productId;
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
 
     public int getClientId() {
         return clientId;
@@ -12,14 +20,6 @@ public class DeviceEntity {
 
     public void setClientId(Integer clientId) {
         this.clientId = clientId;
-    }
-
-    public String getDeviceName() {
-        return deviceName;
-    }
-
-    public void setDeviceName(String deviceName) {
-        this.deviceName = deviceName;
     }
 
     public String getSerialNumber() {

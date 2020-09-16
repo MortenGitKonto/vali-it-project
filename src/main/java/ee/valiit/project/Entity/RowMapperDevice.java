@@ -9,7 +9,7 @@ public class RowMapperDevice implements RowMapper<DeviceEntity> {
     public DeviceEntity mapRow(ResultSet resultset, int i) throws SQLException {
         DeviceEntity device = new DeviceEntity();
         device.setClientId(resultset.getInt("client_id"));
-        device.setDeviceName(resultset.getString("device_name"));
+        device.setProductId(resultset.getInt("product_id"));
         device.setSerialNumber(resultset.getString("sn"));
         device.setCounter(resultset.getInt("counter"));
         return device;
