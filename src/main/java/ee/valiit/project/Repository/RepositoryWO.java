@@ -7,12 +7,14 @@ import ee.valiit.project.Entity.WorkOrderEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Repository
+@CrossOrigin(origins = "http://localhost:8081")
 public class RepositoryWO {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;

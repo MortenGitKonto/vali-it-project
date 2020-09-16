@@ -5,6 +5,7 @@ import ee.valiit.project.Repository.RepositoryWO;
 import ee.valiit.project.Entity.WorkOrderEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
