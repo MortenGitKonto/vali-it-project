@@ -17,13 +17,17 @@ public class ServiceDevice {
         repositoryDevice.createDevice(request);
     }
 
-    public List<DeviceEntity> getAllDeviceInfo(String sn, Integer clientId) {
+    public List<DeviceEntity> getAllDeviceInfo(String sn, Integer clientId, Integer productId, Integer counter) {
         if (sn != null) {
-            repositoryDevice.getAllDeviceInfoBySn(sn);
             return repositoryDevice.getAllDeviceInfoBySn(sn);
-        } else {
-            repositoryDevice.getDeviceData(clientId);
+        } else if (clientId != null) {
             return repositoryDevice.getDeviceData(clientId);
+        } else if (productId != null) {
+            return repositoryDevice.getDeviceDataByProdId(productId);
+        } else if (counter != null){
+            return repositoryDevice.getDeviceDataByCounter(counter);
+        } else {
+            return repositoryDevice.getAllDevices();
         }
     }
 }

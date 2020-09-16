@@ -19,11 +19,12 @@ public class ControllerDevice {
         serviceDevice.createDevice(request);
     }
 
-    //get all device info by serialNumber
+    //get all device info by any DeviceEntity variable
     @GetMapping("device")
     public List<DeviceEntity> getAllDeviceInfo(@RequestParam(name = "sn", required = false) String sn,
-                                               @RequestParam(name = "clientId", required = false) Integer clientId) {
-        serviceDevice.getAllDeviceInfo(sn, clientId);
-        return serviceDevice.getAllDeviceInfo(sn, clientId);
+                                               @RequestParam(name = "clientId", required = false) Integer clientId,
+                                               @RequestParam(name = "productId", required = false) Integer productId,
+                                               @RequestParam(name = "counter", required = false) Integer counter) {
+        return serviceDevice.getAllDeviceInfo(sn, clientId, productId, counter);
     }
 }
