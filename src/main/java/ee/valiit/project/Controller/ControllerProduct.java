@@ -1,12 +1,12 @@
 package ee.valiit.project.Controller;
 
+import ee.valiit.project.Entity.ConsumableEntity;
 import ee.valiit.project.Entity.ProductEntity;
 import ee.valiit.project.Service.ServiceProduct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 
@@ -26,4 +26,17 @@ public class ControllerProduct {
     public int getProductID(@RequestBody String name) {
         return serviceProduct.productID(name);
     }
+
+    //Get a specific product
+    @GetMapping("productInfo/{id}")
+    public List<ProductEntity> getProductInfo(@PathVariable("id") Integer id) {
+        return serviceProduct.getProductInfo(id);
+    }
+
+    //Get the whole list of products
+    @GetMapping("productInfo")
+    public List<ProductEntity> getProductInfoAll() {
+        return serviceProduct.getProductInfoAll();
+    }
+
 }
