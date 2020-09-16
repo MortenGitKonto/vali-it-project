@@ -1,6 +1,6 @@
-package ee.valiit.project.Request;
+package ee.valiit.project.Entity;
 
-public class Client {
+public class ClientEntity {
     private String name;
 
     public String getName() {

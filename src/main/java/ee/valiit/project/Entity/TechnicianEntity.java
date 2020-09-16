@@ -1,6 +1,6 @@
-package ee.valiit.project.Request;
+package ee.valiit.project.Entity;
 
-public class Technician {
+public class TechnicianEntity {
     private int id;
     private String name;
     private String username;

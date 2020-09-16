@@ -1,6 +1,6 @@
-package ee.valiit.project.Request;
+package ee.valiit.project.Entity;
 
-public class RequestWorkOrder {
+public class WorkOrderEntity {
     private int deviceId;
     private String jobDescription;
 //  TODO? lets make status "false" by default

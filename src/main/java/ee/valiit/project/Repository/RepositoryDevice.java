@@ -1,7 +1,7 @@
 package ee.valiit.project.Repository;
 
-import ee.valiit.project.Request.Device;
-import ee.valiit.project.Request.RowMapperDevice;
+import ee.valiit.project.Entity.DeviceEntity;
+import ee.valiit.project.Entity.RowMapperDevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -16,7 +16,7 @@ public class RepositoryDevice {
     @Autowired
     NamedParameterJdbcTemplate jdbcTemplate;
 
-    public void createDevice(Device request) {
+    public void createDevice(DeviceEntity request) {
         String sql = "INSERT INTO devices (client_id, device_name, sn, counter) VALUES (:client_id, :device_name, :sn, :counter)";
         Map paramMap = new HashMap();
         paramMap.put("client_id", request.getClientId());
@@ -27,14 +27,14 @@ public class RepositoryDevice {
     }
 
     //get all device data by client_id
-    public List<Device> getDeviceData(int clientId) {
+    public List<DeviceEntity> getDeviceData(int clientId) {
         String sql = "SELECT * FROM devices WHERE client_id = :client_id";
         Map paramMap = new HashMap();
         paramMap.put("client_id", clientId);
         return jdbcTemplate.query(sql, paramMap, new RowMapperDevice());
     }
 
-    public List<Device> getAllDeviceInfoBySn(String sn) {
+    public List<DeviceEntity> getAllDeviceInfoBySn(String sn) {
         String sql = "SELECT * FROM devices WHERE sn = :sn";
         Map paramMap = new HashMap();
         paramMap.put("sn", sn);
