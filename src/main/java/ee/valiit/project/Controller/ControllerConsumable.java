@@ -5,6 +5,8 @@ import ee.valiit.project.Service.ServiceConsumable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 
 public class ControllerConsumable {
@@ -23,4 +25,17 @@ public class ControllerConsumable {
     public int getConsumableID(@PathVariable("name") String name) {
         return serviceConsumable.getConsumableID(name);
     }
+
+    //Get a specific consumable
+    @GetMapping("consumableInfo/{id}")
+    public List<ConsumableEntity> getConsumableInfo(@PathVariable("id") Integer id) {
+        return serviceConsumable.getConsumableInfo(id);
+    }
+
+    //Get the whole list of consumables
+    @GetMapping("consumableInfo")
+    public List<ConsumableEntity> getConsumableInfoAll() {
+        return serviceConsumable.getConsumableInfoAll();
+    }
+
 }
