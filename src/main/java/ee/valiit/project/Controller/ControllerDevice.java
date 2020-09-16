@@ -27,4 +27,16 @@ public class ControllerDevice {
                                                @RequestParam(name = "counter", required = false) Integer counter) {
         return serviceDevice.getAllDeviceInfo(sn, clientId, productId, counter);
     }
+
+    //get all device info where counter <= input
+    @GetMapping("deviceCounterLess")
+    public List<DeviceEntity> getDeviceDataCounterLess(@RequestParam("counter") int counter) {
+        return serviceDevice.getAllCounterLess(counter);
+    }
+
+    //get all device info where counter >= input
+    @GetMapping("deviceCounterMore")
+    public List<DeviceEntity> getDeviceDataCounterMore(@RequestParam("counter") int counter) {
+        return serviceDevice.getAllCounterMore(counter);
+    }
 }
