@@ -31,7 +31,7 @@ public class ControllerWO {
                                                      @RequestParam(name = "deviceId", required = false) Integer deviceId,
                                                      @RequestParam(name = "consumableId", required = false) Integer consumableId,
                                                      @RequestParam(name = "technicianId", required = false) Integer technicianId,
-                                                     @RequestParam(name = "status", required = false) boolean status) {
+                                                     @RequestParam(name = "status", required = false) Boolean status) {
         return serviceWO.getAllWorkOrderInfo(productId, deviceId, consumableId, technicianId, status);
     }
 
