@@ -64,9 +64,17 @@ public class RepositoryDevice {
         return jdbcTemplate.query(sql, paramMap, new RowMapperDevice());
     }
 
+    public List<DeviceEntity> getAllCounterLess(int counter) {
+        String sql = "SELECT * FROM devices WHERE counter <= :counter";
+        Map paramMap = new HashMap();
+        paramMap.put("counter", counter);
+        return jdbcTemplate.query(sql, paramMap, new RowMapperDevice());
+    }
 
-
-    //TODO
-    //get all devices by counter < or > than input figure
-
+    public List<DeviceEntity> getAllCounterMore(int counter) {
+        String sql = "SELECT * FROM devices WHERE counter >= :counter";
+        Map paramMap = new HashMap();
+        paramMap.put("counter", counter);
+        return jdbcTemplate.query(sql, paramMap, new RowMapperDevice());
+    }
 }

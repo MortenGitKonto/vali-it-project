@@ -24,10 +24,20 @@ public class ServiceDevice {
             return repositoryDevice.getDeviceData(clientId);
         } else if (productId != null) {
             return repositoryDevice.getDeviceDataByProdId(productId);
-        } else if (counter != null){
+        } else if (counter != null) {
             return repositoryDevice.getDeviceDataByCounter(counter);
         } else {
             return repositoryDevice.getAllDevices();
         }
+    }
+
+    //get all data where counter <= input
+    public List<DeviceEntity> getAllCounterLess(int counter) {
+        return repositoryDevice.getAllCounterLess(counter);
+    }
+
+    //get all data where counter >= input
+    public List<DeviceEntity> getAllCounterMore(int counter) {
+        return repositoryDevice.getAllCounterMore(counter);
     }
 }
