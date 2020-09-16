@@ -30,5 +30,4 @@ public class ControllerClient {
     public int getClientId(@PathVariable("name") String name) {
         return serviceClient.getClientId(name);
     }
-
 }

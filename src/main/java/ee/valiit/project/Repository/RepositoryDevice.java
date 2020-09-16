@@ -17,13 +17,20 @@ public class RepositoryDevice {
     NamedParameterJdbcTemplate jdbcTemplate;
 
     public void createDevice(DeviceEntity request) {
-        String sql = "INSERT INTO devices (client_id, device_name, sn, counter) VALUES (:client_id, :device_name, :sn, :counter)";
+        String sql = "INSERT INTO devices (client_id, product_id, sn, counter) VALUES (:client_id, :product_id, :sn, :counter)";
         Map paramMap = new HashMap();
         paramMap.put("client_id", request.getClientId());
-        paramMap.put("device_name", request.getDeviceName());
+        paramMap.put("product_id", request.getProductId());
         paramMap.put("sn", request.getSerialNumber());
         paramMap.put("counter", request.getCounter());
         jdbcTemplate.update(sql, paramMap);
+    }
+
+    //get all devices
+    public List<DeviceEntity> getAllDevices() {
+        String sql = "SELECT * FROM devices";
+        Map paramMap = new HashMap();
+        return jdbcTemplate.query(sql, paramMap, new RowMapperDevice());
     }
 
     //get all device data by client_id
@@ -34,6 +41,7 @@ public class RepositoryDevice {
         return jdbcTemplate.query(sql, paramMap, new RowMapperDevice());
     }
 
+    //get all device data by serial number
     public List<DeviceEntity> getAllDeviceInfoBySn(String sn) {
         String sql = "SELECT * FROM devices WHERE sn = :sn";
         Map paramMap = new HashMap();
@@ -42,5 +50,23 @@ public class RepositoryDevice {
     }
 
 
+    public List<DeviceEntity> getDeviceDataByProdId(int productId) {
+        String sql = "SELECT * FROM devices WHERE product_id = :prodId";
+        Map paramMap = new HashMap();
+        paramMap.put("prodId", productId);
+        return jdbcTemplate.query(sql, paramMap, new RowMapperDevice());
+    }
+
+    public List<DeviceEntity> getDeviceDataByCounter(int counter) {
+        String sql = "SELECT * FROM devices WHERE counter = :counter";
+        Map paramMap = new HashMap();
+        paramMap.put("counter", counter);
+        return jdbcTemplate.query(sql, paramMap, new RowMapperDevice());
+    }
+
+
+
+    //TODO
+    //get all devices by counter < or > than input figure
 
 }
