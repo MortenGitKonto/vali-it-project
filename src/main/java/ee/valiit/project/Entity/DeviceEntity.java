@@ -1,6 +1,6 @@
-package ee.valiit.project.Request;
+package ee.valiit.project.Entity;
 
-public class Device {
+public class DeviceEntity {
     private Integer clientId;
     private String deviceName;
     private String serialNumber;
