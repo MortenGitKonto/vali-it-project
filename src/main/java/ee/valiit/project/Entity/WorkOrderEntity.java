@@ -1,11 +1,15 @@
 package ee.valiit.project.Entity;
 
+import java.math.BigInteger;
+
 public class WorkOrderEntity {
     private int deviceId;
     private String jobDescription;
 //  TODO? lets make status "false" by default
     private boolean status; //true means work done, false means work not done
     private int technicianId;
+    private int productId;
+    private int consumableId;
 
     public int getDeviceId() {
         return deviceId;
@@ -37,5 +41,21 @@ public class WorkOrderEntity {
 
     public void setTechnicianId(int technicianId) {
         this.technicianId = technicianId;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public int getConsumableId() {
+        return consumableId;
+    }
+
+    public void setConsumableId(int consumableId) {
+        this.consumableId = consumableId;
     }
 }

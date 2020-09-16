@@ -49,6 +49,7 @@ public class RepositoryDevice {
         return jdbcTemplate.query(sql, paramMap, new RowMapperDevice());
     }
 
+
     public List<DeviceEntity> getDeviceDataByProdId(int productId) {
         String sql = "SELECT * FROM devices WHERE product_id = :prodId";
         Map paramMap = new HashMap();
@@ -67,4 +68,5 @@ public class RepositoryDevice {
 
     //TODO
     //get all devices by counter < or > than input figure
+
 }
