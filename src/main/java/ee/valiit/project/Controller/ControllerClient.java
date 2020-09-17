@@ -36,4 +36,9 @@ public class ControllerClient {
     public List<ClientEntity> getAllClients() {
         return serviceClient.getAllClients();
     }
+
+    @GetMapping("clientlike")
+    public List<ClientEntity> searchClient(@RequestParam(name = "nameLike") String nameLike) {
+        return serviceClient.getClientViaName(nameLike);
+    }
 }

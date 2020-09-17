@@ -36,4 +36,12 @@ public class RepositoryClient {
         List<ClientEntity> getAllClientsRequest = jdbcTemplate.query(sql, new HashMap<>(), new RowMapperClient());
         return getAllClientsRequest;
     }
+
+    public List<ClientEntity> getClientViaName(String nameLike) {
+        String sql = "SELECT * FROM clients WHERE client_name ILIKE :request";
+        Map paramMap = new HashMap();
+        paramMap.put("request", "%"+nameLike+"%");
+        System.out.println(jdbcTemplate.query(sql, paramMap, new RowMapperClient()));
+        return jdbcTemplate.query(sql, paramMap, new RowMapperClient());
+    }
 }

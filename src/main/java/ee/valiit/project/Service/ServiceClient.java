@@ -36,4 +36,8 @@ public class ServiceClient {
     public List<ClientEntity> getAllClients() {
         return repositoryClient.getAllClients();
     }
+
+    public List<ClientEntity> getClientViaName(String nameLike) {
+        return repositoryClient.getClientViaName(nameLike);
+    }
 }
