@@ -31,4 +31,9 @@ public class ControllerClient {
     public int getClientId(@PathVariable("name") String name) {
         return serviceClient.getClientId(name);
     }
+
+    @GetMapping("client")
+    public List<ClientEntity> getAllClients() {
+        return serviceClient.getAllClients();
+    }
 }
