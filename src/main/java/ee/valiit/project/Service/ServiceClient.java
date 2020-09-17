@@ -1,5 +1,6 @@
 package ee.valiit.project.Service;
 
+import ee.valiit.project.Entity.ClientEntity;
 import ee.valiit.project.Repository.RepositoryClient;
 import ee.valiit.project.Repository.RepositoryDevice;
 import ee.valiit.project.Entity.DeviceEntity;
@@ -32,4 +33,7 @@ public class ServiceClient {
     }
 
 
+    public List<ClientEntity> getAllClients() {
+        return repositoryClient.getAllClients();
+    }
 }
