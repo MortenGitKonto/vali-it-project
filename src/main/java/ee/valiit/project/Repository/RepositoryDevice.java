@@ -2,6 +2,7 @@ package ee.valiit.project.Repository;
 
 import ee.valiit.project.Entity.DeviceEntity;
 import ee.valiit.project.Entity.RowMapperDevice;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -41,37 +42,19 @@ public class RepositoryDevice {
         return jdbcTemplate.query(sql, paramMap, new RowMapperDevice());
     }
 
-    //get all device data by serial number
-    public List<DeviceEntity> getAllDeviceInfoBySn(String sn) {
-        String sql = "SELECT * FROM devices WHERE sn = :sn";
-        Map paramMap = new HashMap();
-        paramMap.put("sn", sn);
-        return jdbcTemplate.query(sql, paramMap, new RowMapperDevice());
-    }
-
     public List<DeviceEntity> query(String queryString) {
-        String sql = "SELECT * FROM devices WHERE sn = :queryString " +
+        String sql = "SELECT * FROM devices WHERE sn ILIKE :queryString " +
                 "OR client_id = :queryInteger " +
                 "OR product_id = :queryInteger " +
                 "OR counter = :queryInteger";
         Map paramMap = new HashMap();
-        paramMap.put("queryString", queryString);
-        paramMap.put("queryInteger", Integer.valueOf(queryString));
-        return jdbcTemplate.query(sql, paramMap, new RowMapperDevice());
-    }
+        paramMap.put("queryString", "%"+queryString+"%");
+        Integer queryInteger = null;
+        if(StringUtils.isNumeric(queryString)){
+            queryInteger = Integer.valueOf(queryString);
+        }
 
-
-    public List<DeviceEntity> getDeviceDataByProdId(int productId) {
-        String sql = "SELECT * FROM devices WHERE product_id = :prodId";
-        Map paramMap = new HashMap();
-        paramMap.put("prodId", productId);
-        return jdbcTemplate.query(sql, paramMap, new RowMapperDevice());
-    }
-
-    public List<DeviceEntity> getDeviceDataByCounter(int counter) {
-        String sql = "SELECT * FROM devices WHERE counter = :counter";
-        Map paramMap = new HashMap();
-        paramMap.put("counter", counter);
+        paramMap.put("queryInteger", queryInteger);
         return jdbcTemplate.query(sql, paramMap, new RowMapperDevice());
     }
 

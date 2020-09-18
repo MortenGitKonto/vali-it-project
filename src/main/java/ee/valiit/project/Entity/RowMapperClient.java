@@ -10,6 +10,7 @@ public class RowMapperClient implements RowMapper<ClientEntity> {
     public ClientEntity mapRow(ResultSet resultset, int i) throws SQLException {
         ClientEntity client = new ClientEntity();
         client.setName(resultset.getString("client_name"));
+        client.setId(resultset.getInt("id"));
         return client;
     }
 }

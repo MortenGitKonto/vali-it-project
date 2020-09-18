@@ -18,7 +18,7 @@ public class ServiceDevice {
     }
 
     public List<DeviceEntity> getAllDeviceInfo(String query) {
-        if (query == null) {
+        if (query == "") {
             return repositoryDevice.getAllDevices();
         } else {
             return repositoryDevice.query(query);
