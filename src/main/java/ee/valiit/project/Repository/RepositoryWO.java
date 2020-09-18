@@ -73,6 +73,19 @@ public class RepositoryWO {
         return jdbcTemplate.query(sql, paramMap, new RowMapperWO());
     }
 
+    //All work orders info by QUERY
+    public List<WorkOrderEntity> getAllInfoByQuery(String queryString) {
+        String sql = "SELECT * FROM work_orders WHERE job_description = :queryString " +
+                "OR device_id = :queryInteger " +
+                "OR technician_id = :queryInteger " +
+                "OR product_id = :queryInteger OR consumable_id = :queryInteger";
+        Map paramMap = new HashMap();
+        paramMap.put("queryString", queryString);
+        paramMap.put("queryInteger", Integer.valueOf(queryString));
+        return jdbcTemplate.query(sql, paramMap, new RowMapperWO());
+    }
+
+
     //All work orders info by product id
     public List<WorkOrderEntity> getAllWorkOrderInfoByProductId(Integer productId) {
         String sql = "SELECT * FROM work_orders WHERE product_id = :product_id";
@@ -88,8 +101,6 @@ public class RepositoryWO {
         paramMap.put("status", status);
         return jdbcTemplate.query(sql, paramMap, new RowMapperWO());
     }
-
-
 
 
     /////
@@ -115,11 +126,6 @@ public class RepositoryWO {
         paramMap.put("id", id);
         jdbcTemplate.update(sql, paramMap);
     }
-
-
-
-
-
 
 
 }
