@@ -37,7 +37,15 @@ public class ControllerWO {
         return serviceWO.getAllWorkOrderInfo(query);
     }
 
-
+    @GetMapping("workOrderStatus")
+    public List<WorkOrderEntity> getWorkOrderInfoByStatus(@RequestParam(name = "status") Boolean status)
+//                                                     @RequestParam(name = "deviceId", required = false) Integer deviceId,
+//                                                     @RequestParam(name = "consumableId", required = false) Integer consumableId,
+//                                                     @RequestParam(name = "technicianId", required = false) Integer technicianId,
+//                                                     @RequestParam(name = "status", required = false) Boolean status)
+    {
+        return serviceWO.getAllWorkOrderInfoByStatus(status);
+    }
 
 
     //Update status of specific work order by id

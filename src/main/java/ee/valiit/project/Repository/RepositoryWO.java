@@ -102,6 +102,14 @@ public class RepositoryWO {
         return jdbcTemplate.query(sql, paramMap, new RowMapperWO());
     }
 
+    //get all work orders that are not done
+    public List<WorkOrderEntity> getAllInfoByStatus(Boolean status) {
+        String sql = "SELECT * FROM work_orders WHERE status = :status";
+        Map paramMap = new HashMap();
+        paramMap.put("status", status);
+        return jdbcTemplate.query(sql, paramMap, new RowMapperWO());
+    }
+
 
 
 

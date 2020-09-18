@@ -39,6 +39,12 @@ public class ServiceWO {
         }
     }
 
+    //get all work orders that are not done
+    public List<WorkOrderEntity> getAllWorkOrderInfoByStatus(Boolean status) {
+            return repositoryWO.getAllInfoByStatus(status);
+    }
+
+
     //Update status of specific work order by id
     public void updateWorkOrderStatus(WorkOrderEntity workOrderEntity, Integer id) {
         repositoryWO.updateStatus(workOrderEntity, id);
