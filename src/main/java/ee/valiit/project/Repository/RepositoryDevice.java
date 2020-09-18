@@ -49,6 +49,17 @@ public class RepositoryDevice {
         return jdbcTemplate.query(sql, paramMap, new RowMapperDevice());
     }
 
+    public List<DeviceEntity> query(String queryString) {
+        String sql = "SELECT * FROM devices WHERE sn = :queryString " +
+                "OR client_id = :queryInteger " +
+                "OR product_id = :queryInteger " +
+                "OR counter = :queryInteger";
+        Map paramMap = new HashMap();
+        paramMap.put("queryString", queryString);
+        paramMap.put("queryInteger", Integer.valueOf(queryString));
+        return jdbcTemplate.query(sql, paramMap, new RowMapperDevice());
+    }
+
 
     public List<DeviceEntity> getDeviceDataByProdId(int productId) {
         String sql = "SELECT * FROM devices WHERE product_id = :prodId";

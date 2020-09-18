@@ -22,11 +22,12 @@ public class ControllerDevice {
 
     //get all device info by any DeviceEntity variable
     @GetMapping("device")
-    public List<DeviceEntity> getAllDeviceInfo(@RequestParam(name = "sn", required = false) String sn,
-                                               @RequestParam(name = "clientId", required = false) Integer clientId,
-                                               @RequestParam(name = "productId", required = false) Integer productId,
-                                               @RequestParam(name = "counter", required = false) Integer counter) {
-        return serviceDevice.getAllDeviceInfo(sn, clientId, productId, counter);
+    public List<DeviceEntity> getAllDeviceInfo(@RequestParam("query") String query){
+//                                               @RequestParam(name = "sn", required = false) String sn,
+//                                               @RequestParam(name = "clientId", required = false) Integer clientId,
+//                                               @RequestParam(name = "productId", required = false) Integer productId,
+//                                               @RequestParam(name = "counter", required = false) Integer counter) {
+        return serviceDevice.getAllDeviceInfo(query);
     }
 
     //get all device info where counter <= input
