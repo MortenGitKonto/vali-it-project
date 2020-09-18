@@ -4,6 +4,8 @@ import ee.valiit.project.Entity.DeviceEntity;
 import ee.valiit.project.Entity.RowMapperDevice;
 import ee.valiit.project.Entity.RowMapperWO;
 import ee.valiit.project.Entity.WorkOrderEntity;
+import org.apache.commons.lang3.BooleanUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -75,15 +77,32 @@ public class RepositoryWO {
 
     //All work orders info by QUERY
     public List<WorkOrderEntity> getAllInfoByQuery(String queryString) {
-        String sql = "SELECT * FROM work_orders WHERE job_description = :queryString " +
-                "OR device_id = :queryInteger " +
-                "OR technician_id = :queryInteger " +
-                "OR product_id = :queryInteger OR consumable_id = :queryInteger";
+        String sql = "SELECT * FROM work_orders WHERE device_id = :queryInteger " +
+                "OR technician_id = :queryInteger OR " +
+                " product_id = :queryInteger OR consumable_id = :queryInteger";
+
         Map paramMap = new HashMap();
-        paramMap.put("queryString", queryString);
-        paramMap.put("queryInteger", Integer.valueOf(queryString));
+        //paramMap.put("queryString", queryString);
+
+        Integer queryInteger = null;
+        if(StringUtils.isNumeric(queryString)){
+            queryInteger = Integer.valueOf(queryString);
+        }
+
+        paramMap.put("queryInteger", queryInteger);
         return jdbcTemplate.query(sql, paramMap, new RowMapperWO());
     }
+
+    //All work orders info by TRUE/FALSE
+    public List<WorkOrderEntity> getAllInfoByQueryBoolean(String queryString) {
+        String sql = "SELECT * FROM work_orders WHERE status = :status";
+        Map paramMap = new HashMap();
+
+        paramMap.put("status", Boolean.valueOf(queryString));
+        return jdbcTemplate.query(sql, paramMap, new RowMapperWO());
+    }
+
+
 
 
     //All work orders info by product id

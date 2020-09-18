@@ -3,12 +3,21 @@ package ee.valiit.project.Entity;
 import java.math.BigInteger;
 
 public class WorkOrderEntity {
+    private int id;
     private int deviceId;
     private String jobDescription;
     private boolean status; //true means work done, false means work not done
     private int technicianId;
     private int productId;
     private int consumableId;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getDeviceId() {
         return deviceId;
