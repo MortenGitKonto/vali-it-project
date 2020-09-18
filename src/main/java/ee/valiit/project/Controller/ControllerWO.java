@@ -28,12 +28,13 @@ public class ControllerWO {
 
     //get all work orders info by specific device id, product id, consumable id, technician id or status.
     @GetMapping("workOrder")
-    public List<WorkOrderEntity> getAllWorkOrderInfo(@RequestParam(name = "productId", required = false) Integer productId,
-                                                     @RequestParam(name = "deviceId", required = false) Integer deviceId,
-                                                     @RequestParam(name = "consumableId", required = false) Integer consumableId,
-                                                     @RequestParam(name = "technicianId", required = false) Integer technicianId,
-                                                     @RequestParam(name = "status", required = false) Boolean status) {
-        return serviceWO.getAllWorkOrderInfo(productId, deviceId, consumableId, technicianId, status);
+    public List<WorkOrderEntity> getAllWorkOrderInfo(@RequestParam(name = "query", required = false) String query)
+//                                                     @RequestParam(name = "deviceId", required = false) Integer deviceId,
+//                                                     @RequestParam(name = "consumableId", required = false) Integer consumableId,
+//                                                     @RequestParam(name = "technicianId", required = false) Integer technicianId,
+//                                                     @RequestParam(name = "status", required = false) Boolean status)
+                                                     {
+        return serviceWO.getAllWorkOrderInfo(query);
     }
 
 

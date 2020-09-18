@@ -29,23 +29,16 @@ public class ServiceWO {
     }
 
     //get all work orders info by specific device id, product id, consumable id, technician id or status.
-    public List<WorkOrderEntity> getAllWorkOrderInfo(Integer productId, Integer deviceId, Integer consumableId, Integer technicianId, Boolean status) {
-        if (productId != null) {
-            return repositoryWO.getAllWorkOrderInfoByProductId(productId);
-        } else if (deviceId != null) {
-            return repositoryWO.getAllWorkOrderInfoByDeviceId(deviceId);
-        } else if (consumableId != null) {
-            return repositoryWO.getAllWorkOrderInfoByConsumableId(consumableId);
-        } else if (technicianId != null) {
-            return repositoryWO.getAllWorkOrderInfoByTechnicianId(technicianId);
-        } else if (status != null){
-            return repositoryWO.getAllWorkOrderInfoByStatus(status);
-        } else {
+    public List<WorkOrderEntity> getAllWorkOrderInfo(String query) {
+        if (query == null) {
             return repositoryWO.getWorkOrderInfoAll();
+        } else {
+            return repositoryWO.getAllInfoByQuery(query);
         }
     }
-        //Update status of specific work order by id
-        public void updateWorkOrderStatus (WorkOrderEntity workOrderEntity, Integer id){
-            repositoryWO.updateStatus(workOrderEntity, id);
+
+    //Update status of specific work order by id
+    public void updateWorkOrderStatus(WorkOrderEntity workOrderEntity, Integer id) {
+        repositoryWO.updateStatus(workOrderEntity, id);
     }
 }
