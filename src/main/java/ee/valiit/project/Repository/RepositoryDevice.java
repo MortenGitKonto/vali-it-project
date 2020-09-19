@@ -44,9 +44,9 @@ public class RepositoryDevice {
 
     public List<DeviceEntity> query(String queryString) {
         String sql = "SELECT * FROM devices WHERE sn ILIKE :queryString " +
-                "OR client_id = :queryInteger " +
-                "OR product_id = :queryInteger " +
-                "OR counter = :queryInteger";
+//                "OR client_id = :queryInteger " +
+                "OR product_id = :queryInteger ";
+//                "OR counter = :queryInteger";
         Map paramMap = new HashMap();
         paramMap.put("queryString", "%"+queryString+"%");
         Integer queryInteger = null;
