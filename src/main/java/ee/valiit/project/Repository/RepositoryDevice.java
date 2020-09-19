@@ -71,4 +71,11 @@ public class RepositoryDevice {
         paramMap.put("counter", counter);
         return jdbcTemplate.query(sql, paramMap, new RowMapperDevice());
     }
+
+    public List<DeviceEntity> devicesByClientId(int clientId) {
+        String sql = "SELECT * FROM devices WHERE client_id = :clientId";
+        Map paramMap = new HashMap();
+        paramMap.put("clientId", clientId);
+        return jdbcTemplate.query(sql, paramMap, new RowMapperDevice());
+    }
 }

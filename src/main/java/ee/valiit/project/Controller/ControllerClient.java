@@ -32,11 +32,6 @@ public class ControllerClient {
         return serviceClient.getClientId(name);
     }
 
-    @GetMapping("client")
-    public List<ClientEntity> getAllClients() {
-        return serviceClient.getAllClients();
-    }
-
     @GetMapping("clientlike")
     public List<ClientEntity> searchClient(@RequestParam(name = "nameLike") String nameLike) {
         return serviceClient.getClientViaName(nameLike);

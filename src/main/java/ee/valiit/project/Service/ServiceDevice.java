@@ -46,4 +46,8 @@ public class ServiceDevice {
     public List<DeviceEntity> getAllCounterMore(int counter) {
         return repositoryDevice.getAllCounterMore(counter);
     }
+
+    public List<DeviceEntity> devicesByClientId(int clientId) {
+        return repositoryDevice.devicesByClientId(clientId);
+    }
 }

@@ -32,11 +32,6 @@ public class ServiceClient {
         return repositoryClient.getClientId(name);
     }
 
-
-    public List<ClientEntity> getAllClients() {
-        return repositoryClient.getAllClients();
-    }
-
     public List<ClientEntity> getClientViaName(String nameLike) {
         return repositoryClient.getClientViaName(nameLike);
     }
