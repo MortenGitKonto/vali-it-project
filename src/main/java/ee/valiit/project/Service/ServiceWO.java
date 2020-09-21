@@ -49,4 +49,8 @@ public class ServiceWO {
     public void updateWorkOrderStatus(WorkOrderEntity workOrderEntity, Integer id) {
         repositoryWO.updateStatus(workOrderEntity, id);
     }
+
+    public List<WorkOrderEntity> getWorkOrderById(int id) {
+        return repositoryWO.getWorkOrderInfoById(id);
+    }
 }
