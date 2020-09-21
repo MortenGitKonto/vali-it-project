@@ -41,12 +41,8 @@ public class ServiceClient {
         }
     }
 
-    // devices by client name
-    public List<ClientEntity> getDevicesByClientName(String nameLike) {
-        if (nameLike != "") {
-            return repositoryClient.getDevicesByClientName(nameLike);
-        } else {
-            return null;
-        }
+    // devices by client name or product name or serial number
+    public List<ClientEntity> getDevicesByClientName(String clientLike, String productLike, String serialNumberLike) {
+        return repositoryClient.getDevicesByClientName(clientLike, productLike, serialNumberLike);
     }
 }
