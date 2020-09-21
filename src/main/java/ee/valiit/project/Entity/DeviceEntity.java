@@ -6,6 +6,25 @@ public class DeviceEntity {
     private int counter;
     private int productId;
 
+    private String clientName;
+    private String productName;
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
     public int getProductId() {
         return productId;
     }
