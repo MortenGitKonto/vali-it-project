@@ -34,14 +34,16 @@ public class ControllerClient {
     }
 
     // clients by partial match
-    @GetMapping("clientlike")
-    public List<ClientEntity> searchClient(@RequestParam(name = "nameLike") String nameLike) {
-        return serviceClient.getClientViaName(nameLike);
-    }
+//    @GetMapping("clientlike")
+//    public List<ClientEntity> searchClient(@RequestParam(name = "nameLike") String nameLike) {
+//        return serviceClient.getClientViaName(nameLike);
+//    }
 
     // devices by client name
     @GetMapping("devicelike")
-    public List<ClientEntity> getDevicesByClientName(@RequestParam(name = "deviceLike") String nameLike) {
-        return serviceClient.getDevicesByClientName(nameLike);
+    public List<ClientEntity> getDevicesByClientName(@RequestParam(name = "deviceLike", required = false) String clientLike,
+                                                     @RequestParam(name = "productLike", required = false) String productLike,
+                                                     @RequestParam(name = "serialNumberLike", required = false) String serialNumberLike) {
+        return serviceClient.getDevicesByClientName(clientLike, productLike, serialNumberLike);
     }
 }

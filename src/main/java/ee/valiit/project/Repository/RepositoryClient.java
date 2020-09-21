@@ -6,6 +6,7 @@ import ee.valiit.project.Entity.RowMapperDevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 import java.math.BigInteger;
 import java.util.HashMap;
@@ -42,13 +43,19 @@ public class RepositoryClient {
     }
 
     // devices by client name
-    public List<ClientEntity> getDevicesByClientName(String nameLike) {
-        String sql = "SELECT * FROM clients\n" +
-                "    JOIN devices ON clients.id = devices.client_id\n" +
-                "    JOIN products ON products.id = devices.product_id\n" +
-                "    WHERE client_name ILIKE :request";
+    public List<ClientEntity> getDevicesByClientName(String clientLike, String productLike, String serialNumberLike) {
+        String sql = "SELECT * FROM clients " +
+                "JOIN devices ON clients.id = devices.client_id " +
+                "JOIN products ON products.id = devices.product_id " +
+                "WHERE clients.client_name ILIKE :clientLike " +
+                "AND products.name ILIKE :productLike " +
+                "AND devices.sn ILIKE :serialNumberLike";
         Map paramMap = new HashMap();
-        paramMap.put("request", "%"+nameLike+"%");
+
+        paramMap.put("clientLike", "%"+clientLike+"%");
+        paramMap.put("productLike", "%"+productLike+"%");
+        paramMap.put("serialNumberLike", "%"+serialNumberLike+"%");
+
         return jdbcTemplate.query(sql, paramMap, new RowMapperDevice());
     }
 }
