@@ -142,4 +142,21 @@
             </column>
         </addColumn>
     </changeSet>
+    <changeSet id="15" author="Morten">
+        <createTable tableName="work_order_consumables">
+        <column name="id" type="bigint" autoIncrement="true">
+            <constraints nullable="false" unique="true" primaryKey="true"/>
+        </column>
+        <column name="work_order_id" type="bigint">
+            <constraints foreignKeyName="fk_work_orders_work_order_consumables"
+                         nullable="false"
+                         references="work_orders(id)"/>
+        </column>
+        <column name="consumable_id" type="bigint">
+            <constraints foreignKeyName="fk_consumables_work_order_consumables"
+                         nullable="false"
+                         references="consumables(id)"/>
+        </column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
