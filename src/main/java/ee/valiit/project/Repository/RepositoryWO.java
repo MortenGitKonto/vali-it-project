@@ -97,7 +97,6 @@ public class RepositoryWO {
     public List<WorkOrderEntity> getAllInfoByQueryBoolean(String queryString) {
         String sql = "SELECT * FROM work_orders WHERE status = :status";
         Map paramMap = new HashMap();
-
         paramMap.put("status", Boolean.valueOf(queryString));
         return jdbcTemplate.query(sql, paramMap, new RowMapperWO());
     }
@@ -118,6 +117,14 @@ public class RepositoryWO {
         String sql = "SELECT * FROM work_orders WHERE product_id = :product_id";
         Map paramMap = new HashMap();
         paramMap.put("product_id", productId);
+        return jdbcTemplate.query(sql, paramMap, new RowMapperWO());
+    }
+
+    //work order info by WO id
+    public List<WorkOrderEntity> getWorkOrderInfoById(int id) {
+        String sql = "SELECT * FROM work_orders WHERE id = :id";
+        Map paramMap = new HashMap();
+        paramMap.put("id", id);
         return jdbcTemplate.query(sql, paramMap, new RowMapperWO());
     }
 

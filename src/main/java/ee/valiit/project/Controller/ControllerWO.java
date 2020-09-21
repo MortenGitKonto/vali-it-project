@@ -33,7 +33,7 @@ public class ControllerWO {
 //                                                     @RequestParam(name = "consumableId", required = false) Integer consumableId,
 //                                                     @RequestParam(name = "technicianId", required = false) Integer technicianId,
 //                                                     @RequestParam(name = "status", required = false) Boolean status)
-                                                     {
+    {
         return serviceWO.getAllWorkOrderInfo(query);
     }
 
@@ -50,8 +50,13 @@ public class ControllerWO {
 
     //Update status of specific work order by id
     @PutMapping("updateWorkOrderStatus/{a}")
-    public void updateWorkOrderStatus(@RequestBody WorkOrderEntity workOrderEntity, @PathVariable ("a") int id){
+    public void updateWorkOrderStatus(@RequestBody WorkOrderEntity workOrderEntity, @PathVariable("a") int id) {
         serviceWO.updateWorkOrderStatus(workOrderEntity, id);
     }
 
+    //Get workorder by ID
+    @GetMapping("workOrderById")
+    public List<WorkOrderEntity> getWorkOrderById(@RequestParam(name = "id") int id) {
+        return serviceWO.getWorkOrderById(id);
+    }
 }
