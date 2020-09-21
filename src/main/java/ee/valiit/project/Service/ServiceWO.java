@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,8 +31,10 @@ public class ServiceWO {
 
     //get all work orders info by specific device id, product id, consumable id, technician id or status.
     public List<WorkOrderEntity> getAllWorkOrderInfo(String query) {
-        if (query.isEmpty()) {
-            return repositoryWO.getWorkOrderInfoAll();
+        if(query.trim().length() == 0){
+            return new ArrayList<>();
+        //}else if (query.isEmpty()) {
+            //return repositoryWO.getWorkOrderInfoAll();
         } else if (query.equals("true") || query.equals("false")) {
             return repositoryWO.getAllInfoByQueryBoolean(query);
         } else {
