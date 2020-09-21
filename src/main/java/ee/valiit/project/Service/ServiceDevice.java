@@ -35,7 +35,8 @@ public class ServiceDevice {
         return repositoryDevice.getAllCounterMore(counter);
     }
 
-    public List<DeviceEntity> devicesByClientId(int clientId) {
-        return repositoryDevice.devicesByClientId(clientId);
-    }
+//TODO see functioon pole vist vajalik
+    //  public List<DeviceEntity> devicesByClientId(int clientId) {
+    //  return repositoryDevice.devicesByClientId(clientId);
+    //  }
 }

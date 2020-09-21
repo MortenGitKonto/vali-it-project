@@ -32,7 +32,21 @@ public class ServiceClient {
         return repositoryClient.getClientId(name);
     }
 
+    // clients by partial match
     public List<ClientEntity> getClientViaName(String nameLike) {
-        return repositoryClient.getClientViaName(nameLike);
+        if (nameLike != "") {
+            return repositoryClient.getClientViaName(nameLike);
+        } else {
+            return null;
+        }
+    }
+
+    // devices by client name
+    public List<ClientEntity> getDevicesByClientName(String nameLike) {
+        if (nameLike != "") {
+            return repositoryClient.getDevicesByClientName(nameLike);
+        } else {
+            return null;
+        }
     }
 }

@@ -26,11 +26,12 @@ public class ControllerDevice {
         return serviceDevice.getAllDeviceInfo(query);
     }
 
-    //get devices by clientId
-    @GetMapping("device/{clientId}")
-    public List<DeviceEntity> devicesByClientId(@PathVariable("clientId") int clientId) {
-        return serviceDevice.devicesByClientId(clientId);
-    }
+//TODO pole vist vajalik
+    //    get devices by clientId
+    //    @GetMapping("device/{clientId}")
+    //    public List<DeviceEntity> devicesByClientId(@PathVariable("clientId") int clientId) {
+    //        return serviceDevice.devicesByClientId(clientId);
+    //    }
 
     //get all device info where counter <= input
     @GetMapping("deviceCounterLess")
