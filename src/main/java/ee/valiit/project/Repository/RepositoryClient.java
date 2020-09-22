@@ -42,8 +42,8 @@ public class RepositoryClient {
         return jdbcTemplate.query(sql, paramMap, new RowMapperClient());
     }
 
-    // devices by client name
-    public List<ClientEntity> getDevicesByClientName(String clientLike, String productLike, String serialNumberLike) {
+    // devices by client, product or serialNr
+    public List<ClientEntity> getDevicesBy(String clientLike, String productLike, String serialNumberLike) {
         String sql = "SELECT * FROM clients " +
                 "JOIN devices ON clients.id = devices.client_id " +
                 "JOIN products ON products.id = devices.product_id " +
