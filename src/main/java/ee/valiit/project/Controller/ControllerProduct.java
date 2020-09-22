@@ -2,6 +2,7 @@ package ee.valiit.project.Controller;
 
 import ee.valiit.project.Entity.ConsumableEntity;
 import ee.valiit.project.Entity.ProductEntity;
+import ee.valiit.project.Entity.Products;
 import ee.valiit.project.Service.ServiceProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,18 @@ public class ControllerProduct {
         serviceProduct.newProduct(newProduct);
     }
 
+    //hibernate new
+    @PostMapping("productHibernate/{a}/{b}")
+    public void createProductHibernate(@PathVariable("a") String name, @PathVariable("b") Integer stock) {
+        serviceProduct.newProductHibernate(name, stock);
+    }
+
+//    //hibernate get
+//    @GetMapping("getProductHibernate")
+//    public Products getProductHibernate() {
+//        return serviceProduct.getProductHibernate();
+//    }
+
     //get ID
     @GetMapping("product/{name}")
     public int getProductID(@RequestBody String name) {
@@ -33,7 +46,7 @@ public class ControllerProduct {
         return serviceProduct.getProductInfo(id);
     }
 
-    //Get the whole list of products
+    //Get the whole list of Products
     @GetMapping("productInfo")
     public List<ProductEntity> getProductInfoAll() {
         return serviceProduct.getProductInfoAll();

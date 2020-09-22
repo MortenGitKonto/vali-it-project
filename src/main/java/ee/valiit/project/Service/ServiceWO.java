@@ -1,6 +1,8 @@
 package ee.valiit.project.Service;
 
+import ee.valiit.project.Entity.ClientEntity;
 import ee.valiit.project.Entity.DeviceEntity;
+import ee.valiit.project.Entity.WorkOrderMultiEntity;
 import ee.valiit.project.Repository.RepositoryWO;
 import ee.valiit.project.Entity.WorkOrderEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +57,12 @@ public class ServiceWO {
 
     public List<WorkOrderEntity> getWorkOrderById(int id) {
         return repositoryWO.getWorkOrderInfoById(id);
+    }
+
+
+    public List<WorkOrderMultiEntity> getWorkOrderBySimultaneousSearch(String device, String product, String technician) {
+
+        return repositoryWO.getWorkOrdersBySimultaneousSearch(device, product, technician);
+
     }
 }
