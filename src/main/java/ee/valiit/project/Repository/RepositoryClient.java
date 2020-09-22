@@ -18,6 +18,7 @@ public class RepositoryClient {
 
     @Autowired NamedParameterJdbcTemplate jdbcTemplate;
 
+
     public void createClient(String request) {
         String sql = "INSERT INTO clients (client_name) VALUES (:name)";
         Map paramMap = new HashMap();
