@@ -1,10 +1,6 @@
 package ee.valiit.project.Repository;
 
-import ee.valiit.project.Entity.DeviceEntity;
-import ee.valiit.project.Entity.RowMapperDevice;
-import ee.valiit.project.Entity.RowMapperWO;
-import ee.valiit.project.Entity.WorkOrderEntity;
-import org.apache.commons.lang3.BooleanUtils;
+import ee.valiit.project.Entity.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -85,7 +81,7 @@ public class RepositoryWO {
         //paramMap.put("queryString", queryString);
 
         Integer queryInteger = null;
-        if(StringUtils.isNumeric(queryString)){
+        if (StringUtils.isNumeric(queryString)) {
             queryInteger = Integer.valueOf(queryString);
         }
 
@@ -108,8 +104,6 @@ public class RepositoryWO {
         paramMap.put("status", status);
         return jdbcTemplate.query(sql, paramMap, new RowMapperWO());
     }
-
-
 
 
     //All work orders info by product id
@@ -161,5 +155,25 @@ public class RepositoryWO {
         jdbcTemplate.update(sql, paramMap);
     }
 
+//////POOLELI///////
+    public List<WorkOrderMultiEntity> getWorkOrdersBySimultaneousSearch(String device, String product, String technician) {
+        String sql = "SELECT * FROM work_orders " +
+                "JOIN technicians ON technicians.id = work_orders.technician_id " +
+                "JOIN devices ON devices.id = work_orders.device_id " +
+                "JOIN products ON products.id = work_orders.product_id " +
+                "WHERE devices.sn = :device " +
+                "AND products.name = :product " +
+                "AND technicians.technician_name = :technician" ;
+                //"AND work_orders.status = :status";
+        Map paramMap = new HashMap();
 
+        paramMap.put("device", device);
+        paramMap.put("product", product);
+        //paramMap.put("status", "status");
+        paramMap.put("technician", technician);
+
+        return jdbcTemplate.query(sql, paramMap, new RowMapperWorkOrderMulti());
+
+
+    }
 }
