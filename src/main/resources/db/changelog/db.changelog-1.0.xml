@@ -159,4 +159,24 @@
         </column>
         </createTable>
     </changeSet>
+    <changeSet id="16" author="jantilk">
+        <dropColumn tableName="devices" columnName="sn"></dropColumn>
+    </changeSet>
+    <changeSet id="17" author="jantilk">
+        <addColumn tableName="devices">
+            <column name="sn" type="bigint">
+                <constraints unique="true"></constraints>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="18" author="jantilk">
+        <dropColumn tableName="devices" columnName="sn"></dropColumn>
+    </changeSet>
+    <changeSet id="19" author="jantilk">
+        <addColumn tableName="devices">
+            <column name="sn" type="text">
+                <constraints unique="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

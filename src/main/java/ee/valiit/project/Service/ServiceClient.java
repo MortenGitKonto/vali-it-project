@@ -42,7 +42,7 @@ public class ServiceClient {
     }
 
     // devices by client name or product name or serial number
-    public List<ClientEntity> getDevicesByClientName(String clientLike, String productLike, String serialNumberLike) {
-        return repositoryClient.getDevicesByClientName(clientLike, productLike, serialNumberLike);
+    public List<ClientEntity> getDevicesBy(String clientLike, String productLike, String serialNumberLike) {
+        return repositoryClient.getDevicesBy(clientLike, productLike, serialNumberLike);
     }
 }
