@@ -1,10 +1,28 @@
 package ee.valiit.project.Entity;
 
-public class DeviceEntity {
+public class DeviceEntityMulti {
     private Integer clientId;
     private String serialNumber;
     private int counter;
     private int productId;
+    private String clientName;
+    private String productName;
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
 
     public int getProductId() {
         return productId;
