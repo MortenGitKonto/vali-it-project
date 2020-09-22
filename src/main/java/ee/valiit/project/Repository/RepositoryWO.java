@@ -155,22 +155,22 @@ public class RepositoryWO {
         jdbcTemplate.update(sql, paramMap);
     }
 
-//////POOLELI///////
+//////POOLELI/////// TALLE EI MEELDI KUI LISADA JUURDE MINGI "AND" - ANNAB TÜHJA ARRAY.
     public List<WorkOrderMultiEntity> getWorkOrdersBySimultaneousSearch(String device, String product, String technician) {
         String sql = "SELECT * FROM work_orders " +
                 "JOIN technicians ON technicians.id = work_orders.technician_id " +
                 "JOIN devices ON devices.id = work_orders.device_id " +
                 "JOIN products ON products.id = work_orders.product_id " +
-                "WHERE devices.sn = :device " +
-                "AND products.name = :product " +
-                "AND technicians.technician_name = :technician" ;
+//                "WHERE devices.sn = :serialNumber " +
+                "where products.name = :productName " ;
+//                "and technicians.technician_name = :technicianName" ;
                 //"AND work_orders.status = :status";
         Map paramMap = new HashMap();
 
-        paramMap.put("device", device);
-        paramMap.put("product", product);
+        paramMap.put("serialNumber", device);
+        paramMap.put("productName", product);
         //paramMap.put("status", "status");
-        paramMap.put("technician", technician);
+        paramMap.put("technicianName", technician);
 
         return jdbcTemplate.query(sql, paramMap, new RowMapperWorkOrderMulti());
 
