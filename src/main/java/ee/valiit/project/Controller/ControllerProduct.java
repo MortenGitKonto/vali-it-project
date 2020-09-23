@@ -2,6 +2,8 @@ package ee.valiit.project.Controller;
 
 import ee.valiit.project.Entity.ConsumableEntity;
 import ee.valiit.project.Entity.ProductEntity;
+import ee.valiit.project.Entity.Products;
+import ee.valiit.project.Repository.RepositoryProduct;
 import ee.valiit.project.Service.ServiceProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,12 @@ public class ControllerProduct {
 
     @Autowired
     ServiceProduct serviceProduct;
+
+    //create hibernate
+    @PostMapping("produ/{name}/{stock}")
+    public void createProdu(@PathVariable("name") String name, @PathVariable("stock") int stock) {
+        serviceProduct.newProdu(name, stock);
+    }
 
     //create new
     @PostMapping("product")

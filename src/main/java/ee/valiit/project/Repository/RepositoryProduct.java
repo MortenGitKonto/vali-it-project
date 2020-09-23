@@ -1,9 +1,7 @@
 package ee.valiit.project.Repository;
 
+import ee.valiit.project.Entity.*;
 import ee.valiit.project.Entity.ProductEntity;
-import ee.valiit.project.Entity.ProductEntity;
-import ee.valiit.project.Entity.RowMapperConsumable;
-import ee.valiit.project.Entity.RowMapperProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;

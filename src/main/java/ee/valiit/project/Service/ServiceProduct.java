@@ -2,6 +2,8 @@ package ee.valiit.project.Service;
 
 import ee.valiit.project.Entity.ProductEntity;
 import ee.valiit.project.Entity.ProductEntity;
+import ee.valiit.project.Entity.Products;
+import ee.valiit.project.Repository.ProductRepo;
 import ee.valiit.project.Repository.RepositoryProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,22 @@ public class ServiceProduct {
 
     @Autowired
     RepositoryProduct repositoryProduct;
+
+    @Autowired
+    ProductRepo productRepo;
+
+    //hibernate create
+    public void newProdu(String name, int stock) {
+        Products products = new Products();
+        products.setName(name);
+        products.setStock(stock);
+        productRepo.save(products);
+    }
+
+//    //hibernate get product id
+//    public int getProdu(String name) {
+//        productRepo.findOne(s);
+//    }
 
 
     public void newProduct(ProductEntity newProduct) {
