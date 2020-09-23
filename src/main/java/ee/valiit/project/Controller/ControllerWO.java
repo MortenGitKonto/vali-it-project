@@ -28,6 +28,12 @@ public class ControllerWO {
         return serviceWO.getWorkOrderInfoAll();
     }
 
+    //Get the whole list of work orders in simultaneous search page
+    @GetMapping("workOrderAll")
+    public List<WorkOrderMultiEntity> getAllWorkOrdersMulti() {
+        return serviceWO.getWorkOrderInfoAllMulti();
+    }
+
     //get all work orders info by specific device id, product id, consumable id, technician id or status.
     @GetMapping("workOrder")
     public List<WorkOrderEntity> getAllWorkOrderInfo(@RequestParam(name = "query", required = false) String query)
