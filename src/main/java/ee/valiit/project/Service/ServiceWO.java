@@ -31,6 +31,13 @@ public class ServiceWO {
         return repositoryWO.getWorkOrderInfoAll();
     }
 
+
+    //Get the whole list of work orders MULTI
+    public List<WorkOrderMultiEntity> getWorkOrderInfoAllMulti() {
+        return repositoryWO.getWorkOrderInfoAllMulti();
+    }
+
+
     //get all work orders info by specific device id, product id, consumable id, technician id or status.
     public List<WorkOrderEntity> getAllWorkOrderInfo(String query) {
         if(query.trim().length() == 0){

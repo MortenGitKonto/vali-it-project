@@ -16,6 +16,9 @@ public class ServiceProduct {
     @Autowired
     RepositoryProduct repositoryProduct;
 
+    @Autowired
+    ProductRepository productRepository;
+
     public void newProduct(ProductEntity newProduct) {
         repositoryProduct.newProduct(newProduct);
     }

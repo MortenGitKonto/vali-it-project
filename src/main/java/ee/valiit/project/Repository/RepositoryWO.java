@@ -164,22 +164,33 @@ public class RepositoryWO {
                 "WHERE devices.sn ILIKE :serialNumber " +
                 "and products.name ILIKE :productName " +
                 "and clients.client_name ILIKE :clientName " +
-                "and technicians.technician_name ILIKE :technicianName" ;
-                //"AND work_orders.status = :status";
+                "and technicians.technician_name ILIKE :technicianName";
+        //"AND work_orders.status = :status";
         Map paramMap = new HashMap();
 
-
-
-        paramMap.put("serialNumber", "%"+device+"%");
-        paramMap.put("productName", "%"+product+"%");
+        paramMap.put("serialNumber", "%" + device + "%");
+        paramMap.put("productName", "%" + product + "%");
         //paramMap.put("status", "status");
-        paramMap.put("technicianName", "%"+technician+"%");
-        paramMap.put("clientName", "%"+client+"%");
+        paramMap.put("technicianName", "%" + technician + "%");
+        paramMap.put("clientName", "%" + client + "%");
 
         return jdbcTemplate.query(sql, paramMap, new RowMapperWorkOrderMulti());
-
-
     }
+
+        //Get the whole list of work orders
+        public List<WorkOrderMultiEntity> getWorkOrderInfoAllMulti() {
+            String sql = "SELECT * FROM work_orders " +
+                    "JOIN technicians ON technicians.id = work_orders.technician_id " +
+                    "JOIN devices ON devices.id = work_orders.device_id " +
+                    "JOIN products ON products.id = work_orders.product_id " +
+                    "JOIN clients ON clients.id = devices.client_id ";
+
+            //"AND work_orders.status = :status";
+            Map paramMap = new HashMap();
+
+            return jdbcTemplate.query(sql, paramMap, new RowMapperWorkOrderMulti());
+        }
+
 
     public List<WorkOrderMultiEntity> getWorkOrdersBySimultaneousSearchWithStatus(String client, String device, String product, String technician, Boolean status) {
         String sql = "SELECT * FROM work_orders " +
