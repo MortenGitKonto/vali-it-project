@@ -16,10 +16,6 @@ public class ServiceProduct {
     @Autowired
     RepositoryProduct repositoryProduct;
 
-    //hibernate
-    @Autowired
-    ProductRepository productRepository;
-
     public void newProduct(ProductEntity newProduct) {
         repositoryProduct.newProduct(newProduct);
     }
