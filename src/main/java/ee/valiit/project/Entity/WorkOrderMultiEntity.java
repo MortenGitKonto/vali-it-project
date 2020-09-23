@@ -11,6 +11,7 @@ public class WorkOrderMultiEntity {
     private String technicianName;
     private String serialNumber;
     private String productName;
+    private String clientName;
 
     public Integer getWorkOrderId() {
         return workOrderId;
@@ -90,5 +91,13 @@ public class WorkOrderMultiEntity {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
     }
 }
