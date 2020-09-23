@@ -21,6 +21,7 @@ public class RowMapperWorkOrderMulti implements RowMapper<WorkOrderMultiEntity> 
         workOrderMulti.setWorkOrderId(resultset.getInt("id"));
         workOrderMulti.setConsumableId(resultset.getInt("consumable_id"));
         workOrderMulti.setDeviceId(resultset.getInt("device_id"));
+        workOrderMulti.setClientName(resultset.getString("client_name"));
 
         return workOrderMulti;
     }

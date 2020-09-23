@@ -42,21 +42,13 @@ public class ControllerWO {
 
     // work orders by four simultaneous input searches
     @GetMapping("workOrderSimultaneousSearch")
-    public List<WorkOrderMultiEntity> getWorkOrdersBySimultaneousSearch(@RequestParam(name = "device", required = false) String device,
+    public List<WorkOrderMultiEntity> getWorkOrdersBySimultaneousSearch(@RequestParam(name = "client", required = false) String client,
+                                                                        @RequestParam(name = "device", required = false) String device,
                                                                         @RequestParam(name = "product", required = false) String product,
-                                                                        @RequestParam(name = "technician", required = false) String technician)
-//                                                                   @RequestParam(name = "status", required = false) Boolean status)
-    {
-        return serviceWO.getWorkOrderBySimultaneousSearch(device,product,technician);
+                                                                        @RequestParam(name = "technician", required = false) String technician,
+                                                                        @RequestParam(name = "status", required = false) Boolean status) {
+        return serviceWO.getWorkOrderBySimultaneousSearch(client, device, product, technician, status);
     }
-
-
-
-
-
-
-
-
 
 
     @GetMapping("workOrderStatus")
@@ -81,7 +73,6 @@ public class ControllerWO {
     public List<WorkOrderEntity> getWorkOrderById(@RequestParam(name = "id") int id) {
         return serviceWO.getWorkOrderById(id);
     }
-
 
 
 }

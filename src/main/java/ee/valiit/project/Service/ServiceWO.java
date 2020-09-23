@@ -60,9 +60,28 @@ public class ServiceWO {
     }
 
 
-    public List<WorkOrderMultiEntity> getWorkOrderBySimultaneousSearch(String device, String product, String technician) {
+    public List<WorkOrderMultiEntity> getWorkOrderBySimultaneousSearch(String client, String device, String product, String technician, Boolean status) {
 
-        return repositoryWO.getWorkOrdersBySimultaneousSearch(device, product, technician);
+        if(client == null) {
+            client = "";
+        }
 
+        if(device == null) {
+            device = "";
+        }
+
+        if(technician == null) {
+            technician = "";
+        }
+
+        if(product == null) {
+            product = "";
+        }
+
+        if(status == null) {
+            return repositoryWO.getWorkOrdersBySimultaneousSearch(client, device, product, technician);
+        }else {
+            return repositoryWO.getWorkOrdersBySimultaneousSearchWithStatus(client, device, product, technician, status);
+        }
     }
 }
