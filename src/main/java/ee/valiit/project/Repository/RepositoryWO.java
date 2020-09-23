@@ -161,16 +161,18 @@ public class RepositoryWO {
                 "JOIN technicians ON technicians.id = work_orders.technician_id " +
                 "JOIN devices ON devices.id = work_orders.device_id " +
                 "JOIN products ON products.id = work_orders.product_id " +
-//                "WHERE devices.sn = :serialNumber " +
-                "where products.name = :productName " ;
-//                "and technicians.technician_name = :technicianName" ;
+                "WHERE devices.sn ILIKE :serialNumber " +
+                "and products.name ILIKE :productName " +
+                "and technicians.technician_name ILIKE :technicianName" ;
                 //"AND work_orders.status = :status";
         Map paramMap = new HashMap();
 
-        paramMap.put("serialNumber", device);
-        paramMap.put("productName", product);
+
+
+        paramMap.put("serialNumber", "%"+device+"%");
+        paramMap.put("productName", "%"+product+"%");
         //paramMap.put("status", "status");
-        paramMap.put("technicianName", technician);
+        paramMap.put("technicianName", "%"+technician+"%");
 
         return jdbcTemplate.query(sql, paramMap, new RowMapperWorkOrderMulti());
 

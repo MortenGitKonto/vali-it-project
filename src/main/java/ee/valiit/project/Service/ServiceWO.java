@@ -62,7 +62,18 @@ public class ServiceWO {
 
     public List<WorkOrderMultiEntity> getWorkOrderBySimultaneousSearch(String device, String product, String technician) {
 
-        return repositoryWO.getWorkOrdersBySimultaneousSearch(device, product, technician);
+        if(device == null) {
+            device = "";
+        }
+
+        if(technician == null) {
+            technician = "";
+        }
+
+        if(product == null) {
+            product = "";
+        }
+            return repositoryWO.getWorkOrdersBySimultaneousSearch(device, product, technician);
 
     }
 }
