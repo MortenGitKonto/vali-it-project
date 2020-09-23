@@ -10,7 +10,6 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8081")
-
 public class ControllerClient {
     @Autowired
     ServiceClient serviceClient;

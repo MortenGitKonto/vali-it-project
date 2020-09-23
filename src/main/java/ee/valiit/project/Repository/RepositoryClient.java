@@ -3,6 +3,7 @@ package ee.valiit.project.Repository;
 import ee.valiit.project.Entity.ClientEntity;
 import ee.valiit.project.Entity.RowMapperClient;
 import ee.valiit.project.Entity.RowMapperDevice;
+import ee.valiit.project.Entity.RowMapperDeviceMulti;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -17,6 +18,7 @@ import java.util.Map;
 public class RepositoryClient {
 
     @Autowired NamedParameterJdbcTemplate jdbcTemplate;
+
 
     public void createClient(String request) {
         String sql = "INSERT INTO clients (client_name) VALUES (:name)";
@@ -56,6 +58,6 @@ public class RepositoryClient {
         paramMap.put("productLike", "%"+productLike+"%");
         paramMap.put("serialNumberLike", "%"+serialNumberLike+"%");
 
-        return jdbcTemplate.query(sql, paramMap, new RowMapperDevice());
+        return jdbcTemplate.query(sql, paramMap, new RowMapperDeviceMulti());
     }
 }
