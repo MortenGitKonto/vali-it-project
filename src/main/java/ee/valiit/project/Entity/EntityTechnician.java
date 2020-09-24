@@ -1,6 +1,6 @@
 package ee.valiit.project.Entity;
 
-public class TechnicianEntity {
+public class EntityTechnician {
     private int id;
     private String name;
     private String username;

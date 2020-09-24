@@ -1,9 +1,7 @@
 package ee.valiit.project.Repository;
 
-import ee.valiit.project.Entity.ConsumableEntity;
-import ee.valiit.project.Entity.RowMapperConsumable;
-import ee.valiit.project.Entity.RowMapperWO;
-import ee.valiit.project.Entity.WorkOrderEntity;
+import ee.valiit.project.Entity.EntityConsumable;
+import ee.valiit.project.Entity.RowMapper.RowMapperConsumable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -20,7 +18,7 @@ public class RepositoryConsumable {
     NamedParameterJdbcTemplate jdbcTemplate;
 
     //create
-    public void createConsumable(ConsumableEntity consumable) {
+    public void createConsumable(EntityConsumable consumable) {
         String sql = "INSERT INTO consumables (name, stock) VALUES (:name, :stock)";
         Map paramMap = new HashMap();
         paramMap.put("name", consumable.getName());
@@ -37,7 +35,7 @@ public class RepositoryConsumable {
     }
 
     //Get a specific consumable
-    public List<ConsumableEntity> getConsumableInfo(Integer id) {
+    public List<EntityConsumable> getConsumableInfo(Integer id) {
         String sql = "select * from consumables where id=:id";
         Map<String, Object> paramMap = new HashMap();
         paramMap.put("id", id);
@@ -45,7 +43,7 @@ public class RepositoryConsumable {
     }
 
     //Get the whole list of consumables
-    public List<ConsumableEntity> getConsumableInfoAll() {
+    public List<EntityConsumable> getConsumableInfoAll() {
         String sql = "select * from consumables order by id";
         Map<String, Object> paramMap = new HashMap();
         return jdbcTemplate.query(sql, paramMap, new RowMapperConsumable());

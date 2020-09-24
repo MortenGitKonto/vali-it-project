@@ -1,15 +1,11 @@
 package ee.valiit.project.Repository;
 
-import ee.valiit.project.Entity.ClientEntity;
-import ee.valiit.project.Entity.RowMapperClient;
-import ee.valiit.project.Entity.RowMapperDevice;
-import ee.valiit.project.Entity.RowMapperDeviceMulti;
+import ee.valiit.project.Entity.EntityClient;
+import ee.valiit.project.Entity.RowMapper.RowMapperClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.StringUtils;
 
-import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +32,7 @@ public class RepositoryClient {
     }
 
     // clients by partial match
-    public List<ClientEntity> getClientViaName(String nameLike) {
+    public List<EntityClient> getClientViaName(String nameLike) {
         String sql = "SELECT * FROM clients WHERE client_name ILIKE :request";
         Map paramMap = new HashMap();
         paramMap.put("request", "%"+nameLike+"%");

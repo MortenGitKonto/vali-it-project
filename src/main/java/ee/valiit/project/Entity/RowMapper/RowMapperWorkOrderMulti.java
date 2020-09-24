@@ -1,15 +1,15 @@
-package ee.valiit.project.Entity;
+package ee.valiit.project.Entity.RowMapper;
 
-import org.springframework.jdbc.core.RowCallbackHandler;
+import ee.valiit.project.Entity.EntityWOMulti;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class RowMapperWorkOrderMulti implements RowMapper<WorkOrderMultiEntity> {
+public class RowMapperWorkOrderMulti implements RowMapper<EntityWOMulti> {
     @Override
-    public WorkOrderMultiEntity mapRow(ResultSet resultset, int i) throws SQLException {
-        WorkOrderMultiEntity workOrderMulti = new WorkOrderMultiEntity();
+    public EntityWOMulti mapRow(ResultSet resultset, int i) throws SQLException {
+        EntityWOMulti workOrderMulti = new EntityWOMulti();
 
         workOrderMulti.setProductId(resultset.getInt("product_id"));
         workOrderMulti.setProductName(resultset.getString("name"));

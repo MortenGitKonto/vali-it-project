@@ -1,13 +1,10 @@
 package ee.valiit.project.Service;
 
-import ee.valiit.project.Entity.ClientEntity;
-import ee.valiit.project.Entity.DeviceEntity;
-import ee.valiit.project.Entity.WorkOrderMultiEntity;
+import ee.valiit.project.Entity.EntityWOMulti;
 import ee.valiit.project.Repository.RepositoryWO;
-import ee.valiit.project.Entity.WorkOrderEntity;
+import ee.valiit.project.Entity.EntityWO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,29 +14,29 @@ public class ServiceWO {
     @Autowired
     public RepositoryWO repositoryWO;
 
-    public void createWO(WorkOrderEntity createWO) {
+    public void createWO(EntityWO createWO) {
         repositoryWO.createWO(createWO);
     }
 
 //    //TOPELT
-//    public List<WorkOrderEntity> getWorkOrderInfo(int deviceId) {
+//    public List<EntityWO> getWorkOrderInfo(int deviceId) {
 //        return repositoryWO.getWorkOrderInfo(deviceId);
 //    }
 
     //Get the whole list of work orders
-    public List<WorkOrderEntity> getWorkOrderInfoAll() {
+    public List<EntityWO> getWorkOrderInfoAll() {
         return repositoryWO.getWorkOrderInfoAll();
     }
 
 
     //Get the whole list of work orders MULTI
-    public List<WorkOrderMultiEntity> getWorkOrderInfoAllMulti() {
+    public List<EntityWOMulti> getWorkOrderInfoAllMulti() {
         return repositoryWO.getWorkOrderInfoAllMulti();
     }
 
 
     //get all work orders info by specific device id, product id, consumable id, technician id or status.
-    public List<WorkOrderEntity> getAllWorkOrderInfo(String query) {
+    public List<EntityWO> getAllWorkOrderInfo(String query) {
         if(query.trim().length() == 0){
             return new ArrayList<>();
         //}else if (query.isEmpty()) {
@@ -52,22 +49,22 @@ public class ServiceWO {
     }
 
     //get all work orders that are not done
-    public List<WorkOrderEntity> getAllWorkOrderInfoByStatus(Boolean status) {
+    public List<EntityWO> getAllWorkOrderInfoByStatus(Boolean status) {
             return repositoryWO.getAllInfoByStatus(status);
     }
 
 
     //Update status of specific work order by id
-    public void updateWorkOrderStatus(WorkOrderEntity workOrderEntity, Integer id) {
-        repositoryWO.updateStatus(workOrderEntity, id);
+    public void updateWorkOrderStatus(EntityWO entityWO, Integer id) {
+        repositoryWO.updateStatus(entityWO, id);
     }
 
-    public List<WorkOrderEntity> getWorkOrderById(int id) {
+    public List<EntityWO> getWorkOrderById(int id) {
         return repositoryWO.getWorkOrderInfoById(id);
     }
 
 
-    public List<WorkOrderMultiEntity> getWorkOrderBySimultaneousSearch(String client, String device, String product, String technician, Boolean status) {
+    public List<EntityWOMulti> getWorkOrderBySimultaneousSearch(String client, String device, String product, String technician, Boolean status) {
 
         if(client == null) {
             client = "";

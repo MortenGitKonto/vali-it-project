@@ -2,7 +2,7 @@ package ee.valiit.project.Entity;
 
 import java.math.BigInteger;
 
-public class WorkOrderEntity {
+public class EntityWO {
     private int id;
     private int deviceId;
     private String jobDescription;

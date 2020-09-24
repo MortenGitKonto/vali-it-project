@@ -1,8 +1,6 @@
 package ee.valiit.project.Controller;
 
-import ee.valiit.project.Entity.ConsumableEntity;
-import ee.valiit.project.Entity.WorkOrderConsumableEntity;
-import ee.valiit.project.Service.ServiceConsumable;
+import ee.valiit.project.Entity.EntityWOConsumable;
 import ee.valiit.project.Service.ServiceWorkOrderConsumable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +16,7 @@ public class ControllerWorkOrderConsumable {
 
     //create new work order consumable
     @PostMapping("workOrderConsumable")
-    public void createWorkOrderConsumable(@RequestBody WorkOrderConsumableEntity workOrderConsumable) {
+    public void createWorkOrderConsumable(@RequestBody EntityWOConsumable workOrderConsumable) {
         serviceWorkOrderConsumable.createWorkOrderConsumable(workOrderConsumable);
     }
 //
@@ -30,13 +28,13 @@ public class ControllerWorkOrderConsumable {
 //
     //Get a specific work order consumable
     @GetMapping("workOrderConsumableInfoById")
-    public List<WorkOrderConsumableEntity> getWorkOrderConsumableInfo(@RequestParam(name = "id") int id) {
+    public List<EntityWOConsumable> getWorkOrderConsumableInfo(@RequestParam(name = "id") int id) {
         return serviceWorkOrderConsumable.getWorkOrderConsumableInfo(id);
     }
 //
     //Get the whole list of workorder consumables
     @GetMapping("workOrderConsumableInfo")
-    public List<WorkOrderConsumableEntity> getWorkOrderConsumableInfoAll() {
+    public List<EntityWOConsumable> getWorkOrderConsumableInfoAll() {
         return serviceWorkOrderConsumable.getWorkOrderConsumableInfoAll();
     }
 

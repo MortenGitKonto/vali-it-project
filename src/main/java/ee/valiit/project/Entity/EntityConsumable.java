@@ -1,6 +1,6 @@
 package ee.valiit.project.Entity;
 
-public class ConsumableEntity {
+public class EntityConsumable {
 
     private String name;
     private int stock;

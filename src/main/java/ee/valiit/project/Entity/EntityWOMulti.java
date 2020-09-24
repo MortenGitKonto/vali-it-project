@@ -1,6 +1,6 @@
 package ee.valiit.project.Entity;
 
-public class WorkOrderMultiEntity {
+public class EntityWOMulti {
     private Integer workOrderId;
     private Integer technicianId;
     private Integer productId;
