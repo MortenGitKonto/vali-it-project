@@ -1,5 +1,6 @@
 package ee.valiit.project.Controller;
 
+import ee.valiit.project.Entity.ClientEntity;
 import ee.valiit.project.Entity.DeviceEntity;
 import ee.valiit.project.Service.ServiceDevice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,13 @@ public class ControllerDevice {
     @GetMapping("deviceCounterMore")
     public List<DeviceEntity> getDeviceDataCounterMore(@RequestParam("counter") int counter) {
         return serviceDevice.getAllCounterMore(counter);
+    }
+
+    // devices by client name
+    @GetMapping("devicelike")
+    public List<ClientEntity> getDevicesByClientName(@RequestParam(name = "clientLike", required = false) String clientLike,
+                                                     @RequestParam(name = "productLike", required = false) String productLike,
+                                                     @RequestParam(name = "serialNumberLike", required = false) String serialNumberLike) {
+        return serviceDevice.getDevicesBy(clientLike, productLike, serialNumberLike);
     }
 }

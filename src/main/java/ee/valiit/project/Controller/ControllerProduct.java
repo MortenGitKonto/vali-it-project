@@ -22,12 +22,6 @@ public class ControllerProduct {
         serviceProduct.newProduct(newProduct);
     }
 
-    //hibernate new
-    @PostMapping("productHibernate/{a}/{b}")
-    public void createProductHibernate(@PathVariable("a") String name, @PathVariable("b") Integer stock) {
-        serviceProduct.newProductHibernate(name, stock);
-    }
-
 //    //hibernate get
 //    @GetMapping("getProductHibernate")
 //    public Products getProductHibernate() {

@@ -1,5 +1,6 @@
 package ee.valiit.project.Service;
 
+import ee.valiit.project.Entity.ClientEntity;
 import ee.valiit.project.Repository.RepositoryDevice;
 import ee.valiit.project.Entity.DeviceEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,4 +40,9 @@ public class ServiceDevice {
     //  public List<DeviceEntity> devicesByClientId(int clientId) {
     //  return repositoryDevice.devicesByClientId(clientId);
     //  }
+
+    // devices by client name or product name or serial number
+    public List<ClientEntity> getDevicesBy(String clientLike, String productLike, String serialNumberLike) {
+        return repositoryDevice.getDevicesBy(clientLike, productLike, serialNumberLike);
+    }
 }

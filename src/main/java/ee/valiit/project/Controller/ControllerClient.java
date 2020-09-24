@@ -38,11 +38,5 @@ public class ControllerClient {
         return serviceClient.getClientViaName(nameLike);
     }
 
-    // devices by client name
-    @GetMapping("devicelike")
-    public List<ClientEntity> getDevicesByClientName(@RequestParam(name = "clientLike", required = false) String clientLike,
-                                                     @RequestParam(name = "productLike", required = false) String productLike,
-                                                     @RequestParam(name = "serialNumberLike", required = false) String serialNumberLike) {
-        return serviceClient.getDevicesBy(clientLike, productLike, serialNumberLike);
-    }
+
 }

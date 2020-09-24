@@ -15,6 +15,7 @@ public class RowMapperDeviceMulti implements RowMapper<DeviceEntityMulti> {
         device.setCounter(resultset.getInt("counter"));
         device.setClientName(resultset.getString("client_name"));
         device.setProductName(resultset.getString("name"));
+        device.setDeviceId(resultset.getInt("id"));
         return device;
     }
 }

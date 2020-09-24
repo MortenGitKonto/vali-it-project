@@ -41,8 +41,4 @@ public class ServiceClient {
         }
     }
 
-    // devices by client name or product name or serial number
-    public List<ClientEntity> getDevicesBy(String clientLike, String productLike, String serialNumberLike) {
-        return repositoryClient.getDevicesBy(clientLike, productLike, serialNumberLike);
-    }
 }
