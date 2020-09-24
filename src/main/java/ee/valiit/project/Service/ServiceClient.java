@@ -1,7 +1,7 @@
 package ee.valiit.project.Service;
 
-import ee.valiit.project.Entity.ClientEntity;
-import ee.valiit.project.Entity.DeviceEntity;
+import ee.valiit.project.Entity.EntityClient;
+import ee.valiit.project.Entity.EntityDevice;
 import ee.valiit.project.Repository.RepositoryClient;
 import ee.valiit.project.Repository.RepositoryDevice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class ServiceClient {
     }
 
     //search client_id via client name; and then return all device data via identified client_id
-    public List<DeviceEntity> getDeviceData(String name) {
+    public List<EntityDevice> getDeviceData(String name) {
         int clientId = repositoryClient.getClientId(name);
         return repositoryDevice.getDeviceData(clientId);
     }
@@ -33,7 +33,7 @@ public class ServiceClient {
     }
 
     // clients by partial match
-    public List<ClientEntity> getClientViaName(String nameLike) {
+    public List<EntityClient> getClientViaName(String nameLike) {
         if (nameLike != "") {
             return repositoryClient.getClientViaName(nameLike);
         } else {

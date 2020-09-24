@@ -1,6 +1,6 @@
 package ee.valiit.project.Entity;
 
-public class ClientEntity {
+public class EntityClient {
     private String name;
     private int id;
 

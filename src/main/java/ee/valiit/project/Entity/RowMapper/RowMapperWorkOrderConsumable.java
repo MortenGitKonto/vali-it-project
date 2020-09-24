@@ -1,15 +1,16 @@
-package ee.valiit.project.Entity;
+package ee.valiit.project.Entity.RowMapper;
 
 
+import ee.valiit.project.Entity.EntityWOConsumable;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class RowMapperWorkOrderConsumable implements RowMapper<WorkOrderConsumableEntity> {
+public class RowMapperWorkOrderConsumable implements RowMapper<EntityWOConsumable> {
     @Override
-    public WorkOrderConsumableEntity mapRow(ResultSet resultset, int i) throws SQLException {
-        WorkOrderConsumableEntity workOrderConsumable = new WorkOrderConsumableEntity();
+    public EntityWOConsumable mapRow(ResultSet resultset, int i) throws SQLException {
+        EntityWOConsumable workOrderConsumable = new EntityWOConsumable();
         workOrderConsumable.setId(resultset.getInt("id"));
         workOrderConsumable.setWorkOrderId(resultset.getInt("work_order_id"));
         workOrderConsumable.setConsumableId(resultset.getInt("consumable_id"));

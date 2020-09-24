@@ -1,6 +1,6 @@
 package ee.valiit.project.Controller;
 
-import ee.valiit.project.Entity.TechnicianEntity;
+import ee.valiit.project.Entity.EntityTechnician;
 import ee.valiit.project.Service.ServiceTechnician;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ public class ControllerTechnician {
 
     //Create new technician
     @PostMapping("newTechnician")
-    public void createTechnician(@RequestBody TechnicianEntity request) {
+    public void createTechnician(@RequestBody EntityTechnician request) {
         serviceTechnician.createTechnician(request);
     }
 

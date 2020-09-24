@@ -1,6 +1,6 @@
 package ee.valiit.project.Entity;
 
-public class WorkOrderConsumableEntity {
+public class EntityWOConsumable {
 
     private int id;
     private int workOrderId;

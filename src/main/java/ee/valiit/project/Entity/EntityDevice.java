@@ -1,6 +1,6 @@
 package ee.valiit.project.Entity;
 
-public class DeviceEntity {
+public class EntityDevice {
     private Integer clientId;
     private String serialNumber;
     private int counter;

@@ -1,13 +1,14 @@
-package ee.valiit.project.Entity;
+package ee.valiit.project.Entity.RowMapper;
 
+import ee.valiit.project.Entity.EntityWO;
 import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class RowMapperWO implements RowMapper<WorkOrderEntity> {
+public class RowMapperWO implements RowMapper<EntityWO> {
     @Override
-    public WorkOrderEntity mapRow(ResultSet resultset, int i) throws SQLException {
-        WorkOrderEntity workOrder = new WorkOrderEntity();
+    public EntityWO mapRow(ResultSet resultset, int i) throws SQLException {
+        EntityWO workOrder = new EntityWO();
         workOrder.setDeviceId(resultset.getInt("device_id"));
         workOrder.setJobDescription(resultset.getString("job_description"));
         workOrder.setStatus(resultset.getBoolean("status"));

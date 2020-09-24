@@ -1,14 +1,15 @@
-package ee.valiit.project.Entity;
+package ee.valiit.project.Entity.RowMapper;
 
+import ee.valiit.project.Entity.EntityDeviceMulti;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class RowMapperDeviceMulti implements RowMapper<DeviceEntityMulti> {
+public class RowMapperDeviceMulti implements RowMapper<EntityDeviceMulti> {
     @Override
-    public DeviceEntityMulti mapRow(ResultSet resultset, int i) throws SQLException {
-        DeviceEntityMulti device = new DeviceEntityMulti();
+    public EntityDeviceMulti mapRow(ResultSet resultset, int i) throws SQLException {
+        EntityDeviceMulti device = new EntityDeviceMulti();
         device.setClientId(resultset.getInt("client_id"));
         device.setProductId(resultset.getInt("product_id"));
         device.setSerialNumber(resultset.getString("sn"));

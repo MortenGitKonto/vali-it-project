@@ -1,6 +1,6 @@
 package ee.valiit.project.Controller;
 
-import ee.valiit.project.Entity.ConsumableEntity;
+import ee.valiit.project.Entity.EntityConsumable;
 import ee.valiit.project.Service.ServiceConsumable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,7 @@ public class ControllerConsumable {
 
     //create new consumable
     @PostMapping("consumable")
-    public void createConsumable(@RequestBody ConsumableEntity consumable) {
+    public void createConsumable(@RequestBody EntityConsumable consumable) {
         serviceConsumable.createConsumable(consumable);
     }
 
@@ -28,13 +28,13 @@ public class ControllerConsumable {
 
     //Get a specific consumable
     @GetMapping("consumableInfo/{id}")
-    public List<ConsumableEntity> getConsumableInfo(@PathVariable("id") Integer id) {
+    public List<EntityConsumable> getConsumableInfo(@PathVariable("id") Integer id) {
         return serviceConsumable.getConsumableInfo(id);
     }
 
     //Get the whole list of consumables
     @GetMapping("consumableInfo")
-    public List<ConsumableEntity> getConsumableInfoAll() {
+    public List<EntityConsumable> getConsumableInfoAll() {
         return serviceConsumable.getConsumableInfoAll();
     }
 

@@ -1,7 +1,7 @@
 package ee.valiit.project.Repository;
 
-import ee.valiit.project.Entity.*;
-import ee.valiit.project.Entity.ProductEntity;
+import ee.valiit.project.Entity.EntityProduct;
+import ee.valiit.project.Entity.RowMapper.RowMapperProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -18,7 +18,7 @@ public class RepositoryProduct {
 
 
     //create
-    public void newProduct(ProductEntity newProduct) {
+    public void newProduct(EntityProduct newProduct) {
         String sql = "INSERT INTO products (name, stock) VALUES (:name, :stock)";
         Map paramMap = new HashMap();
         paramMap.put("name", newProduct.getName());
@@ -35,7 +35,7 @@ public class RepositoryProduct {
     }
 
     //Get a specific product
-    public List<ProductEntity> getProductInfo(Integer id) {
+    public List<EntityProduct> getProductInfo(Integer id) {
         String sql = "select * from products where id=:id";
         Map<String, Object> paramMap = new HashMap();
         paramMap.put("id", id);
@@ -43,7 +43,7 @@ public class RepositoryProduct {
     }
 
     //Get the whole list of consumables
-    public List<ProductEntity> getProductInfoAll() {
+    public List<EntityProduct> getProductInfoAll() {
         String sql = "select * from products order by id";
         Map<String, Object> paramMap = new HashMap();
         return jdbcTemplate.query(sql, paramMap, new RowMapperProduct());

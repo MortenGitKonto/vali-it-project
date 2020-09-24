@@ -1,7 +1,7 @@
 package ee.valiit.project.Controller;
 
-import ee.valiit.project.Entity.ClientEntity;
-import ee.valiit.project.Entity.DeviceEntity;
+import ee.valiit.project.Entity.EntityClient;
+import ee.valiit.project.Entity.EntityDevice;
 import ee.valiit.project.Service.ServiceClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,13 +16,13 @@ public class ControllerClient {
 
     //create new client
     @PostMapping("client")
-    public void createClient(@RequestBody ClientEntity request) {
+    public void createClient(@RequestBody EntityClient request) {
         serviceClient.createClient(request.getName());
     }
 
     //search client_id via client name; and then return all device data via identified client_id
     @GetMapping("client/{name}")
-    public List<DeviceEntity> client_id(@PathVariable("name") String name) {
+    public List<EntityDevice> client_id(@PathVariable("name") String name) {
         return serviceClient.getDeviceData(name);
     }
 
@@ -34,7 +34,7 @@ public class ControllerClient {
 
     // clients by partial match
     @GetMapping("clientlike")
-    public List<ClientEntity> searchClient(@RequestParam(name = "nameLike") String nameLike) {
+    public List<EntityClient> searchClient(@RequestParam(name = "nameLike") String nameLike) {
         return serviceClient.getClientViaName(nameLike);
     }
 

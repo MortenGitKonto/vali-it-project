@@ -1,9 +1,7 @@
 package ee.valiit.project.Controller;
 
-import ee.valiit.project.Entity.ClientEntity;
-import ee.valiit.project.Entity.DeviceEntity;
-import ee.valiit.project.Entity.WorkOrderEntity;
-import ee.valiit.project.Entity.WorkOrderMultiEntity;
+import ee.valiit.project.Entity.EntityWO;
+import ee.valiit.project.Entity.EntityWOMulti;
 import ee.valiit.project.Service.ServiceWO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,26 +15,26 @@ public class ControllerWO {
     private ServiceWO serviceWO;
 
     @PostMapping("createWO")
-    public void createWO(@RequestBody WorkOrderEntity request) {
+    public void createWO(@RequestBody EntityWO request) {
         serviceWO.createWO(request);
     }
 
 
     //Get the whole list of work orders
     @GetMapping("getAllWorkOrders")
-    public List<WorkOrderEntity> getAllWorkOrders() {
+    public List<EntityWO> getAllWorkOrders() {
         return serviceWO.getWorkOrderInfoAll();
     }
 
     //Get the whole list of work orders in simultaneous search page
     @GetMapping("workOrderAll")
-    public List<WorkOrderMultiEntity> getAllWorkOrdersMulti() {
+    public List<EntityWOMulti> getAllWorkOrdersMulti() {
         return serviceWO.getWorkOrderInfoAllMulti();
     }
 
     //get all work orders info by specific device id, product id, consumable id, technician id or status.
     @GetMapping("workOrder")
-    public List<WorkOrderEntity> getAllWorkOrderInfo(@RequestParam(name = "query", required = false) String query)
+    public List<EntityWO> getAllWorkOrderInfo(@RequestParam(name = "query", required = false) String query)
 //                                                     @RequestParam(name = "deviceId", required = false) Integer deviceId,
 //                                                     @RequestParam(name = "consumableId", required = false) Integer consumableId,
 //                                                     @RequestParam(name = "technicianId", required = false) Integer technicianId,
@@ -48,17 +46,17 @@ public class ControllerWO {
 
     // work orders by four simultaneous input searches
     @GetMapping("workOrderSimultaneousSearch")
-    public List<WorkOrderMultiEntity> getWorkOrdersBySimultaneousSearch(@RequestParam(name = "client", required = false) String client,
-                                                                        @RequestParam(name = "device", required = false) String device,
-                                                                        @RequestParam(name = "product", required = false) String product,
-                                                                        @RequestParam(name = "technician", required = false) String technician,
-                                                                        @RequestParam(name = "status", required = false) Boolean status) {
+    public List<EntityWOMulti> getWorkOrdersBySimultaneousSearch(@RequestParam(name = "client", required = false) String client,
+                                                                 @RequestParam(name = "device", required = false) String device,
+                                                                 @RequestParam(name = "product", required = false) String product,
+                                                                 @RequestParam(name = "technician", required = false) String technician,
+                                                                 @RequestParam(name = "status", required = false) Boolean status) {
         return serviceWO.getWorkOrderBySimultaneousSearch(client, device, product, technician, status);
     }
 
 
     @GetMapping("workOrderStatus")
-    public List<WorkOrderEntity> getWorkOrderInfoByStatus(@RequestParam(name = "status") Boolean status)
+    public List<EntityWO> getWorkOrderInfoByStatus(@RequestParam(name = "status") Boolean status)
 //                                                     @RequestParam(name = "deviceId", required = false) Integer deviceId,
 //                                                     @RequestParam(name = "consumableId", required = false) Integer consumableId,
 //                                                     @RequestParam(name = "technicianId", required = false) Integer technicianId,
@@ -70,13 +68,13 @@ public class ControllerWO {
 
     //Update status of specific work order by id
     @PutMapping("updateWorkOrderStatus/{a}")
-    public void updateWorkOrderStatus(@RequestBody WorkOrderEntity workOrderEntity, @PathVariable("a") int id) {
-        serviceWO.updateWorkOrderStatus(workOrderEntity, id);
+    public void updateWorkOrderStatus(@RequestBody EntityWO entityWO, @PathVariable("a") int id) {
+        serviceWO.updateWorkOrderStatus(entityWO, id);
     }
 
     //Get workorder by ID
     @GetMapping("workOrderById")
-    public List<WorkOrderEntity> getWorkOrderById(@RequestParam(name = "id") int id) {
+    public List<EntityWO> getWorkOrderById(@RequestParam(name = "id") int id) {
         return serviceWO.getWorkOrderById(id);
     }
 

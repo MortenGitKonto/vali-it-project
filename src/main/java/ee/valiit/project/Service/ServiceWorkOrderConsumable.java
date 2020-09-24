@@ -1,8 +1,6 @@
 package ee.valiit.project.Service;
 
-import ee.valiit.project.Entity.ConsumableEntity;
-import ee.valiit.project.Entity.WorkOrderConsumableEntity;
-import ee.valiit.project.Repository.RepositoryConsumable;
+import ee.valiit.project.Entity.EntityWOConsumable;
 import ee.valiit.project.Repository.RepositoryWorkOrderConsumable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +13,7 @@ public class ServiceWorkOrderConsumable {
     @Autowired
     RepositoryWorkOrderConsumable repositoryWorkOrderConsumable;
 
-    public void createWorkOrderConsumable(WorkOrderConsumableEntity workOrderConsumable) {
+    public void createWorkOrderConsumable(EntityWOConsumable workOrderConsumable) {
         repositoryWorkOrderConsumable.createWorkOrderConsumable(workOrderConsumable);
     }
 
@@ -24,12 +22,12 @@ public class ServiceWorkOrderConsumable {
 //    }
 //
     //Get a specific consumable
-    public List<WorkOrderConsumableEntity> getWorkOrderConsumableInfo(int id) {
+    public List<EntityWOConsumable> getWorkOrderConsumableInfo(int id) {
         return repositoryWorkOrderConsumable.getWorkOrderConsumableInfo(id);
     }
 //
     //Get the whole list of consumables
-    public List<WorkOrderConsumableEntity> getWorkOrderConsumableInfoAll() {
+    public List<EntityWOConsumable> getWorkOrderConsumableInfoAll() {
         return repositoryWorkOrderConsumable.getWorkOrderConsumableInfoAll();
     }
 

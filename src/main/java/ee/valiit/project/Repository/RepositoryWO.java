@@ -1,6 +1,8 @@
 package ee.valiit.project.Repository;
 
 import ee.valiit.project.Entity.*;
+import ee.valiit.project.Entity.RowMapper.RowMapperWO;
+import ee.valiit.project.Entity.RowMapper.RowMapperWorkOrderMulti;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -18,7 +20,7 @@ public class RepositoryWO {
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     //Create a new work order
-    public void createWO(WorkOrderEntity createWO) {
+    public void createWO(EntityWO createWO) {
         String sql = "INSERT INTO work_orders (device_id, job_description, technician_id, status, consumable_id, product_id)" +
                 "VALUES (:device_id, :job_description, :technician_id, :status, :consumable_id, :product_id)";
         Map<String, Object> paramMap = new HashMap<>();
@@ -32,7 +34,7 @@ public class RepositoryWO {
     }
 
     //Get a specific work order
-    public List<WorkOrderEntity> getWorkOrderInfo(int deviceId) {
+    public List<EntityWO> getWorkOrderInfo(int deviceId) {
         String sql = "select * from work_orders where device_id=:deviceId";
         Map<String, Object> paramMap = new HashMap();
         paramMap.put("deviceId", deviceId);
@@ -40,7 +42,7 @@ public class RepositoryWO {
     }
 
     //Get the whole list of work orders
-    public List<WorkOrderEntity> getWorkOrderInfoAll() {
+    public List<EntityWO> getWorkOrderInfoAll() {
         String sql = "select * from work_orders order by id";
         Map<String, Object> paramMap = new HashMap();
         return jdbcTemplate.query(sql, paramMap, new RowMapperWO());
@@ -48,7 +50,7 @@ public class RepositoryWO {
 
 
     //All work orders info by device id
-    public List<WorkOrderEntity> getAllWorkOrderInfoByDeviceId(Integer deviceId) {
+    public List<EntityWO> getAllWorkOrderInfoByDeviceId(Integer deviceId) {
         String sql = "SELECT * FROM work_orders WHERE device_id = :device_id";
         Map paramMap = new HashMap();
         paramMap.put("device_id", deviceId);
@@ -56,7 +58,7 @@ public class RepositoryWO {
     }
 
     //All work orders info by technician id
-    public List<WorkOrderEntity> getAllWorkOrderInfoByTechnicianId(Integer technicianId) {
+    public List<EntityWO> getAllWorkOrderInfoByTechnicianId(Integer technicianId) {
         String sql = "SELECT * FROM work_orders WHERE technician_id = :technician_id";
         Map paramMap = new HashMap();
         paramMap.put("technician_id", technicianId);
@@ -64,7 +66,7 @@ public class RepositoryWO {
     }
 
     //All work orders info by consumable id
-    public List<WorkOrderEntity> getAllWorkOrderInfoByConsumableId(Integer consumableId) {
+    public List<EntityWO> getAllWorkOrderInfoByConsumableId(Integer consumableId) {
         String sql = "SELECT * FROM work_orders WHERE consumable_id = :consumable_id";
         Map paramMap = new HashMap();
         paramMap.put("consumable_id", consumableId);
@@ -72,7 +74,7 @@ public class RepositoryWO {
     }
 
     //All work orders info by QUERY
-    public List<WorkOrderEntity> getAllInfoByQuery(String queryString) {
+    public List<EntityWO> getAllInfoByQuery(String queryString) {
         String sql = "SELECT * FROM work_orders WHERE device_id = :queryInteger " +
                 "OR technician_id = :queryInteger OR " +
                 " product_id = :queryInteger OR consumable_id = :queryInteger";
@@ -90,7 +92,7 @@ public class RepositoryWO {
     }
 
     //All work orders info by TRUE/FALSE
-    public List<WorkOrderEntity> getAllInfoByQueryBoolean(String queryString) {
+    public List<EntityWO> getAllInfoByQueryBoolean(String queryString) {
         String sql = "SELECT * FROM work_orders WHERE status = :status";
         Map paramMap = new HashMap();
         paramMap.put("status", Boolean.valueOf(queryString));
@@ -98,7 +100,7 @@ public class RepositoryWO {
     }
 
     //get all work orders that are not done
-    public List<WorkOrderEntity> getAllInfoByStatus(Boolean status) {
+    public List<EntityWO> getAllInfoByStatus(Boolean status) {
         String sql = "SELECT * FROM work_orders WHERE status = :status";
         Map paramMap = new HashMap();
         paramMap.put("status", status);
@@ -107,7 +109,7 @@ public class RepositoryWO {
 
 
     //All work orders info by product id
-    public List<WorkOrderEntity> getAllWorkOrderInfoByProductId(Integer productId) {
+    public List<EntityWO> getAllWorkOrderInfoByProductId(Integer productId) {
         String sql = "SELECT * FROM work_orders WHERE product_id = :product_id";
         Map paramMap = new HashMap();
         paramMap.put("product_id", productId);
@@ -115,7 +117,7 @@ public class RepositoryWO {
     }
 
     //work order info by WO id
-    public List<WorkOrderEntity> getWorkOrderInfoById(int id) {
+    public List<EntityWO> getWorkOrderInfoById(int id) {
         String sql = "SELECT * FROM work_orders WHERE id = :id";
         Map paramMap = new HashMap();
         paramMap.put("id", id);
@@ -123,7 +125,7 @@ public class RepositoryWO {
     }
 
     //All work orders info by status
-    public List<WorkOrderEntity> getAllWorkOrderInfoByStatus(boolean status) {
+    public List<EntityWO> getAllWorkOrderInfoByStatus(boolean status) {
         String sql = "SELECT * FROM work_orders WHERE status = :status";
         Map paramMap = new HashMap();
         paramMap.put("status", status);
@@ -133,7 +135,7 @@ public class RepositoryWO {
 
     /////
 //    //Update all info of one specific work order by
-//    public void updateAllInfo(WorkOrderEntity workOrderEntity) {
+//    public void updateAllInfo(EntityWO workOrderEntity) {
 //        String sql = "update work_orders set technician_id = :technicianId, device_id = :deviceId, product_id = :productId, consumable_id = :consumableId, status = :status where id= :id";
 //        Map<String, Object> paramMap = new HashMap();
 //        paramMap.put("technicianId", workOrderEntity.getTechnicianId());
@@ -147,15 +149,15 @@ public class RepositoryWO {
 
     ///
     //Update status of one specific work order by id
-    public void updateStatus(WorkOrderEntity workOrderEntity, Integer id) {
+    public void updateStatus(EntityWO entityWO, Integer id) {
         String sql = "update work_orders set status = :status where id= :id";
         Map<String, Object> paramMap = new HashMap();
-        paramMap.put("status", workOrderEntity.isStatus());
+        paramMap.put("status", entityWO.isStatus());
         paramMap.put("id", id);
         jdbcTemplate.update(sql, paramMap);
     }
 
-    public List<WorkOrderMultiEntity> getWorkOrdersBySimultaneousSearch(String client, String device, String product, String technician) {
+    public List<EntityWOMulti> getWorkOrdersBySimultaneousSearch(String client, String device, String product, String technician) {
         String sql = "SELECT * FROM work_orders " +
                 "JOIN technicians ON technicians.id = work_orders.technician_id " +
                 "JOIN devices ON devices.id = work_orders.device_id " +
@@ -178,7 +180,7 @@ public class RepositoryWO {
     }
 
         //Get the whole list of work orders
-        public List<WorkOrderMultiEntity> getWorkOrderInfoAllMulti() {
+        public List<EntityWOMulti> getWorkOrderInfoAllMulti() {
             String sql = "SELECT * FROM work_orders " +
                     "JOIN technicians ON technicians.id = work_orders.technician_id " +
                     "JOIN devices ON devices.id = work_orders.device_id " +
@@ -192,7 +194,7 @@ public class RepositoryWO {
         }
 
 
-    public List<WorkOrderMultiEntity> getWorkOrdersBySimultaneousSearchWithStatus(String client, String device, String product, String technician, Boolean status) {
+    public List<EntityWOMulti> getWorkOrdersBySimultaneousSearchWithStatus(String client, String device, String product, String technician, Boolean status) {
         String sql = "SELECT * FROM work_orders " +
                 "JOIN technicians ON technicians.id = work_orders.technician_id " +
                 "JOIN devices ON devices.id = work_orders.device_id " +
