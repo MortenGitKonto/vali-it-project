@@ -8,6 +8,7 @@ public class RowMapperDevice implements RowMapper<DeviceEntity>{
     @Override
     public DeviceEntity mapRow(ResultSet resultset, int i) throws SQLException {
         DeviceEntity device = new DeviceEntity();
+        device.setId(resultset.getInt("id"));
         device.setClientId(resultset.getInt("client_id"));
         device.setProductId(resultset.getInt("product_id"));
         device.setSerialNumber(resultset.getString("sn"));

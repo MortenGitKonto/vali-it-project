@@ -5,6 +5,15 @@ public class DeviceEntity {
     private String serialNumber;
     private int counter;
     private int productId;
+    private Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public int getProductId() {
         return productId;

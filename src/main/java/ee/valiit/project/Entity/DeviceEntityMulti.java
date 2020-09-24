@@ -7,6 +7,15 @@ public class DeviceEntityMulti {
     private int productId;
     private String clientName;
     private String productName;
+    private Integer deviceId;
+
+    public Integer getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(Integer deviceId) {
+        this.deviceId = deviceId;
+    }
 
     public String getClientName() {
         return clientName;
