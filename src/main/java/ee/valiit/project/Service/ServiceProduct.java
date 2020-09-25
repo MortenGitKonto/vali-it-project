@@ -18,7 +18,7 @@ public class ServiceProduct {
     }
 
     public int productID(String name) {
-        return repositoryProduct.productID(name);
+        return repositoryProduct.getproductID(name);
     }
 
     //Get a specific product

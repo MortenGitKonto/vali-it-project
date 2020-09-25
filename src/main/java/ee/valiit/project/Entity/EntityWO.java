@@ -7,9 +7,9 @@ public class EntityWO {
     private int deviceId;
     private String jobDescription;
     private boolean status; //true means work done, false means work not done
-    private int technicianId;
-    private int productId;
-    private int consumableId;
+    private String technicianName;
+    private String productName;
+    private String consumableName;
 
     public int getId() {
         return id;
@@ -43,27 +43,27 @@ public class EntityWO {
         this.status = status;
     }
 
-    public int getTechnicianId() {
-        return technicianId;
+    public String getTechnicianName() {
+        return technicianName;
     }
 
-    public void setTechnicianId(int technicianId) {
-        this.technicianId = technicianId;
+    public void setTechnicianName(String technicianName) {
+        this.technicianName = technicianName;
     }
 
-    public int getProductId() {
-        return productId;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public int getConsumableId() {
-        return consumableId;
+    public String getConsumableName() {
+        return consumableName;
     }
 
-    public void setConsumableId(int consumableId) {
-        this.consumableId = consumableId;
+    public void setConsumableName(String consumableName) {
+        this.consumableName = consumableName;
     }
 }
