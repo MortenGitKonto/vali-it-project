@@ -36,6 +36,11 @@ public class ControllerDevice {
         return serviceDevice.getAllDeviceInfo(query);
     }
 
+    @GetMapping("devicename")
+    public List<EntityDevice> deviceByDeviceName(@RequestParam(name = "query", required = false) String queryString){
+        return serviceDevice.deviceByDeviceName(queryString);
+    }
+
 //TODO pole vist vajalik
     //    get devices by clientId
     //    @GetMapping("device/{clientId}")

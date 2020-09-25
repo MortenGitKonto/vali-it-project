@@ -7,6 +7,7 @@ public class EntityDevice {
     private int productId;
     private Integer id;
 
+
     public Integer getId() {
         return id;
     }
