@@ -15,7 +15,8 @@ public class ControllerWO {
     private ServiceWO serviceWO;
 
     @PostMapping("createWO")
-    public void createWO(@RequestBody EntityWO request) {
+    public void createWO(@RequestBody EntityWO request)
+    {
         serviceWO.createWO(request);
     }
 

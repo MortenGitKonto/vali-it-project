@@ -1,8 +1,12 @@
 package ee.valiit.project.Service;
 
 import ee.valiit.project.Entity.EntityWOMulti;
+import ee.valiit.project.Repository.RepositoryConsumable;
+import ee.valiit.project.Repository.RepositoryProduct;
+import ee.valiit.project.Repository.RepositoryTechnician;
 import ee.valiit.project.Repository.RepositoryWO;
 import ee.valiit.project.Entity.EntityWO;
+import liquibase.pro.packaged.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +18,20 @@ public class ServiceWO {
     @Autowired
     public RepositoryWO repositoryWO;
 
+    @Autowired
+    RepositoryTechnician repositoryTechnician;
+
+    @Autowired
+    RepositoryProduct repositoryProduct;
+
+    @Autowired
+    RepositoryConsumable repositoryConsumable;
+
     public void createWO(EntityWO createWO) {
-        repositoryWO.createWO(createWO);
+        int techId = repositoryTechnician.getTechnicianId(createWO.getTechnicianName());
+        int productId = repositoryProduct.getproductID(createWO.getProductName());
+        int consumableId = repositoryConsumable.getConsumableID(createWO.getConsumableName());
+        repositoryWO.createWO(createWO, techId, productId, consumableId);
     }
 
 //    //TOPELT

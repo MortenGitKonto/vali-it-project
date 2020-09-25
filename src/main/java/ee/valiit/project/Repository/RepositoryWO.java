@@ -20,16 +20,16 @@ public class RepositoryWO {
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     //Create a new work order
-    public void createWO(EntityWO createWO) {
+    public void createWO(EntityWO createWO, int technicianId, int consumableId, int productId) {
         String sql = "INSERT INTO work_orders (device_id, job_description, technician_id, status, consumable_id, product_id)" +
                 "VALUES (:device_id, :job_description, :technician_id, :status, :consumable_id, :product_id)";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("device_id", createWO.getDeviceId());
         paramMap.put("job_description", createWO.getJobDescription());
-        paramMap.put("technician_id", createWO.getTechnicianId());
+        paramMap.put("technician_id", technicianId);
         paramMap.put("status", createWO.isStatus());
-        paramMap.put("consumable_id", createWO.getConsumableId());
-        paramMap.put("product_id", createWO.getProductId());
+        paramMap.put("consumable_id", consumableId);
+        paramMap.put("product_id", productId);
         jdbcTemplate.update(sql, paramMap);
     }
 

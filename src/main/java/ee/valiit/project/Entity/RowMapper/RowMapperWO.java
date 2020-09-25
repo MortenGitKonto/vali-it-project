@@ -12,9 +12,9 @@ public class RowMapperWO implements RowMapper<EntityWO> {
         workOrder.setDeviceId(resultset.getInt("device_id"));
         workOrder.setJobDescription(resultset.getString("job_description"));
         workOrder.setStatus(resultset.getBoolean("status"));
-        workOrder.setTechnicianId(resultset.getInt("technician_id"));
-        workOrder.setProductId(resultset.getInt("product_id"));
-        workOrder.setConsumableId(resultset.getInt("consumable_id"));
+        workOrder.setTechnicianName(resultset.getString("technician_name"));
+        workOrder.setProductName(resultset.getString("product_name"));
+        workOrder.setConsumableName(resultset.getString("consumable_name"));
         workOrder.setId(resultset.getInt("id"));
         return workOrder;
     }

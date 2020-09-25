@@ -27,7 +27,7 @@ public class RepositoryProduct {
     }
 
     //get ID
-    public int productID(String name) {
+    public int getproductID(String name) {
         String sql = "SELECT id FROM products WHERE name = :name";
         Map paramMap = new HashMap();
         paramMap.put("name", name);
