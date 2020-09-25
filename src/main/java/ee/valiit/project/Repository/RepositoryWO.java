@@ -216,4 +216,12 @@ public class RepositoryWO {
 
         return jdbcTemplate.query(sql, paramMap, new RowMapperWorkOrderMulti());
     }
+
+    public int getLastWorkOrderId() {
+        String sql = "SELECT MAX(id) FROM work_orders";
+        Map paramMap = new HashMap();
+        return jdbcTemplate.queryForObject(sql, paramMap, int.class);
+    }
+
+
 }

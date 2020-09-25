@@ -18,11 +18,11 @@ public class RepositoryWorkOrderConsumable {
     NamedParameterJdbcTemplate jdbcTemplate;
 
     //create
-    public void createWorkOrderConsumable (EntityWOConsumable workOrderConsumable) {
+    public void createWorkOrderConsumable (int workOrderId, int consumableId) {
         String sql = "INSERT INTO work_order_consumables (work_order_id, consumable_id) VALUES (:workOrderId, :consumableId)";
         Map paramMap = new HashMap();
-        paramMap.put("workOrderId", workOrderConsumable.getWorkOrderId());
-        paramMap.put("consumableId", workOrderConsumable.getConsumableId());
+        paramMap.put("workOrderId", workOrderId);
+        paramMap.put("consumableId", consumableId);
         jdbcTemplate.update(sql, paramMap);
     }
 //
@@ -49,7 +49,6 @@ public class RepositoryWorkOrderConsumable {
         Map<String, Object> paramMap = new HashMap();
         return jdbcTemplate.query(sql, paramMap, new RowMapperWorkOrderConsumable());
     }
-
 
 
 

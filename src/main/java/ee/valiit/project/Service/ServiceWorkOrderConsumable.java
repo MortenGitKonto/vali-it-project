@@ -13,9 +13,9 @@ public class ServiceWorkOrderConsumable {
     @Autowired
     RepositoryWorkOrderConsumable repositoryWorkOrderConsumable;
 
-    public void createWorkOrderConsumable(EntityWOConsumable workOrderConsumable) {
-        repositoryWorkOrderConsumable.createWorkOrderConsumable(workOrderConsumable);
-    }
+//    public void createWorkOrderConsumable(EntityWOConsumable workOrderConsumable) {
+//        repositoryWorkOrderConsumable.createWorkOrderConsumable(workOrderConsumable);
+//    }
 
 //    public int getConsumableID(String name) {
 //        return repositoryConsumable.getConsumableID(name);
