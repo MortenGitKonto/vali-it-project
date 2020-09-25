@@ -4,6 +4,7 @@ import ee.valiit.project.Entity.EntityClient;
 import ee.valiit.project.Entity.EntityDevice;
 import ee.valiit.project.Entity.RowMapper.RowMapperDevice;
 import ee.valiit.project.Entity.RowMapper.RowMapperDeviceMulti;
+import ee.valiit.project.Entity.RowMapper.RowMapperDeviceMultiMobile;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -45,9 +46,12 @@ public class RepositoryDevice {
     }
 
     public List<EntityDevice> query(String queryString) {
-        String sql = "SELECT * FROM devices WHERE sn ILIKE :queryString " +
+        String sql = "SELECT * FROM devices " +
+                "JOIN products ON products.id = product_id " +
+                "WHERE sn ILIKE :queryString " +
 //                "OR client_id = :queryInteger " +
-                "OR product_id = :queryInteger ";
+                "OR product_id = :queryInteger " +
+                "OR name ILIKE :queryInteger";
 //                "OR counter = :queryInteger";
         Map paramMap = new HashMap();
         paramMap.put("queryString", "%"+queryString+"%");
@@ -57,7 +61,18 @@ public class RepositoryDevice {
         }
 
         paramMap.put("queryInteger", queryInteger);
-        return jdbcTemplate.query(sql, paramMap, new RowMapperDevice());
+        return jdbcTemplate.query(sql, paramMap, new RowMapperDeviceMulti());
+    }
+
+//
+    public List<EntityDevice> deviceByDeviceName(String queryString) {
+        String sql = "SELECT * FROM devices " +
+                "JOIN products ON products.id = product_id " +
+                "WHERE name ILIKE :queryString OR sn ILIKE :queryString";
+        Map paramMap = new HashMap();
+        paramMap.put("queryString", "%"+queryString+"%");
+
+        return jdbcTemplate.query(sql, paramMap, new RowMapperDeviceMultiMobile());
     }
 
     public List<EntityDevice> getAllCounterLess(int counter) {

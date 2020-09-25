@@ -26,6 +26,10 @@ public class ServiceDevice {
         }
     }
 
+    public List<EntityDevice> deviceByDeviceName(String queryString) {
+            return repositoryDevice.deviceByDeviceName(queryString);
+    }
+
     //get all data where counter <= input
     public List<EntityDevice> getAllCounterLess(int counter) {
         return repositoryDevice.getAllCounterLess(counter);
