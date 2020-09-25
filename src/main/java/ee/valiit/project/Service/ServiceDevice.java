@@ -2,7 +2,9 @@ package ee.valiit.project.Service;
 
 import ee.valiit.project.Entity.EntityClient;
 import ee.valiit.project.Entity.EntityDevice;
+import ee.valiit.project.Repository.RepositoryClient;
 import ee.valiit.project.Repository.RepositoryDevice;
+import ee.valiit.project.Repository.RepositoryProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +16,15 @@ public class ServiceDevice {
     @Autowired
     RepositoryDevice repositoryDevice;
 
-    public void createDevice(EntityDevice request) {
-        repositoryDevice.createDevice(request);
-    }
+    @Autowired
+    RepositoryClient repositoryClient;
+
+    @Autowired
+    RepositoryProduct repositoryProduct;
+
+//    public void createDevice(EntityDevice request) {
+//        repositoryDevice.createDevice(request);
+//    }
 
     public List<EntityDevice> getAllDeviceInfo(String query) {
         if (query == "") {
@@ -44,5 +52,11 @@ public class ServiceDevice {
     // devices by client name or product name or serial number
     public List<EntityClient> getDevicesBy(String clientLike, String productLike, String serialNumberLike) {
         return repositoryDevice.getDevicesBy(clientLike, productLike, serialNumberLike);
+    }
+
+    public void newDevice(String clientName, String sn, int counter, String productName) {
+        int clientId = repositoryClient.getClientId(clientName);
+        int productId = repositoryProduct.productID(productName);
+        repositoryDevice.createDevice(clientId, sn, counter, productId);
     }
 }

@@ -19,13 +19,13 @@ public class RepositoryDevice {
     @Autowired
     NamedParameterJdbcTemplate jdbcTemplate;
 
-    public void createDevice(EntityDevice request) {
+    public void createDevice(int clientId, String sn, int counter, int productId) {
         String sql = "INSERT INTO devices (client_id, product_id, sn, counter) VALUES (:client_id, :product_id, :sn, :counter)";
         Map paramMap = new HashMap();
-        paramMap.put("client_id", request.getClientId());
-        paramMap.put("product_id", request.getProductId());
-        paramMap.put("sn", request.getSerialNumber());
-        paramMap.put("counter", request.getCounter());
+        paramMap.put("client_id", clientId);
+        paramMap.put("product_id", productId);
+        paramMap.put("sn", sn);
+        paramMap.put("counter", counter);
         jdbcTemplate.update(sql, paramMap);
     }
 
