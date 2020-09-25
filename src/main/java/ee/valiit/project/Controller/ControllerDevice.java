@@ -16,9 +16,18 @@ public class ControllerDevice {
     ServiceDevice serviceDevice;
 
     //create new device
+//    @PostMapping("device")
+//    public void createDevice(@RequestBody EntityDevice request) {
+//        serviceDevice.createDevice(request);
+//    }
+
+    //create new device by name info
     @PostMapping("device")
-    public void createDevice(@RequestBody EntityDevice request) {
-        serviceDevice.createDevice(request);
+    public void newDevice(@RequestParam("client") String clientName,
+                          @RequestParam("sn") String sn,
+                          @RequestParam("counter") int counter,
+                          @RequestParam("product") String productName) {
+        serviceDevice.newDevice(clientName, sn, counter, productName);
     }
 
     //get all device info by any EntityDevice variable
