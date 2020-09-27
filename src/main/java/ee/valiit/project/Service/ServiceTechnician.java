@@ -6,6 +6,8 @@ import ee.valiit.project.Repository.RepositoryTechnician;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ServiceTechnician {
 
@@ -18,6 +20,10 @@ public class ServiceTechnician {
 
     public int getTechnicianId(String name) {
         return repositoryTechnician.getTechnicianId(name);
+    }
+
+    public List<EntityTechnician> searchTechnicianNamelike(String queryString) {
+        return repositoryTechnician.searchTechnicianNamelike(queryString);
     }
 }
 
