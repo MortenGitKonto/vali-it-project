@@ -2,6 +2,7 @@ package ee.valiit.project.Repository;
 
 import ee.valiit.project.Entity.EntityClient;
 import ee.valiit.project.Entity.EntityDevice;
+import ee.valiit.project.Entity.EntityDeviceMultiMobile;
 import ee.valiit.project.Entity.RowMapper.RowMapperDevice;
 import ee.valiit.project.Entity.RowMapper.RowMapperDeviceMulti;
 import ee.valiit.project.Entity.RowMapper.RowMapperDeviceMultiMobile;
@@ -65,13 +66,12 @@ public class RepositoryDevice {
     }
 
 //
-    public List<EntityDevice> deviceByDeviceName(String queryString) {
+    public List<EntityDeviceMultiMobile> searchDeviceNamelike(String queryString) {
         String sql = "SELECT * FROM devices " +
                 "JOIN products ON products.id = product_id " +
                 "WHERE name ILIKE :queryString OR sn ILIKE :queryString";
         Map paramMap = new HashMap();
         paramMap.put("queryString", "%"+queryString+"%");
-
         return jdbcTemplate.query(sql, paramMap, new RowMapperDeviceMultiMobile());
     }
 
@@ -105,11 +105,10 @@ public class RepositoryDevice {
                 "AND products.name ILIKE :productLike " +
                 "AND devices.sn ILIKE :serialNumberLike";
         Map paramMap = new HashMap();
-
         paramMap.put("clientLike", "%"+clientLike+"%");
         paramMap.put("productLike", "%"+productLike+"%");
         paramMap.put("serialNumberLike", "%"+serialNumberLike+"%");
-
         return jdbcTemplate.query(sql, paramMap, new RowMapperDeviceMulti());
     }
+
 }

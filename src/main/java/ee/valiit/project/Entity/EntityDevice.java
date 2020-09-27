@@ -7,6 +7,15 @@ public class EntityDevice {
     private int productId;
     private Integer id;
 
+    private String deviceName;
+
+    public String getDeviceName() {
+        return deviceName;
+    }
+
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName;
+    }
 
     public Integer getId() {
         return id;

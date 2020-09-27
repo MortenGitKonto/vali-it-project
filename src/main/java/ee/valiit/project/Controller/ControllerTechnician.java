@@ -5,6 +5,8 @@ import ee.valiit.project.Service.ServiceTechnician;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:8081")
 public class ControllerTechnician {
@@ -22,6 +24,11 @@ public class ControllerTechnician {
     @GetMapping("technician/{name}")
     public int getTechnicianId(@PathVariable("name") String name) {
         return serviceTechnician.getTechnicianId(name);
+    }
+
+    @GetMapping("technician/namelike")
+    public List<EntityTechnician> searchTechnicianNamelike(@RequestParam("queryString") String queryString) {
+        return serviceTechnician.searchTechnicianNamelike(queryString);
     }
 }
 

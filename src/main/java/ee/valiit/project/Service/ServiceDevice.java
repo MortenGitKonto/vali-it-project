@@ -2,6 +2,8 @@ package ee.valiit.project.Service;
 
 import ee.valiit.project.Entity.EntityClient;
 import ee.valiit.project.Entity.EntityDevice;
+import ee.valiit.project.Entity.EntityDeviceMulti;
+import ee.valiit.project.Entity.EntityDeviceMultiMobile;
 import ee.valiit.project.Repository.RepositoryClient;
 import ee.valiit.project.Repository.RepositoryDevice;
 import ee.valiit.project.Repository.RepositoryProduct;
@@ -34,8 +36,8 @@ public class ServiceDevice {
         }
     }
 
-    public List<EntityDevice> deviceByDeviceName(String queryString) {
-            return repositoryDevice.deviceByDeviceName(queryString);
+    public List<EntityDeviceMultiMobile> searchDeviceNamelike(String queryString) {
+            return repositoryDevice.searchDeviceNamelike(queryString);
     }
 
     //get all data where counter <= input
@@ -60,7 +62,7 @@ public class ServiceDevice {
 
     public void newDevice(String clientName, String sn, int counter, String productName) {
         int clientId = repositoryClient.getClientId(clientName);
-        int productId = repositoryProduct.productID(productName);
+        int productId = repositoryProduct.getproductID(productName);
         repositoryDevice.createDevice(clientId, sn, counter, productId);
     }
 }
