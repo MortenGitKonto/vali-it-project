@@ -28,7 +28,7 @@ public class ServiceWO {
     @Autowired
     RepositoryWorkOrderConsumable repositoryWorkOrderConsumable;
 
-    public void createWO(EntityWO createWO) {
+    public void createWO(EntityWO createWO, int consumableAmount) {
         int techId = repositoryTechnician.getTechnicianId(createWO.getTechnicianName());
         int productId = repositoryProduct.getproductID(createWO.getProductName());
         int consumableId = repositoryConsumable.getConsumableID(createWO.getConsumableName());
@@ -36,13 +36,15 @@ public class ServiceWO {
         //Creates a work order table row
         repositoryWO.createWO(createWO, techId, productId, consumableId);
 
-        //Creates a work order consumables table row
+        //Creates work order consumables table rows
         int lastId = repositoryWO.getLastWorkOrderId();
-        repositoryWorkOrderConsumable.createWorkOrderConsumable(lastId, consumableId);
+        for(int i=1;i<=consumableAmount;i++){
+            repositoryWorkOrderConsumable.createWorkOrderConsumable(lastId, consumableId);
+        }
 
         //Updates consumables table by reducing the stock of the specific consumable
         //Currently I hard-code it to 1. Later the amount should be flexible.
-        int reduceAmount=1; //TODO hard-code ära muuta
+        int reduceAmount=consumableAmount;
         int currentStock = repositoryConsumable.getConsumableStock(consumableId);
         repositoryConsumable.updateStock(consumableId, currentStock, reduceAmount);
     }
