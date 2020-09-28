@@ -48,20 +48,11 @@ public class RepositoryDevice {
 
     public List<EntityDevice> query(String queryString) {
         String sql = "SELECT * FROM devices " +
-                "JOIN products ON products.id = product_id " +
-                "WHERE sn ILIKE :queryString " +
-//                "OR client_id = :queryInteger " +
-                "OR product_id = :queryInteger " +
-                "OR name ILIKE :queryInteger";
-//                "OR counter = :queryInteger";
+                "JOIN clients ON clients.id = client_id " +
+                "WHERE client_name ILIKE :queryString " +
+                "OR name ILIKE :queryString";
         Map paramMap = new HashMap();
         paramMap.put("queryString", "%"+queryString+"%");
-        Integer queryInteger = null;
-        if(StringUtils.isNumeric(queryString)){
-            queryInteger = Integer.valueOf(queryString);
-        }
-
-        paramMap.put("queryInteger", queryInteger);
         return jdbcTemplate.query(sql, paramMap, new RowMapperDeviceMulti());
     }
 
