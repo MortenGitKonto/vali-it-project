@@ -2,6 +2,7 @@ package ee.valiit.project.Repository;
 
 import ee.valiit.project.Entity.EntityConsumable;
 import ee.valiit.project.Entity.RowMapper.RowMapperConsumable;
+import ee.valiit.project.Entity.RowMapper.RowMapperWorkOrderConsumable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -50,6 +51,23 @@ public class RepositoryConsumable {
     }
 
 
+    //Get stock of specific consumable
+    public int getConsumableStock(int id) {
+        String sql = "select stock from consumables where id=:id";
+        Map<String, Object> paramMap = new HashMap();
+        paramMap.put("id", id);
+        return jdbcTemplate.queryForObject(sql, paramMap, int.class);
+    }
+
+
+    //Updates stock of one specific work order by id
+    public void updateStock(int id, int stock, int reduceAmount) {
+        String sql = "update consumables set stock = :stock where id= :id";
+        Map<String, Object> paramMap = new HashMap();
+        paramMap.put("stock", (stock - reduceAmount));
+        paramMap.put("id", id);
+        jdbcTemplate.update(sql, paramMap);
+    }
 
 
 }

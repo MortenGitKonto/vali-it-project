@@ -2,6 +2,8 @@ package ee.valiit.project.Controller;
 
 import ee.valiit.project.Entity.EntityClient;
 import ee.valiit.project.Entity.EntityDevice;
+import ee.valiit.project.Entity.EntityDeviceMulti;
+import ee.valiit.project.Entity.EntityDeviceMultiMobile;
 import ee.valiit.project.Service.ServiceDevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +38,11 @@ public class ControllerDevice {
         return serviceDevice.getAllDeviceInfo(query);
     }
 
+    @GetMapping("device/namelike")
+    public List<EntityDevice> searchDeviceNamelike(@RequestParam("queryString") String queryString){
+        return serviceDevice.searchDeviceNamelike(queryString);
+    }
+
 //TODO pole vist vajalik
     //    get devices by clientId
     //    @GetMapping("device/{clientId}")
@@ -54,6 +61,7 @@ public class ControllerDevice {
     public List<EntityDevice> getDeviceDataCounterMore(@RequestParam("counter") int counter) {
         return serviceDevice.getAllCounterMore(counter);
     }
+
 
     // devices by client name
     @GetMapping("devicelike")

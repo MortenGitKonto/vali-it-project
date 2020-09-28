@@ -1,27 +1,46 @@
 package ee.valiit.project.Entity;
 
-public class EntityDevice {
+public class EntityDeviceMultiMobile {
     private Integer clientId;
     private String serialNumber;
     private int counter;
     private int productId;
-    private Integer id;
-    private String name;
+    private String clientName;
+    private String productName;
+    private Integer deviceId;
 
-    public String getName() {
-        return name;
+    private String deviceName;
+
+    public String getDeviceName() {
+        return deviceName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getDeviceId() {
+        return deviceId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setDeviceId(Integer deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public int getProductId() {

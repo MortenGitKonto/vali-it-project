@@ -14,11 +14,11 @@ public class ControllerWorkOrderConsumable {
     @Autowired
     ServiceWorkOrderConsumable serviceWorkOrderConsumable;
 
-    //create new work order consumable
-    @PostMapping("workOrderConsumable")
-    public void createWorkOrderConsumable(@RequestBody EntityWOConsumable workOrderConsumable) {
-        serviceWorkOrderConsumable.createWorkOrderConsumable(workOrderConsumable);
-    }
+//    //create new work order consumable
+//    @PostMapping("workOrderConsumable")
+//    public void createWorkOrderConsumable(@RequestBody EntityWOConsumable workOrderConsumable) {
+//        serviceWorkOrderConsumable.createWorkOrderConsumable(workOrderConsumable);
+//    }
 //
 //    //search consumable unique id via consumable name
 //    @GetMapping("consumable/{name}")
