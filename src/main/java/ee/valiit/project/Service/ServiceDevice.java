@@ -63,6 +63,6 @@ public class ServiceDevice {
     public void newDevice(String clientName, String sn, int counter, String productName) {
         int clientId = repositoryClient.getClientId(clientName);
         int productId = repositoryProduct.getproductID(productName);
-        repositoryDevice.createDevice(clientId, sn, counter, productId);
+        repositoryDevice.createDevice(clientId, sn, counter, productId, productName);
     }
 }

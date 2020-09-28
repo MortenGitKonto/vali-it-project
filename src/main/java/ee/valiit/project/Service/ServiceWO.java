@@ -28,13 +28,17 @@ public class ServiceWO {
     @Autowired
     RepositoryWorkOrderConsumable repositoryWorkOrderConsumable;
 
+    @Autowired
+    RepositoryDevice repositoryDevice;
+
     public void createWO(EntityWO createWO, int consumableAmount) {
         int techId = repositoryTechnician.getTechnicianId(createWO.getTechnicianName());
         int productId = repositoryProduct.getproductID(createWO.getProductName());
         int consumableId = repositoryConsumable.getConsumableID(createWO.getConsumableName());
+        int deviceId = repositoryDevice.getDeviceId(createWO.getDeviceName());
 
         //Creates a work order table row
-        repositoryWO.createWO(createWO, techId, productId, consumableId);
+        repositoryWO.createWO(createWO, techId, productId, consumableId, deviceId);
 
         //Creates work order consumables table rows
         int lastId = repositoryWO.getLastWorkOrderId();
