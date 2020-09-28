@@ -21,13 +21,14 @@ public class RepositoryDevice {
     @Autowired
     NamedParameterJdbcTemplate jdbcTemplate;
 
-    public void createDevice(int clientId, String sn, int counter, int productId) {
-        String sql = "INSERT INTO devices (client_id, product_id, sn, counter) VALUES (:client_id, :product_id, :sn, :counter)";
+    public void createDevice(int clientId, String sn, int counter, int productId, String productName) {
+        String sql = "INSERT INTO devices (client_id, product_id, sn, counter, name) VALUES (:client_id, :product_id, :sn, :counter,:name)";
         Map paramMap = new HashMap();
         paramMap.put("client_id", clientId);
         paramMap.put("product_id", productId);
         paramMap.put("sn", sn);
         paramMap.put("counter", counter);
+        paramMap.put("name", productName+" - "+sn);
         jdbcTemplate.update(sql, paramMap);
     }
 
@@ -78,6 +79,14 @@ public class RepositoryDevice {
         Map paramMap = new HashMap();
         paramMap.put("counter", counter);
         return jdbcTemplate.query(sql, paramMap, new RowMapperDevice());
+    }
+
+    //Get device id
+    public int getDeviceId(String deviceName) {
+        String sql = "SELECT id FROM devices WHERE name = :name";
+        Map paramMap = new HashMap();
+        paramMap.put("name", deviceName);
+        return jdbcTemplate.queryForObject(sql, paramMap, int.class);
     }
 
     public List<EntityDevice> getAllCounterMore(int counter) {

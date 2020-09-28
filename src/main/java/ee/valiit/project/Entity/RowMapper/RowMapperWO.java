@@ -9,7 +9,7 @@ public class RowMapperWO implements RowMapper<EntityWO> {
     @Override
     public EntityWO mapRow(ResultSet resultset, int i) throws SQLException {
         EntityWO workOrder = new EntityWO();
-        workOrder.setDeviceId(resultset.getInt("device_id"));
+        workOrder.setDeviceName(resultset.getString("name"));
         workOrder.setJobDescription(resultset.getString("job_description"));
         workOrder.setStatus(resultset.getBoolean("status"));
         workOrder.setTechnicianName(resultset.getString("technician_name"));

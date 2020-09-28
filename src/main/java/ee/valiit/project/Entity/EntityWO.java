@@ -4,7 +4,7 @@ import java.math.BigInteger;
 
 public class EntityWO {
     private int id;
-    private int deviceId;
+    private String deviceName;
     private String jobDescription;
     private boolean status; //true means work done, false means work not done
     private String technicianName;
@@ -19,12 +19,12 @@ public class EntityWO {
         this.id = id;
     }
 
-    public int getDeviceId() {
-        return deviceId;
+    public String getDeviceName() {
+        return deviceName;
     }
 
-    public void setDeviceId(int deviceId) {
-        this.deviceId = deviceId;
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName;
     }
 
     public String getJobDescription() {
