@@ -66,14 +66,21 @@ public class RepositoryDevice {
     }
 
 //
-    public List<EntityDeviceMultiMobile> searchDeviceNamelike(String queryString) {
-        String sql = "SELECT * FROM devices " +
-                "JOIN products ON products.id = product_id " +
-                "WHERE name ILIKE :queryString OR sn ILIKE :queryString";
+    public List<EntityDevice> searchDeviceNamelike(String queryString) {
+        String sql = "SELECT * FROM devices WHERE name ILIKE :queryString";
         Map paramMap = new HashMap();
         paramMap.put("queryString", "%"+queryString+"%");
-        return jdbcTemplate.query(sql, paramMap, new RowMapperDeviceMultiMobile());
+        return jdbcTemplate.query(sql, paramMap, new RowMapperDevice());
     }
+
+//    public List<EntityDeviceMultiMobile> searchDeviceNamelike(String queryString) {
+//        String sql = "SELECT * FROM devices " +
+//                "JOIN products ON products.id = product_id " +
+//                "WHERE name ILIKE :queryString OR sn ILIKE :queryString";
+//        Map paramMap = new HashMap();
+//        paramMap.put("queryString", "%"+queryString+"%");
+//        return jdbcTemplate.query(sql, paramMap, new RowMapperDeviceMultiMobile());
+//    }
 
     public List<EntityDevice> getAllCounterLess(int counter) {
         String sql = "SELECT * FROM devices WHERE counter <= :counter";
