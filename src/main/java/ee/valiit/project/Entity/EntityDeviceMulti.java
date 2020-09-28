@@ -8,6 +8,15 @@ public class EntityDeviceMulti {
     private String clientName;
     private String productName;
     private Integer deviceId;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Integer getDeviceId() {
         return deviceId;
