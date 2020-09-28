@@ -179,4 +179,9 @@
             </column>
         </addColumn>
     </changeSet>
+    <changeSet id="20" author="jantilk">
+        <addColumn tableName="devices">
+            <column name="name" type="text"></column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

@@ -39,7 +39,7 @@ public class ControllerDevice {
     }
 
     @GetMapping("device/namelike")
-    public List<EntityDeviceMultiMobile> searchDeviceNamelike(@RequestParam("queryString") String queryString){
+    public List<EntityDevice> searchDeviceNamelike(@RequestParam("queryString") String queryString){
         return serviceDevice.searchDeviceNamelike(queryString);
     }
 

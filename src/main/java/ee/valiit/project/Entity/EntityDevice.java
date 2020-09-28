@@ -6,15 +6,14 @@ public class EntityDevice {
     private int counter;
     private int productId;
     private Integer id;
+    private String name;
 
-    private String deviceName;
-
-    public String getDeviceName() {
-        return deviceName;
+    public String getName() {
+        return name;
     }
 
-    public void setDeviceName(String deviceName) {
-        this.deviceName = deviceName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getId() {

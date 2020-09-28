@@ -14,6 +14,7 @@ public class RowMapperDevice implements RowMapper<EntityDevice>{
         device.setProductId(resultset.getInt("product_id"));
         device.setSerialNumber(resultset.getString("sn"));
         device.setCounter(resultset.getInt("counter"));
+        device.setName(resultset.getString("name"));
         return device;
     }
 }

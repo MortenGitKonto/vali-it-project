@@ -36,7 +36,7 @@ public class ServiceDevice {
         }
     }
 
-    public List<EntityDeviceMultiMobile> searchDeviceNamelike(String queryString) {
+    public List<EntityDevice> searchDeviceNamelike(String queryString) {
             return repositoryDevice.searchDeviceNamelike(queryString);
     }
 
