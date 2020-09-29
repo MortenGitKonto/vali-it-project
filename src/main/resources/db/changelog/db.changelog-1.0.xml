@@ -184,4 +184,7 @@
             <column name="name" type="text"></column>
         </addColumn>
     </changeSet>
+    <changeSet id="21" author="Morten">
+        <dropColumn tableName="work_orders" columnName="consumable_id"></dropColumn>
+    </changeSet>
 </databaseChangeLog>

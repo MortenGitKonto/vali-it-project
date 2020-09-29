@@ -35,7 +35,7 @@ public class ServiceWO {
     public void createWO(EntityWO createWO, int consumableAmount, String consumable2, int consumableAmount2, String consumable3, int consumableAmount3) {
         int techId = repositoryTechnician.getTechnicianId(createWO.getTechnicianName());
 
-        int productId = repositoryProduct.getproductID(createWO.getDeviceName().substring(0,createWO.getDeviceName().indexOf(" -")));
+        int productId = repositoryProduct.getproductID(createWO.getDeviceName().substring(0, createWO.getDeviceName().indexOf(" -")));
 //      System.out.println(createWO.getDeviceName().substring(0,createWO.getDeviceName().indexOf(" -")));
 
         int deviceId = repositoryDevice.getDeviceId(createWO.getDeviceName());
@@ -43,28 +43,33 @@ public class ServiceWO {
         //Creates a work order table row
         repositoryWO.createWO(createWO, techId, productId, deviceId);
 
-        //Consumable1 ID
-        int consumableId = repositoryConsumable.getConsumableID(createWO.getConsumableName());
+        if (consumable2.equals("")) {
+        } else {
 
-        //Creates work order consumables table rows
-        int lastId = repositoryWO.getLastWorkOrderId();
-        for(int i=1;i<=consumableAmount;i++){
-            repositoryWorkOrderConsumable.createWorkOrderConsumable(lastId, consumableId);
+            //Consumable1 ID
+            int consumableId = repositoryConsumable.getConsumableID(createWO.getConsumableName());
+
+            //Creates work order consumables table rows
+            int lastId = repositoryWO.getLastWorkOrderId();
+            for (int i = 1; i <= consumableAmount; i++) {
+                repositoryWorkOrderConsumable.createWorkOrderConsumable(lastId, consumableId);
+            }
+
+            //Updates consumables table by reducing the stock of the specific consumable
+            int currentStock = repositoryConsumable.getConsumableStock(consumableId);
+            repositoryConsumable.updateStock(consumableId, currentStock, consumableAmount);
         }
 
-        //Updates consumables table by reducing the stock of the specific consumable
-        int currentStock = repositoryConsumable.getConsumableStock(consumableId);
-        repositoryConsumable.updateStock(consumableId, currentStock, consumableAmount);
-
-        if(consumable2.equals("")) {
+        if (consumable2.equals("")) {
 
         } else {
 
             //Consumable2 ID
             int consumableId2 = repositoryConsumable.getConsumableID(consumable2);
-            System.out.println(consumableId2);
+
             //Creates work order consumables table rows
             for (int i = 1; i <= consumableAmount2; i++) {
+                int lastId = repositoryWO.getLastWorkOrderId();
                 repositoryWorkOrderConsumable.createWorkOrderConsumable(lastId, consumableId2);
             }
 
@@ -74,13 +79,14 @@ public class ServiceWO {
             repositoryConsumable.updateStock(consumableId2, currentStock2, consumableAmount2);
         }
 
-        if(consumable3.equals("")) {
-        }else{
+        if (consumable3.equals("")) {
+        } else {
             //Consumable3 ID
             int consumableId3 = repositoryConsumable.getConsumableID(consumable3);
-            System.out.println(consumableId3);
+
             //Creates work order consumables table rows
             for (int i = 1; i <= consumableAmount3; i++) {
+                int lastId = repositoryWO.getLastWorkOrderId();
                 repositoryWorkOrderConsumable.createWorkOrderConsumable(lastId, consumableId3);
             }
 
