@@ -12,6 +12,16 @@ public class EntityWOMulti {
     private String serialNumber;
     private String productName;
     private String clientName;
+    //    jaanus added
+    private String deviceName;
+
+    public String getDeviceName() {
+        return deviceName;
+    }
+
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName;
+    }
 
     public Integer getWorkOrderId() {
         return workOrderId;
