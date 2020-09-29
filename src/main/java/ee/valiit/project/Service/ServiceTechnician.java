@@ -1,7 +1,10 @@
 package ee.valiit.project.Service;
 
 
+
 import ee.valiit.project.Entity.EntityTechnician;
+import ee.valiit.project.Entity.JWTTokenProvider;
+import ee.valiit.project.Entity.User;
 import ee.valiit.project.Repository.RepositoryTechnician;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +16,9 @@ public class ServiceTechnician {
 
     @Autowired
     RepositoryTechnician repositoryTechnician;
+
+    @Autowired
+    JWTTokenProvider jwtTokenProvider;
 
     public void createTechnician(EntityTechnician request) {
         repositoryTechnician.createTechnician(request);
@@ -29,13 +35,16 @@ public class ServiceTechnician {
         return repositoryTechnician.searchTechnicianNamelike(queryString);
     }
 
-    public Boolean loginTechnician(EntityTechnician login) {
-        String password = repositoryTechnician.getTechnicianPassword(login.getUsername());
-        if (password.equals(login.getPassword())) {
-            return true;
+    public User loginTechnician(String username, String password) {
+        String pass = repositoryTechnician.getTechnicianPassword(username);
+        User user = new User();
+        if (password.equals(pass)) {
+            user.setStatus(true);
         } else {
-            return false;
+            user.setStatus(false);
         }
+        user.setToken(jwtTokenProvider.createToken(username));
+        return user;
     }
 }
 

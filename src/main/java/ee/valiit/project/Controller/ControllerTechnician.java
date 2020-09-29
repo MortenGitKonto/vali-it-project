@@ -1,6 +1,8 @@
 package ee.valiit.project.Controller;
 
 import ee.valiit.project.Entity.EntityTechnician;
+import ee.valiit.project.Entity.JWTTokenProvider;
+import ee.valiit.project.Entity.User;
 import ee.valiit.project.Service.ServiceTechnician;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,9 @@ public class ControllerTechnician {
 
     @Autowired
     ServiceTechnician serviceTechnician;
+
+    @Autowired
+    JWTTokenProvider jwtTokenProvider;
 
     //Create new technician
     @PostMapping("newTechnician")
@@ -32,8 +37,8 @@ public class ControllerTechnician {
     }
 
     @GetMapping("technician/logIn")
-    public Boolean login(@RequestBody EntityTechnician login) {
-        return serviceTechnician.loginTechnician(login);
+    public User login(@RequestParam("username")String user, @RequestParam("password") String pass) {
+        return serviceTechnician.loginTechnician(user, pass);
     }
 
 }
