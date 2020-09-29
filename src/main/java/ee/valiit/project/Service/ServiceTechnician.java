@@ -28,5 +28,15 @@ public class ServiceTechnician {
         }
         return repositoryTechnician.searchTechnicianNamelike(queryString);
     }
+
+    public Boolean loginTechnician(EntityTechnician login) {
+        String password = repositoryTechnician.getTechnicianPassword(login.getUsername());
+        if (password.equals(login.getPassword())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
+
 

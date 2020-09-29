@@ -30,6 +30,12 @@ public class ControllerTechnician {
     public List<EntityTechnician> searchTechnicianNamelike(@RequestParam("queryString") String queryString) {
         return serviceTechnician.searchTechnicianNamelike(queryString);
     }
+
+    @GetMapping("technician/logIn")
+    public Boolean login(@RequestBody EntityTechnician login) {
+        return serviceTechnician.loginTechnician(login);
+    }
+
 }
 
 

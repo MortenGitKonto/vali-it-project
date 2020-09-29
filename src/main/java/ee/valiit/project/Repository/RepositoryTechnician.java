@@ -39,5 +39,12 @@ public class RepositoryTechnician {
             System.out.println(jdbcTemplate.query(sql, paramMap, new RowMapperTechnician()));
             return jdbcTemplate.query(sql, paramMap, new RowMapperTechnician());
         }
+
+    public String getTechnicianPassword (String username) {
+        String sql = "SELECT password FROM technicians WHERE username = :username";
+        Map paramMap = new HashMap();
+        paramMap.put("username", username);
+        return jdbcTemplate.queryForObject(sql, paramMap, String.class);
+    }
 }
 
