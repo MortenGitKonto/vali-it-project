@@ -33,6 +33,20 @@ public class RepositoryWO {
         jdbcTemplate.update(sql, paramMap);
     }
 
+    public void createMobileWO(EntityMobileWO request) {
+        String sql = "INSERT INTO work_orders (device_id, technician_id, job_description, product_id, status) " +
+                "VALUES (:deviceId, :technicianId, :jobDescription, :productId, :status)";
+        Map paramMap = new HashMap();
+        paramMap.put("deviceId", request.getDeviceId());
+        paramMap.put("technicianId", request.getTechnicianId());
+        paramMap.put("jobDescription", request.getJobDescription());
+        paramMap.put("productId", request.getProductId());
+        paramMap.put("status", request.getStatus());
+
+        jdbcTemplate.update(sql, paramMap);
+    }
+
+
     //Get a specific work order
     public List<EntityWO> getWorkOrderInfo(int deviceId) {
         String sql = "select * from work_orders where device_id=:deviceId";

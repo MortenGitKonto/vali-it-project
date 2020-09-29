@@ -8,7 +8,6 @@ public class EntityDeviceMultiMobile {
     private String clientName;
     private String productName;
     private Integer deviceId;
-
     private String deviceName;
 
     public String getDeviceName() {

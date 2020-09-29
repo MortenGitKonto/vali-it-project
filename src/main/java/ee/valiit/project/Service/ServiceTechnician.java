@@ -23,6 +23,9 @@ public class ServiceTechnician {
     }
 
     public List<EntityTechnician> searchTechnicianNamelike(String queryString) {
+        if (queryString == null) {
+            queryString = "";
+        }
         return repositoryTechnician.searchTechnicianNamelike(queryString);
     }
 }

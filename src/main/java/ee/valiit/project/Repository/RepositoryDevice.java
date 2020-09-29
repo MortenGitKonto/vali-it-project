@@ -3,6 +3,7 @@ package ee.valiit.project.Repository;
 import ee.valiit.project.Entity.EntityClient;
 import ee.valiit.project.Entity.EntityDevice;
 import ee.valiit.project.Entity.EntityDeviceMultiMobile;
+import ee.valiit.project.Entity.EntityWO;
 import ee.valiit.project.Entity.RowMapper.RowMapperDevice;
 import ee.valiit.project.Entity.RowMapper.RowMapperDeviceMulti;
 import ee.valiit.project.Entity.RowMapper.RowMapperDeviceMultiMobile;

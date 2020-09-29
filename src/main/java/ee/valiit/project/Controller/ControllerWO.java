@@ -1,5 +1,6 @@
 package ee.valiit.project.Controller;
 
+import ee.valiit.project.Entity.EntityMobileWO;
 import ee.valiit.project.Entity.EntityWO;
 import ee.valiit.project.Entity.EntityWOMulti;
 import ee.valiit.project.Service.ServiceWO;
@@ -20,6 +21,11 @@ public class ControllerWO {
                          @RequestParam(name = "consumable3", required = false) String consumable3, @RequestParam(name = "consumableAmount3", required = false) int consumableAmount3)
     {
         serviceWO.createWO(request, consumableAmount, consumable2, consumableAmount2, consumable3, consumableAmount3);
+    }
+
+    @PostMapping("device/mobilewo")
+    public void createMobileWO(@RequestBody EntityMobileWO request) {
+        serviceWO.createMobileWO(request);
     }
 
 

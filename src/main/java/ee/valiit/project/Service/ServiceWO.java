@@ -1,5 +1,6 @@
 package ee.valiit.project.Service;
 
+import ee.valiit.project.Entity.EntityMobileWO;
 import ee.valiit.project.Entity.EntityWOConsumable;
 import ee.valiit.project.Entity.EntityWOMulti;
 import ee.valiit.project.Repository.*;
@@ -88,6 +89,11 @@ public class ServiceWO {
 
 
     }
+
+    public void createMobileWO(EntityMobileWO request) {
+        repositoryWO.createMobileWO(request);
+    }
+
 
 //    //TOPELT
 //    public List<EntityWO> getWorkOrderInfo(int deviceId) {
