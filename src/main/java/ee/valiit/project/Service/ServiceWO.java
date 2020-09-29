@@ -59,32 +59,34 @@ public class ServiceWO {
         if(consumable2.equals("")) {
 
         } else {
+
             //Consumable2 ID
             int consumableId2 = repositoryConsumable.getConsumableID(consumable2);
-
+            System.out.println(consumableId2);
             //Creates work order consumables table rows
             for (int i = 1; i <= consumableAmount2; i++) {
-                repositoryWorkOrderConsumable.createWorkOrderConsumable(lastId, consumableId);
+                repositoryWorkOrderConsumable.createWorkOrderConsumable(lastId, consumableId2);
             }
 
+
             //Updates consumables table by reducing the stock of the specific consumable
-            currentStock = repositoryConsumable.getConsumableStock(consumableId2);
-            repositoryConsumable.updateStock(consumableId2, currentStock, consumableAmount2);
+            int currentStock2 = repositoryConsumable.getConsumableStock(consumableId2);
+            repositoryConsumable.updateStock(consumableId2, currentStock2, consumableAmount2);
         }
 
         if(consumable3.equals("")) {
         }else{
-            //Consumable2 ID
+            //Consumable3 ID
             int consumableId3 = repositoryConsumable.getConsumableID(consumable3);
-
+            System.out.println(consumableId3);
             //Creates work order consumables table rows
             for (int i = 1; i <= consumableAmount3; i++) {
                 repositoryWorkOrderConsumable.createWorkOrderConsumable(lastId, consumableId3);
             }
 
             //Updates consumables table by reducing the stock of the specific consumable
-            currentStock = repositoryConsumable.getConsumableStock(consumableId3);
-            repositoryConsumable.updateStock(consumableId3, currentStock, consumableAmount3);
+            int currentStock3 = repositoryConsumable.getConsumableStock(consumableId3);
+            repositoryConsumable.updateStock(consumableId3, currentStock3, consumableAmount3);
         }
 
 
