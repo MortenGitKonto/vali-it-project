@@ -1,15 +1,31 @@
 package ee.valiit.project.Entity;
 
-import java.math.BigInteger;
-
 public class EntityWO {
     private int id;
     private int deviceId;
     private String jobDescription;
     private boolean status; //true means work done, false means work not done
     private String technicianName;
+    private int technicianId;
     private String productName;
     private String consumableName;
+    private int productId;
+
+    public int getTechnicianId() {
+        return technicianId;
+    }
+
+    public void setTechnicianId(int technicianId) {
+        this.technicianId = technicianId;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
 
     public int getId() {
         return id;

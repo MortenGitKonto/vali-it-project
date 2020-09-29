@@ -1,9 +1,6 @@
 package ee.valiit.project.Controller;
 
-import ee.valiit.project.Entity.EntityClient;
-import ee.valiit.project.Entity.EntityDevice;
-import ee.valiit.project.Entity.EntityDeviceMulti;
-import ee.valiit.project.Entity.EntityDeviceMultiMobile;
+import ee.valiit.project.Entity.*;
 import ee.valiit.project.Service.ServiceDevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

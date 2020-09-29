@@ -34,11 +34,10 @@ public class ServiceClient {
 
     // clients by partial match
     public List<EntityClient> getClientViaName(String nameLike) {
-        if (nameLike != "") {
-            return repositoryClient.getClientViaName(nameLike);
-        } else {
-            return null;
+        if (nameLike == null) {
+            nameLike = "";
         }
+        return repositoryClient.getClientViaName(nameLike);
     }
 
 }
