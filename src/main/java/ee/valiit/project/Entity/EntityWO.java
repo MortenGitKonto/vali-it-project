@@ -10,6 +10,7 @@ public class EntityWO {
     private String productName;
     private String consumableName;
     private int productId;
+    private String clientName;
 
     public int getTechnicianId() {
         return technicianId;
@@ -21,6 +22,14 @@ public class EntityWO {
 
     public int getProductId() {
         return productId;
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
     }
 
     public void setProductId(int productId) {

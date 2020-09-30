@@ -43,7 +43,7 @@ public class ServiceWO {
         //Creates a work order table row
         repositoryWO.createWO(createWO, techId, productId, deviceId);
 
-        if (consumable2.equals("")) {
+        if (createWO.getConsumableName().equals("")) {
         } else {
 
             //Consumable1 ID

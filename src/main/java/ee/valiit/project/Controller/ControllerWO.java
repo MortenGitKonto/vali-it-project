@@ -56,7 +56,7 @@ public class ControllerWO {
     // work orders by four simultaneous input searches
     @GetMapping("workOrderSimultaneousSearch")
     public List<EntityWOMulti> getWorkOrdersBySimultaneousSearch(@RequestParam(name = "client", required = false) String client,
-                                                                 @RequestParam(name = "device", required = false) String device,
+                                                                 @RequestParam(name = "deviceName", required = false) String device,
                                                                  @RequestParam(name = "product", required = false) String product,
                                                                  @RequestParam(name = "technician", required = false) String technician,
                                                                  @RequestParam(name = "status", required = false) Boolean status) {
