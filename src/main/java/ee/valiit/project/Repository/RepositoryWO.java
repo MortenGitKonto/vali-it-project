@@ -89,19 +89,23 @@ public class RepositoryWO {
 
     //All work orders info by QUERY
     public List<EntityWO> getAllInfoByQuery(String queryString) {
-        String sql = "SELECT * FROM work_orders WHERE device_id = :queryInteger " +
-                "OR technician_id = :queryInteger OR " +
-                " product_id = :queryInteger OR consumable_id = :queryInteger";
+        System.out.println(queryString);
+        String sql = "SELECT distinct work_orders.id, d.name device_name, job_description, status, " +
+                "t.technician_name technician_name, p.name product_name," +
+                " c.name consumable_name, cl.client_name "+
+                "FROM work_orders JOIN devices d ON d.id = work_orders.device_id " +
+                "JOIN clients cl ON cl.id = d.client_id " +
+                "join technicians t ON t.id = work_orders.technician_id " +
+                "JOIN work_order_consumables ON work_order_consumables.work_order_id = work_orders.id " +
+                "JOIN consumables c ON c.id = work_order_consumables.consumable_id " +
+                "JOIN products p ON p.id = work_orders.product_id " +
+                "WHERE d.name ILIKE :queryString " +
+                "OR t.technician_name ILIKE :queryString OR " +
+                " p.name ILIKE :queryString OR cl.client_name ILIKE :queryString";
+
 
         Map paramMap = new HashMap();
-        //paramMap.put("queryString", queryString);
-
-        Integer queryInteger = null;
-        if (StringUtils.isNumeric(queryString)) {
-            queryInteger = Integer.valueOf(queryString);
-        }
-
-        paramMap.put("queryInteger", queryInteger);
+        paramMap.put("queryString", "%" + queryString + "%");
         return jdbcTemplate.query(sql, paramMap, new RowMapperWO());
     }
 
@@ -115,7 +119,16 @@ public class RepositoryWO {
 
     //get all work orders that are not done
     public List<EntityWO> getAllInfoByStatus(Boolean status) {
-        String sql = "SELECT * FROM work_orders WHERE status = :status";
+        String sql = "SELECT distinct work_orders.id, d.name device_name, job_description, status, " +
+        "t.technician_name technician_name, p.name product_name," +
+                " c.name consumable_name, cl.client_name "+
+                "FROM work_orders JOIN devices d ON d.id = work_orders.device_id " +
+                "JOIN clients cl ON cl.id = d.client_id " +
+                "join technicians t ON t.id = work_orders.technician_id " +
+                "JOIN work_order_consumables ON work_order_consumables.work_order_id = work_orders.id " +
+                "JOIN consumables c ON c.id = work_order_consumables.consumable_id " +
+                "JOIN products p ON p.id = work_orders.product_id " +
+                "WHERE status = :status";
         Map paramMap = new HashMap();
         paramMap.put("status", status);
         return jdbcTemplate.query(sql, paramMap, new RowMapperWO());
@@ -172,21 +185,25 @@ public class RepositoryWO {
     }
 
     public List<EntityWOMulti> getWorkOrdersBySimultaneousSearch(String client, String device, String product, String technician) {
-        String sql = "SELECT * FROM work_orders " +
-                "JOIN technicians ON technicians.id = work_orders.technician_id " +
-                "JOIN devices ON devices.id = work_orders.device_id " +
-                "JOIN products ON products.id = work_orders.product_id " +
-                "JOIN clients ON clients.id = devices.client_id " +
-                "WHERE devices.sn ILIKE :serialNumber " +
-                "and products.name ILIKE :productName " +
-                "and clients.client_name ILIKE :clientName " +
-                "and technicians.technician_name ILIKE :technicianName";
+        String sql = "SELECT distinct work_orders.id, d.name device_name, job_description, status, " +
+                "t.technician_name technician_name, color, p.name product_name," +
+                " c.name consumable_name, cl.client_name "+
+                "FROM work_orders JOIN devices d ON d.id = work_orders.device_id " +
+                "JOIN clients cl ON cl.id = d.client_id " +
+                "join technicians t ON t.id = work_orders.technician_id " +
+                "JOIN work_order_consumables ON work_order_consumables.work_order_id = work_orders.id " +
+                "JOIN consumables c ON c.id = work_order_consumables.consumable_id " +
+                "JOIN products p ON p.id = work_orders.product_id " +
+                "WHERE d.name ILIKE :deviceName " +
+                "and p.name ILIKE :productName " +
+                "and cl.client_name ILIKE :clientName " +
+                "and t.technician_name ILIKE :technicianName";
+
         //"AND work_orders.status = :status";
         Map paramMap = new HashMap();
 
-        paramMap.put("serialNumber", "%" + device + "%");
+        paramMap.put("deviceName", "%" + device + "%");
         paramMap.put("productName", "%" + product + "%");
-        //paramMap.put("status", "status");
         paramMap.put("technicianName", "%" + technician + "%");
         paramMap.put("clientName", "%" + client + "%");
 
@@ -195,11 +212,15 @@ public class RepositoryWO {
 
         //Get the whole list of work orders
         public List<EntityWOMulti> getWorkOrderInfoAllMulti() {
-            String sql = "SELECT * FROM work_orders " +
-                    "JOIN technicians ON technicians.id = work_orders.technician_id " +
-                    "JOIN devices ON devices.id = work_orders.device_id " +
-                    "JOIN products ON products.id = work_orders.product_id " +
-                    "JOIN clients ON clients.id = devices.client_id ";
+            String sql = "SELECT distinct work_orders.id, d.name device_name, job_description, status, " +
+                    "t.technician_name technician_name, color, p.name product_name," +
+                    " c.name consumable_name, cl.client_name "+
+                    "FROM work_orders JOIN devices d ON d.id = work_orders.device_id " +
+                    "JOIN clients cl ON cl.id = d.client_id " +
+                    "join technicians t ON t.id = work_orders.technician_id " +
+                    "JOIN work_order_consumables ON work_order_consumables.work_order_id = work_orders.id " +
+                    "JOIN consumables c ON c.id = work_order_consumables.consumable_id " +
+                    "JOIN products p ON p.id = work_orders.product_id ";
 
             //"AND work_orders.status = :status";
             Map paramMap = new HashMap();
@@ -209,21 +230,25 @@ public class RepositoryWO {
 
 
     public List<EntityWOMulti> getWorkOrdersBySimultaneousSearchWithStatus(String client, String device, String product, String technician, Boolean status) {
-        String sql = "SELECT * FROM work_orders " +
-                "JOIN technicians ON technicians.id = work_orders.technician_id " +
-                "JOIN devices ON devices.id = work_orders.device_id " +
-                "JOIN products ON products.id = work_orders.product_id " +
-                "JOIN clients ON clients.id = devices.client_id " +
-                "WHERE devices.sn ILIKE :serialNumber " +
-                "and products.name ILIKE :productName " +
-                "and clients.client_name ILIKE :clientName " +
-                "and technicians.technician_name ILIKE :technicianName " +
+        String sql = "SELECT distinct work_orders.id, d.name device_name, job_description, status, " +
+                "t.technician_name technician_name, p.name product_name," +
+                " c.name consumable_name, cl.client_name "+
+                "FROM work_orders JOIN devices d ON d.id = work_orders.device_id " +
+                "JOIN clients cl ON cl.id = d.client_id " +
+                "join technicians t ON t.id = work_orders.technician_id " +
+                "JOIN work_order_consumables ON work_order_consumables.work_order_id = work_orders.id " +
+                "JOIN consumables c ON c.id = work_order_consumables.consumable_id " +
+                "JOIN products p ON p.id = work_orders.product_id " +
+                "WHERE d.name ILIKE :deviceName " +
+                "and p.name ILIKE :productName " +
+                "and cl.client_name ILIKE :clientName " +
+                "and t.technician_name ILIKE :technicianName " +
                 "and work_orders.status = :status";
 
         Map paramMap = new HashMap();
 
         paramMap.put("status", status);
-        paramMap.put("serialNumber", "%"+device+"%");
+        paramMap.put("deviceName", "%"+device+"%");
         paramMap.put("productName", "%"+product+"%");
         paramMap.put("technicianName", "%"+technician+"%");
         paramMap.put("clientName", "%"+client+"%");
