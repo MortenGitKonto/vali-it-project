@@ -263,4 +263,20 @@ public class RepositoryWO {
     }
 
 
+    public void updateWorkOrderTechnicianName(int technicianId, String editedName) {
+            String sql = "update technicians set technician_name = :technicianName where id= :id";
+            Map<String, Object> paramMap = new HashMap();
+            paramMap.put("id", technicianId);
+            paramMap.put("technician_name", editedName);
+            jdbcTemplate.update(sql, paramMap);
+        }
+
+    public int getTechnicianId(int workOrderId) {
+        String sql = "SELECT work_orders w join technicians t ON t.id = w.technician_id "+
+                "WHERE w.id = :workOrderId";
+        Map paramMap = new HashMap();
+        paramMap.put("workOrderId", workOrderId);
+        return jdbcTemplate.queryForObject(sql, paramMap, int.class);
+    }
 }
+
