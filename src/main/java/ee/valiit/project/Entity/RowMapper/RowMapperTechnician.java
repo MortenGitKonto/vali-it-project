@@ -12,6 +12,7 @@ public class RowMapperTechnician implements RowMapper<EntityTechnician> {
         EntityTechnician technician = new EntityTechnician();
         technician.setName(resultset.getString("technician_name"));
         technician.setId(resultset.getInt("id"));
+        technician.setColor(resultset.getString("color"));
         return technician;
     }
 }
