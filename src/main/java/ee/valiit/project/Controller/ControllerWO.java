@@ -81,6 +81,12 @@ public class ControllerWO {
         serviceWO.updateWorkOrderStatus(entityWO, id);
     }
 
+    //Update technicianName of specific work order by id
+    @PutMapping("updateWorkOrderTechnicianName")
+    public void updateWorkOrderStatus(@RequestParam(name = "technicianName") String editedName, @RequestParam(name = "workOrderId") int workOrderId) {
+        serviceWO.updateWorkOrderTechnicianName(workOrderId, editedName);
+    }
+
     //Get workorder by ID
     @GetMapping("workOrderById")
     public List<EntityWO> getWorkOrderById(@RequestParam(name = "id") int id) {

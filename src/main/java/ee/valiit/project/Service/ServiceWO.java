@@ -173,4 +173,10 @@ public class ServiceWO {
             return repositoryWO.getWorkOrdersBySimultaneousSearchWithStatus(client, device, product, technician, status);
         }
     }
+
+    public void updateWorkOrderTechnicianName(int workOrderId, String editedName) {
+        int technicianId = repositoryWO.getTechnicianId(workOrderId);
+        System.out.println(technicianId);
+        repositoryWO.updateWorkOrderTechnicianName(technicianId,editedName);
+    }
 }
