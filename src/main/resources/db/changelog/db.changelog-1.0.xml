@@ -192,4 +192,10 @@
             <column name="color" type="text"></column>
         </addColumn>
     </changeSet>
+    <changeSet id="23" author="tenno">
+        <addUniqueConstraint tableName="clients" columnNames="client_name"></addUniqueConstraint>
+        <addUniqueConstraint tableName="consumables" columnNames="name"></addUniqueConstraint>
+        <addUniqueConstraint tableName="products" columnNames="name"></addUniqueConstraint>
+        <addUniqueConstraint tableName="technicians" columnNames="technician_name"></addUniqueConstraint>
+    </changeSet>
 </databaseChangeLog>

@@ -39,9 +39,9 @@ public class ControllerTechnician {
         return serviceTechnician.searchTechnicianNamelike(queryString);
     }
 
-    @GetMapping("technician/logIn")
-    public User login(@RequestParam("username")String user, @RequestParam("password") String pass) {
-        return serviceTechnician.loginTechnician(user, pass);
+    @PostMapping("technician/logIn")
+    public User login(@RequestBody EntityTechnician userpass) {
+        return serviceTechnician.loginTechnician(userpass.getUsername(), userpass.getPassword());
     }
 
 }
