@@ -1,8 +1,8 @@
 package ee.valiit.project.Controller;
 
 import ee.valiit.project.Entity.EntityTechnician;
-import ee.valiit.project.Entity.JWTTokenProvider;
-import ee.valiit.project.Entity.User;
+import ee.valiit.project.Security.JWTTokenProvider;
+import ee.valiit.project.Security.User;
 import ee.valiit.project.Service.ServiceTechnician;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
