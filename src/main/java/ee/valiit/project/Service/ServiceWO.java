@@ -140,8 +140,13 @@ public class ServiceWO {
 
 
     //Update status of specific work order by id
-    public void updateWorkOrderStatus(EntityWO entityWO, Integer id) {
-        repositoryWO.updateStatus(entityWO, id);
+    public void updateWorkOrderStatus(int id) {
+        Boolean status = repositoryWO.getWorkOrderStatus(id);
+        repositoryWO.updateStatus(id, status);
+    }
+
+    public void updateWorkOrderJobDescription(int workOrderId, String newJD) {
+        repositoryWO.updateJobDescription(workOrderId, newJD);
     }
 
     public List<EntityWO> getWorkOrderById(int id) {
@@ -174,9 +179,9 @@ public class ServiceWO {
         }
     }
 
-    public void updateWorkOrderTechnicianName(int workOrderId, String editedName) {
-        int technicianId = repositoryWO.getTechnicianId(workOrderId);
-        System.out.println(technicianId);
-        repositoryWO.updateWorkOrderTechnicianName(technicianId,editedName);
-    }
+//    public void updateWorkOrderTechnicianName(int workOrderId, String editedName) {
+//        int technicianId = repositoryWO.getTechnicianId(workOrderId);
+//        System.out.println(technicianId);
+//        repositoryWO.updateWorkOrderTechnicianName(technicianId,editedName);
+//    }
 }
