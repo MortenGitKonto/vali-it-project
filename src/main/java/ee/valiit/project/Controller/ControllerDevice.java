@@ -36,7 +36,10 @@ public class ControllerDevice {
     }
 
     @GetMapping("device/namelike")
-    public List<EntityDevice> searchDeviceNamelike(@RequestParam("queryString") String queryString){
+    public List<EntityDevice> searchDeviceNamelike(@RequestParam(value = "queryString", required = false) String queryString){
+//        if (queryString == null) {
+//            queryString = "";
+//        }
         return serviceDevice.searchDeviceNamelike(queryString);
     }
 
@@ -60,8 +63,8 @@ public class ControllerDevice {
     }
 
 
-    // devices by client name
-    @GetMapping("devicelike")
+    // device lazysearch
+    @GetMapping("/device/multilike")
     public List<EntityClient> getDevicesByClientName(@RequestParam(name = "clientLike", required = false) String clientLike,
                                                      @RequestParam(name = "productLike", required = false) String productLike,
                                                      @RequestParam(name = "serialNumberLike", required = false) String serialNumberLike) {

@@ -32,10 +32,10 @@ public class RepositoryClient {
     }
 
     // clients by partial match
-    public List<EntityClient> getClientViaName(String nameLike) {
+    public List<EntityClient> getClientViaName(String queryString) {
         String sql = "SELECT * FROM clients WHERE client_name ILIKE :request";
         Map paramMap = new HashMap();
-        paramMap.put("request", "%"+nameLike+"%");
+        paramMap.put("request", "%"+queryString+"%");
         System.out.println(jdbcTemplate.query(sql, paramMap, new RowMapperClient()));
         return jdbcTemplate.query(sql, paramMap, new RowMapperClient());
     }
