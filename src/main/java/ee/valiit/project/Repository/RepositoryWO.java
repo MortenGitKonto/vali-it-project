@@ -90,9 +90,9 @@ public class RepositoryWO {
     //All work orders info by QUERY
     public List<EntityWO> getAllInfoByQuery(String queryString) {
         System.out.println(queryString);
-        String sql = "SELECT distinct work_orders.id, d.name device_name, job_description, status, " +
+        String sql = "SELECT distinct work_orders.id id, d.name device_name, job_description, status, " +
                 "t.technician_name technician_name, p.name product_name," +
-                " c.name consumable_name, cl.client_name "+
+                " c.name consumable_name, cl.client_name, color " +
                 "FROM work_orders JOIN devices d ON d.id = work_orders.device_id " +
                 "JOIN clients cl ON cl.id = d.client_id " +
                 "join technicians t ON t.id = work_orders.technician_id " +
@@ -106,7 +106,7 @@ public class RepositoryWO {
 
         Map paramMap = new HashMap();
         paramMap.put("queryString", "%" + queryString + "%");
-        return jdbcTemplate.query(sql, paramMap, new RowMapperWO());
+        return jdbcTemplate.query(sql, paramMap, new RowMapperWorkOrderMulti());
     }
 
     //All work orders info by TRUE/FALSE
@@ -114,14 +114,14 @@ public class RepositoryWO {
         String sql = "SELECT * FROM work_orders WHERE status = :status";
         Map paramMap = new HashMap();
         paramMap.put("status", Boolean.valueOf(queryString));
-        return jdbcTemplate.query(sql, paramMap, new RowMapperWO());
+        return jdbcTemplate.query(sql, paramMap, new RowMapperWorkOrderMulti());
     }
 
     //get all work orders that are not done
     public List<EntityWO> getAllInfoByStatus(Boolean status) {
         String sql = "SELECT distinct work_orders.id, d.name device_name, job_description, status, " +
-        "t.technician_name technician_name, p.name product_name," +
-                " c.name consumable_name, cl.client_name "+
+                "t.technician_name technician_name, p.name product_name," +
+                " c.name consumable_name, cl.client_name " +
                 "FROM work_orders JOIN devices d ON d.id = work_orders.device_id " +
                 "JOIN clients cl ON cl.id = d.client_id " +
                 "join technicians t ON t.id = work_orders.technician_id " +
@@ -175,11 +175,24 @@ public class RepositoryWO {
 //    }
 
     ///
+
+    //work order status info by WO id
+    public Boolean getWorkOrderStatus(int id) {
+        String sql = "SELECT status FROM work_orders WHERE id = :id";
+        Map paramMap = new HashMap();
+        paramMap.put("id", id);
+        return jdbcTemplate.queryForObject(sql, paramMap, Boolean.class);
+    }
+
     //Update status of one specific work order by id
-    public void updateStatus(EntityWO entityWO, Integer id) {
+    public void updateStatus(int id, Boolean currentStatus) {
         String sql = "update work_orders set status = :status where id= :id";
         Map<String, Object> paramMap = new HashMap();
-        paramMap.put("status", entityWO.isStatus());
+        if (currentStatus == true) {
+            paramMap.put("status", false);
+        } else {
+            paramMap.put("status", true);
+        }
         paramMap.put("id", id);
         jdbcTemplate.update(sql, paramMap);
     }
@@ -187,7 +200,7 @@ public class RepositoryWO {
     public List<EntityWOMulti> getWorkOrdersBySimultaneousSearch(String client, String device, String product, String technician) {
         String sql = "SELECT distinct work_orders.id, d.name device_name, job_description, status, " +
                 "t.technician_name technician_name, color, p.name product_name," +
-                " c.name consumable_name, cl.client_name "+
+                " c.name consumable_name, cl.client_name " +
                 "FROM work_orders JOIN devices d ON d.id = work_orders.device_id " +
                 "JOIN clients cl ON cl.id = d.client_id " +
                 "join technicians t ON t.id = work_orders.technician_id " +
@@ -210,29 +223,29 @@ public class RepositoryWO {
         return jdbcTemplate.query(sql, paramMap, new RowMapperWorkOrderMulti());
     }
 
-        //Get the whole list of work orders
-        public List<EntityWOMulti> getWorkOrderInfoAllMulti() {
-            String sql = "SELECT distinct work_orders.id, d.name device_name, job_description, status, " +
-                    "t.technician_name technician_name, color, p.name product_name," +
-                    " c.name consumable_name, cl.client_name "+
-                    "FROM work_orders JOIN devices d ON d.id = work_orders.device_id " +
-                    "JOIN clients cl ON cl.id = d.client_id " +
-                    "join technicians t ON t.id = work_orders.technician_id " +
-                    "JOIN work_order_consumables ON work_order_consumables.work_order_id = work_orders.id " +
-                    "JOIN consumables c ON c.id = work_order_consumables.consumable_id " +
-                    "JOIN products p ON p.id = work_orders.product_id ";
+    //Get the whole list of work orders
+    public List<EntityWOMulti> getWorkOrderInfoAllMulti() {
+        String sql = "SELECT distinct work_orders.id, d.name device_name, job_description, status, " +
+                "t.technician_name technician_name, color, p.name product_name," +
+                " c.name consumable_name, cl.client_name " +
+                "FROM work_orders JOIN devices d ON d.id = work_orders.device_id " +
+                "JOIN clients cl ON cl.id = d.client_id " +
+                "join technicians t ON t.id = work_orders.technician_id " +
+                "JOIN work_order_consumables ON work_order_consumables.work_order_id = work_orders.id " +
+                "JOIN consumables c ON c.id = work_order_consumables.consumable_id " +
+                "JOIN products p ON p.id = work_orders.product_id ";
 
-            //"AND work_orders.status = :status";
-            Map paramMap = new HashMap();
+        //"AND work_orders.status = :status";
+        Map paramMap = new HashMap();
 
-            return jdbcTemplate.query(sql, paramMap, new RowMapperWorkOrderMulti());
-        }
+        return jdbcTemplate.query(sql, paramMap, new RowMapperWorkOrderMulti());
+    }
 
 
     public List<EntityWOMulti> getWorkOrdersBySimultaneousSearchWithStatus(String client, String device, String product, String technician, Boolean status) {
         String sql = "SELECT distinct work_orders.id, d.name device_name, job_description, status, " +
                 "t.technician_name technician_name, p.name product_name," +
-                " c.name consumable_name, cl.client_name "+
+                " c.name consumable_name, cl.client_name " +
                 "FROM work_orders JOIN devices d ON d.id = work_orders.device_id " +
                 "JOIN clients cl ON cl.id = d.client_id " +
                 "join technicians t ON t.id = work_orders.technician_id " +
@@ -248,10 +261,10 @@ public class RepositoryWO {
         Map paramMap = new HashMap();
 
         paramMap.put("status", status);
-        paramMap.put("deviceName", "%"+device+"%");
-        paramMap.put("productName", "%"+product+"%");
-        paramMap.put("technicianName", "%"+technician+"%");
-        paramMap.put("clientName", "%"+client+"%");
+        paramMap.put("deviceName", "%" + device + "%");
+        paramMap.put("productName", "%" + product + "%");
+        paramMap.put("technicianName", "%" + technician + "%");
+        paramMap.put("clientName", "%" + client + "%");
 
         return jdbcTemplate.query(sql, paramMap, new RowMapperWorkOrderMulti());
     }
@@ -263,20 +276,28 @@ public class RepositoryWO {
     }
 
 
-    public void updateWorkOrderTechnicianName(int technicianId, String editedName) {
-            String sql = "update technicians set technician_name = :technicianName where id= :id";
-            Map<String, Object> paramMap = new HashMap();
-            paramMap.put("id", technicianId);
-            paramMap.put("technician_name", editedName);
-            jdbcTemplate.update(sql, paramMap);
-        }
+//    public void updateWorkOrderTechnicianName(int technicianId, String editedName) {
+//            String sql = "update technicians set technician_name = :technicianName where id= :id";
+//            Map<String, Object> paramMap = new HashMap();
+//            paramMap.put("id", technicianId);
+//            paramMap.put("technician_name", editedName);
+//            jdbcTemplate.update(sql, paramMap);
+//        }
 
     public int getTechnicianId(int workOrderId) {
-        String sql = "SELECT work_orders w join technicians t ON t.id = w.technician_id "+
+        String sql = "SELECT work_orders w join technicians t ON t.id = w.technician_id " +
                 "WHERE w.id = :workOrderId";
         Map paramMap = new HashMap();
         paramMap.put("workOrderId", workOrderId);
         return jdbcTemplate.queryForObject(sql, paramMap, int.class);
+    }
+
+    public void updateJobDescription(int workOrderId, String newJD) {
+        String sql = "update work_orders set job_description = :jobDescription where id= :id";
+        Map<String, Object> paramMap = new HashMap();
+        paramMap.put("jobDescription", newJD);
+        paramMap.put("id", workOrderId);
+        jdbcTemplate.update(sql, paramMap);
     }
 }
 

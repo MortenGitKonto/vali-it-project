@@ -76,15 +76,22 @@ public class ControllerWO {
 
 
     //Update status of specific work order by id
-    @PutMapping("updateWorkOrderStatus/{a}")
-    public void updateWorkOrderStatus(@RequestBody EntityWO entityWO, @PathVariable("a") int id) {
-        serviceWO.updateWorkOrderStatus(entityWO, id);
+//    @PutMapping("updateWorkOrderStatus/{a}")
+//    public void updateWorkOrderStatus(@RequestBody EntityWO entityWO, @PathVariable("a") int id) {
+//        serviceWO.updateWorkOrderStatus(entityWO, id);
+//    }
+
+    //Update technicianName of specific work order by id
+    @PutMapping("updateWorkOrderStatus")
+    public void updateWorkOrderStatus(@RequestParam(name = "workOrderId") int workOrderId) {
+        serviceWO.updateWorkOrderStatus(workOrderId);
     }
 
     //Update technicianName of specific work order by id
-    @PutMapping("updateWorkOrderTechnicianName")
-    public void updateWorkOrderStatus(@RequestParam(name = "technicianName") String editedName, @RequestParam(name = "workOrderId") int workOrderId) {
-        serviceWO.updateWorkOrderTechnicianName(workOrderId, editedName);
+    @PutMapping("updateWorkOrderJobDescription")
+    public void updateWorkOrderJobDescription(@RequestParam(name = "workOrderId") int workOrderId,
+                                              @RequestParam(name = "newWorkOrderJobDescription") String workOrderJD) {
+        serviceWO.updateWorkOrderJobDescription(workOrderId, workOrderJD);
     }
 
     //Get workorder by ID
