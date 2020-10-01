@@ -3,8 +3,8 @@ package ee.valiit.project.Service;
 
 
 import ee.valiit.project.Entity.EntityTechnician;
-import ee.valiit.project.Entity.JWTTokenProvider;
-import ee.valiit.project.Entity.User;
+import ee.valiit.project.Security.JWTTokenProvider;
+import ee.valiit.project.Security.User;
 import ee.valiit.project.Repository.RepositoryTechnician;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

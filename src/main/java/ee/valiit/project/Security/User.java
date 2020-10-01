@@ -1,4 +1,4 @@
-package ee.valiit.project.Entity;
+package ee.valiit.project.Security;
 
 public class User {
     private Boolean status;

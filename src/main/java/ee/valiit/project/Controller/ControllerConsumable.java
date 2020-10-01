@@ -2,6 +2,7 @@ package ee.valiit.project.Controller;
 
 import ee.valiit.project.Entity.EntityConsumable;
 import ee.valiit.project.Service.ServiceConsumable;
+import liquibase.pro.packaged.C;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
