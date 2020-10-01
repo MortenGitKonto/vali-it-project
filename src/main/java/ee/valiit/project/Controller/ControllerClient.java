@@ -35,6 +35,9 @@ public class ControllerClient {
     // clients by partial match
     @GetMapping("/client/namelike")
     public List<EntityClient> searchClient(@RequestParam(value = "queryString", required = false) String queryString) {
+        if (queryString == null) {
+            queryString = "";
+        }
         return serviceClient.getClientViaName(queryString);
     }
 

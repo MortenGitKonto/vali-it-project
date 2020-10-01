@@ -37,9 +37,9 @@ public class ControllerDevice {
 
     @GetMapping("device/namelike")
     public List<EntityDevice> searchDeviceNamelike(@RequestParam(value = "queryString", required = false) String queryString){
-//        if (queryString == null) {
-//            queryString = "";
-//        }
+        if (queryString == null) {
+            queryString = "";
+        }
         return serviceDevice.searchDeviceNamelike(queryString);
     }
 
