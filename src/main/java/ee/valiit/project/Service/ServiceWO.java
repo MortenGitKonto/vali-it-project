@@ -126,8 +126,6 @@ public class ServiceWO {
             return new ArrayList<>();
             //}else if (query.isEmpty()) {
             //return repositoryWO.getWorkOrderInfoAll();
-        } else if (query.equals("true") || query.equals("false")) {
-            return repositoryWO.getAllInfoByQueryBoolean(query);
         } else {
             return repositoryWO.getAllInfoByQuery(query);
         }

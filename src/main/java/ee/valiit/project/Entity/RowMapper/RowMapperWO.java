@@ -17,6 +17,7 @@ public class RowMapperWO implements RowMapper<EntityWO> {
         workOrder.setConsumableName(resultset.getString("consumable_name"));
         workOrder.setId(resultset.getInt("id"));
         workOrder.setClientName(resultset.getString("client_name"));
+        workOrder.setColor(resultset.getString("color"));
         return workOrder;
     }
 }

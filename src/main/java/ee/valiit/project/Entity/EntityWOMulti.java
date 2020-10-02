@@ -14,6 +14,7 @@ public class EntityWOMulti {
     private String clientName;
     //    jaanus added
     private String deviceName;
+    private String consumableName;
     private String color;
 
     public String getColor() {
@@ -30,6 +31,14 @@ public class EntityWOMulti {
 
     public void setDeviceName(String deviceName) {
         this.deviceName = deviceName;
+    }
+
+    public String getConsumableName() {
+        return consumableName;
+    }
+
+    public void setConsumableName(String consumableName) {
+        this.consumableName = consumableName;
     }
 
     public Integer getWorkOrderId() {

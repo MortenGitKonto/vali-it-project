@@ -11,6 +11,7 @@ public class EntityWO {
     private String consumableName;
     private int productId;
     private String clientName;
+    private String color;
 
     public int getTechnicianId() {
         return technicianId;
@@ -18,6 +19,14 @@ public class EntityWO {
 
     public void setTechnicianId(int technicianId) {
         this.technicianId = technicianId;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public int getProductId() {

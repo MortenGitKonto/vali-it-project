@@ -19,6 +19,7 @@ public class RowMapperWorkOrderMulti implements RowMapper<EntityWOMulti> {
         workOrderMulti.setClientName(resultset.getString("client_name"));
 //        jaanus added
         workOrderMulti.setDeviceName(resultset.getString("device_name"));
+        workOrderMulti.setConsumableName(resultset.getString("consumable_name"));
         workOrderMulti.setColor(resultset.getString("color"));
 
         return workOrderMulti;
