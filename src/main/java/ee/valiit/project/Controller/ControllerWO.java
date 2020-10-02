@@ -3,6 +3,7 @@ package ee.valiit.project.Controller;
 import ee.valiit.project.Entity.EntityMobileWO;
 import ee.valiit.project.Entity.EntityWO;
 import ee.valiit.project.Entity.EntityWOMulti;
+import ee.valiit.project.Entity.EntityWOmobile;
 import ee.valiit.project.Service.ServiceWO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,11 @@ public class ControllerWO {
     @GetMapping("getAllWorkOrders")
     public List<EntityWO> getAllWorkOrders() {
         return serviceWO.getWorkOrderInfoAll();
+    }
+
+    @GetMapping("getWorkOrderAllMobile")
+    public List<EntityWOmobile> getAllWorkOrderMobile() {
+        return serviceWO.getAllWorkOrderMobile();
     }
 
     //Get the whole list of work orders in simultaneous search page

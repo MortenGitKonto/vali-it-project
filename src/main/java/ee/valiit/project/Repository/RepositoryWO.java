@@ -2,6 +2,7 @@ package ee.valiit.project.Repository;
 
 import ee.valiit.project.Entity.*;
 import ee.valiit.project.Entity.RowMapper.RowMapperWO;
+import ee.valiit.project.Entity.RowMapper.RowMapperWOmobile;
 import ee.valiit.project.Entity.RowMapper.RowMapperWorkOrderMulti;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,15 @@ public class RepositoryWO {
         jdbcTemplate.update(sql, paramMap);
     }
 
+    //get all mobile workorders
+    public List<EntityWOmobile> getAllWorkOrderMobile() {
+        String sql = "SELECT client_name, devices.name device_name, job_description, color FROM work_orders " +
+                "JOIN devices ON devices.id = work_orders.device_id " +
+                "JOIN clients on clients.id = devices.client_id " +
+                "JOIN technicians ON technicians.id = work_orders.technician_id";
+        Map<String, Object> paramMap = new HashMap();
+        return jdbcTemplate.query(sql, paramMap, new RowMapperWOmobile());
+    }
 
     //Get a specific work order
     public List<EntityWO> getWorkOrderInfo(int deviceId) {
@@ -54,6 +64,7 @@ public class RepositoryWO {
         paramMap.put("deviceId", deviceId);
         return jdbcTemplate.query(sql, paramMap, new RowMapperWO());
     }
+
 
     //Get the whole list of work orders
     public List<EntityWO> getWorkOrderInfoAll() {
