@@ -1,10 +1,7 @@
 package ee.valiit.project.Service;
 
-import ee.valiit.project.Entity.EntityMobileWO;
-import ee.valiit.project.Entity.EntityWOConsumable;
-import ee.valiit.project.Entity.EntityWOMulti;
+import ee.valiit.project.Entity.*;
 import ee.valiit.project.Repository.*;
-import ee.valiit.project.Entity.EntityWO;
 import liquibase.pro.packaged.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -111,6 +108,9 @@ public class ServiceWO {
     //Get the whole list of work orders
     public List<EntityWO> getWorkOrderInfoAll() {
         return repositoryWO.getWorkOrderInfoAll();
+    }
+    public List<EntityWOmobile> getAllWorkOrderMobile() {
+        return repositoryWO.getAllWorkOrderMobile();
     }
 
 
