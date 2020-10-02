@@ -132,7 +132,7 @@ public class RepositoryWO {
     public List<EntityWO> getAllInfoByStatus(Boolean status) {
         String sql = "SELECT distinct work_orders.id, d.name device_name, job_description, status, " +
                 "t.technician_name technician_name, p.name product_name," +
-                " c.name consumable_name, cl.client_name " +
+                " c.name consumable_name, cl.client_name, color " +
                 "FROM work_orders JOIN devices d ON d.id = work_orders.device_id " +
                 "JOIN clients cl ON cl.id = d.client_id " +
                 "join technicians t ON t.id = work_orders.technician_id " +
