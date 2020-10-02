@@ -187,7 +187,7 @@
     <changeSet id="21" author="Morten">
         <dropColumn tableName="work_orders" columnName="consumable_id"></dropColumn>
     </changeSet>
-    <changeSet id="21" author="jantilk">
+    <changeSet id="22" author="jantilk">
         <addColumn tableName="technicians">
             <column name="color" type="text"></column>
         </addColumn>

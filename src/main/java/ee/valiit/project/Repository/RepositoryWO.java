@@ -198,7 +198,7 @@ public class RepositoryWO {
     }
 
     public List<EntityWOMulti> getWorkOrdersBySimultaneousSearch(String client, String device, String product, String technician) {
-        String sql = "SELECT distinct work_orders.id, d.name device_name, job_description, status, " +
+        String sql = "SELECT distinct work_orders.id, color, d.name device_name, job_description, status, " +
                 "t.technician_name technician_name, color, p.name product_name," +
                 " c.name consumable_name, cl.client_name " +
                 "FROM work_orders JOIN devices d ON d.id = work_orders.device_id " +
@@ -243,7 +243,7 @@ public class RepositoryWO {
 
 
     public List<EntityWOMulti> getWorkOrdersBySimultaneousSearchWithStatus(String client, String device, String product, String technician, Boolean status) {
-        String sql = "SELECT distinct work_orders.id, d.name device_name, job_description, status, " +
+        String sql = "SELECT distinct work_orders.id, color, d.name device_name, job_description, status, " +
                 "t.technician_name technician_name, p.name product_name," +
                 " c.name consumable_name, cl.client_name " +
                 "FROM work_orders JOIN devices d ON d.id = work_orders.device_id " +
